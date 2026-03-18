@@ -1,0 +1,708 @@
+/* ═══════════════════════════════════════════════════════
+   SKILLS PAGE  —  skillsPage.css
+   Uses CSS custom properties from app.css (no redeclare)
+═══════════════════════════════════════════════════════ */
+
+/* ── Root wrapper — Pastel Teal / Emerald theme ── */
+.sp_root {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  --accent: #10b981;
+  --accent-2: #06b6d4;
+  --accent-glow: rgba(16, 185, 129, 0.14);
+  --accent-glow-strong: rgba(16, 185, 129, 0.28);
+  --border-accent: rgba(16, 185, 129, 0.28);
+  --gradient-accent: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  --shadow-glow: 0 0 30px rgba(16, 185, 129, 0.14);
+}
+
+[data-theme="light"] .sp_root {
+  --accent: #059669;
+  --accent-2: #0891b2;
+  --accent-glow: rgba(5, 150, 105, 0.1);
+  --accent-glow-strong: rgba(5, 150, 105, 0.22);
+  --border-accent: rgba(5, 150, 105, 0.25);
+  --gradient-accent: linear-gradient(135deg, #059669 0%, #0891b2 100%);
+}
+
+/* ── Shared container ── */
+.sp_container {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 6rem);
+}
+
+/* ── Shared section padding ── */
+.sp_section {
+  padding: clamp(5rem, 9vh, 8rem) 0;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  position: relative;
+}
+
+.sp_even {
+  background-color: var(--bg-secondary);
+}
+
+/* ── Ghost watermark ── */
+.sp_ghost_wm {
+  position: absolute;
+  top: -0.1em;
+  left: clamp(1rem, 4vw, 5rem);
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(5rem, 14vw, 12rem);
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--border);
+  opacity: 0.25;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.sp_ghost_right {
+  left: auto;
+  right: clamp(1rem, 4vw, 5rem);
+}
+
+/* ── Section headings ── */
+.sp_section_head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  max-width: 640px;
+}
+
+.sp_section_title {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.07;
+  letter-spacing: -1px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.sp_grad {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.sp_section_sub {
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-top: 0.35rem;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.sp_hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  padding: 7rem clamp(1.5rem, 5vw, 6rem) 5rem;
+}
+
+/* Orbs */
+.sp_hero_orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+.sp_orb1 {
+  width: 600px;
+  height: 600px;
+  top: -120px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(91, 141, 238, 0.12) 0%, transparent 70%);
+}
+
+.sp_orb2 {
+  width: 400px;
+  height: 400px;
+  bottom: 60px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(124, 111, 247, 0.1) 0%, transparent 70%);
+}
+
+/* Dot grid */
+.sp_hero_grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.sp_hero_inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Back link */
+.sp_back_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 0.3px;
+  transition: color 0.3s, gap 0.3s;
+  margin-bottom: 1rem;
+}
+
+.sp_back_link:hover {
+  color: var(--accent);
+  gap: 0.75rem;
+}
+
+.sp_label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Hero title */
+.sp_hero_title {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -2px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.sp_hero_grad {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.sp_hero_sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-top: 1rem;
+}
+
+/* Stats row */
+.sp_stats_row {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: var(--bg-card);
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.sp_stat {
+  padding: 1.25rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-right: 1px solid var(--border);
+  min-width: 120px;
+}
+
+.sp_stat:last-child {
+  border-right: none;
+}
+
+.sp_stat_value {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.sp_stat_label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* Scroll cue */
+.sp_scroll_cue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", sans-serif;
+  z-index: 1;
+}
+
+.sp_scroll_wheel {
+  width: 22px;
+  height: 34px;
+  border: 2px solid var(--border-accent);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.sp_scroll_wheel span {
+  width: 3px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 999px;
+  animation: sp_scroll_anim 1.6s ease-in-out infinite;
+}
+
+@keyframes sp_scroll_anim {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════
+   CERTIFICATIONS GRID
+═══════════════════════════════════════ */
+.sp_cert_grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.sp_cert_card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 2rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  overflow: hidden;
+  cursor: default;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.sp_cert_card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Left accent bar */
+.sp_cert_accent_bar {
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 3px;
+  background: var(--gradient-accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+.sp_cert_card:hover .sp_cert_accent_bar {
+  transform: scaleY(1);
+}
+
+/* Top gradient bar */
+.sp_cert_card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.sp_cert_card:hover::before {
+  opacity: 1;
+}
+
+/* Icon wrappers per color */
+.sp_cert_icon_wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sp_cert_icon_azure {
+  background: rgba(0, 120, 212, 0.12);
+  border: 1px solid rgba(0, 120, 212, 0.25);
+  color: #0078d4;
+}
+
+.sp_cert_icon_claude {
+  background: rgba(230, 95, 53, 0.12);
+  border: 1px solid rgba(230, 95, 53, 0.25);
+  color: #e65f35;
+}
+
+.sp_cert_icon_ai {
+  background: rgba(124, 111, 247, 0.12);
+  border: 1px solid rgba(124, 111, 247, 0.3);
+  color: #7c6ff7;
+}
+
+.sp_cert_issuer {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.sp_cert_name {
+  font-family: "Syne", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.sp_cert_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.sp_cert_year {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.sp_cert_verified {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #5bdc8e;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* ═══════════════════════════════════════
+   PHILOSOPHY GRID
+═══════════════════════════════════════ */
+.sp_philosophy_grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.sp_phil_card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 2rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow: hidden;
+  cursor: default;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.sp_phil_card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Left accent bar */
+.sp_phil_accent_bar {
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 3px;
+  background: var(--gradient-accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+.sp_phil_card:hover .sp_phil_accent_bar {
+  transform: scaleY(1);
+}
+
+.sp_phil_icon_wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  background: var(--accent-glow);
+  border: 1px solid var(--border-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.sp_phil_card:hover .sp_phil_icon_wrap {
+  background: rgba(91, 141, 238, 0.2);
+  border-color: rgba(91, 141, 238, 0.45);
+}
+
+.sp_phil_num {
+  font-family: "Syne", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.sp_phil_title {
+  font-family: "Syne", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.sp_phil_body {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.sp_phil_bottom_line {
+  height: 2px;
+  border-radius: 999px;
+  margin-top: auto;
+  opacity: 0.4;
+  transition: opacity 0.35s;
+}
+
+.sp_phil_card:hover .sp_phil_bottom_line {
+  opacity: 0.9;
+}
+
+/* ═══════════════════════════════════════
+   CTA
+═══════════════════════════════════════ */
+.sp_cta_section {
+  position: relative;
+  padding: clamp(5rem, 9vh, 8rem) clamp(1.5rem, 5vw, 6rem);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  text-align: center;
+}
+
+.sp_cta_orb {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(91, 141, 238, 0.09) 0%, transparent 65%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.sp_cta_inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.sp_cta_title {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: center;
+}
+
+.sp_cta_grad {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.sp_cta_sub {
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 500px;
+}
+
+.sp_cta_btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* ── Fix sktabs for 4 categories (overrides skills.css 3-col grid) ── */
+.sp_root .sktabs {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 860px) {
+  .sp_root .sktabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sp_root .sktab_ink {
+    display: none;
+  }
+  .sp_root .sktab.active {
+    background: var(--gradient-accent);
+  }
+  .sp_root .sktab.active .sktab_name,
+  .sp_root .sktab.active .sktab_yrs,
+  .sp_root .sktab.active .sktab_icon i { color: #fff; }
+  .sp_root .sktab.active .sktab_badge {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.25);
+    color: #fff;
+  }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .sp_philosophy_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sp_hero {
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  .sp_hero_title {
+    font-size: clamp(2.8rem, 10vw, 4rem);
+  }
+
+  .sp_stats_row {
+    width: 100%;
+  }
+
+  .sp_stat {
+    padding: 1rem 1.5rem;
+    flex: 1 1 calc(50% - 1.5rem);
+    min-width: unset;
+  }
+
+  .sp_cert_grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .sp_philosophy_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sp_hero_title {
+    font-size: 2.4rem;
+    letter-spacing: -1px;
+  }
+
+  .sp_stats_row {
+    border-radius: 1rem;
+  }
+
+  .sp_stat {
+    padding: 0.875rem 1.25rem;
+    flex: 1 1 calc(50% - 1px);
+  }
+
+  .sp_cert_grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+  }
+
+  .sp_cta_btns {
+    flex-direction: column;
+    align-items: center;
+  }
+}
