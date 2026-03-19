@@ -11,7 +11,7 @@ const Footer = () => {
   const isHome = location.pathname === "/";
 
   const contactHref = isHome ? "#contact" : "/#contact";
-  const topHref = isHome ? "#" : "/";
+  const topHref = isHome ? "/" : "#";
 
   return (
     <footer className="footer">
@@ -70,19 +70,6 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      <div className="footer_marquee" aria-hidden="true">
-        <div className="fmq_track">
-          {[...marqueeItems, ...marqueeItems, ...marqueeItems].map(
-            (item, i) => (
-              <span key={i} className="fmq_item">
-                <span className="fmq_bullet" />
-                {item}
-              </span>
-            ),
-          )}
-        </div>
-      </div>
-
       <motion.div
         className="footer_bar"
         variants={stagger}
@@ -90,12 +77,6 @@ const Footer = () => {
         whileInView="visible"
         viewport={viewportOptions}
       >
-        <motion.div variants={fadeInUp}>
-          <Link to="/" className="footer_logo">
-            Riyaz<span>.</span>
-          </Link>
-        </motion.div>
-
         <motion.nav
           className="footer_nav"
           variants={fadeInUp}
@@ -128,10 +109,6 @@ const Footer = () => {
       <div className="footer_copy">
         <span>© {year} Riyaz Akhtar. All rights reserved.</span>
         <span className="footer_copy_dot" aria-hidden="true" />
-        <span className="footer_made">
-          Crafted with <i className="fas fa-heart" aria-hidden="true" /> in
-          India
-        </span>
         <a href={topHref} className="footer_totop" aria-label="Back to top">
           <i className="fas fa-arrow-up" />
           <span>Top</span>

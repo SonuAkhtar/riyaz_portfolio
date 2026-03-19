@@ -1,38 +1,52 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
+import "./header.css";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { useTheme } from "../../utils/useTheme";
 import { navLinks, socialIconsData } from "../../../appData";
-import "./header.css";
 
 const drawerVariant = {
-  hidden: { x: "100%",  transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
-  visible: { x: 0,      transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } },
+  hidden: {
+    x: "100%",
+    transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+  },
+  visible: { x: 0, transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } },
 };
 const overlayVariant = {
-  hidden:  { opacity: 0 },
+  hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.3 } },
 };
 const itemVariant = {
-  hidden:  { opacity: 0, x: 24 },
-  visible: (i) => ({ opacity: 1, x: 0, transition: { delay: i * 0.06 + 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] } }),
+  hidden: { opacity: 0, x: 24 },
+  visible: (i) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.06 + 0.1,
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
 };
 
 const Header = () => {
-  const [drawerOpen,     setDrawerOpen]     = useState(false);
-  const [scrolled,       setScrolled]       = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const { theme, toggleTheme }              = useTheme();
-  const location                            = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
 
   /* close drawer on route change */
-  useEffect(() => { setDrawerOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [location.pathname]);
 
   /* scroll listener — state + progress bar */
   useEffect(() => {
     const onScroll = () => {
-      const y     = window.scrollY;
+      const y = window.scrollY;
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setScrolled(y > 50);
       setScrollProgress(total > 0 ? (y / total) * 100 : 0);
@@ -44,11 +58,13 @@ const Header = () => {
   /* lock body scroll when drawer open */
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [drawerOpen]);
 
-  const toggle = useCallback(() => setDrawerOpen(v => !v), []);
-  const close  = useCallback(() => setDrawerOpen(false),  []);
+  const toggle = useCallback(() => setDrawerOpen((v) => !v), []);
+  const close = useCallback(() => setDrawerOpen(false), []);
 
   const isHome = location.pathname === "/";
 
@@ -61,7 +77,6 @@ const Header = () => {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <nav className="nav_inner">
-
           {/* Logo */}
           <Link to="/" className="nav_logo">
             <span className="logo_text">Riyaz</span>
@@ -75,7 +90,9 @@ const Header = () => {
                 key={link.id}
                 to={link.href}
                 end={link.href === "/"}
-                className={({ isActive }) => `nav_link${isActive ? " nav_link_active" : ""}`}
+                className={({ isActive }) =>
+                  `nav_link${isActive ? " nav_link_active" : ""}`
+                }
               >
                 {link.label}
               </NavLink>
@@ -93,7 +110,9 @@ const Header = () => {
               aria-label="Toggle navigation menu"
               aria-expanded={drawerOpen}
             >
-              <span /><span /><span />
+              <span />
+              <span />
+              <span />
             </button>
           </div>
         </nav>
@@ -105,7 +124,6 @@ const Header = () => {
         />
       </motion.header>
 
-      {/* ── Mobile Drawer ─────────────────────────────── */}
       <AnimatePresence>
         {drawerOpen && (
           <>
@@ -133,9 +151,14 @@ const Header = () => {
               {/* drawer header */}
               <div className="drawer_head">
                 <Link to="/" className="drawer_logo" onClick={close}>
-                  <span>Riyaz</span><span className="drawer_logo_dot">.</span>
+                  <span>Riyaz</span>
+                  <span className="drawer_logo_dot">.</span>
                 </Link>
-                <button className="drawer_close" onClick={close} aria-label="Close menu">
+                <button
+                  className="drawer_close"
+                  onClick={close}
+                  aria-label="Close menu"
+                >
                   <i className="fas fa-times" />
                 </button>
               </div>
@@ -154,7 +177,9 @@ const Header = () => {
                     <NavLink
                       to={link.href}
                       end={link.href === "/"}
-                      className={({ isActive }) => `drawer_link${isActive ? " drawer_link_active" : ""}`}
+                      className={({ isActive }) =>
+                        `drawer_link${isActive ? " drawer_link_active" : ""}`
+                      }
                       onClick={close}
                     >
                       <span className="drawer_link_icon">
@@ -175,7 +200,7 @@ const Header = () => {
                 <nav className="drawer_nav drawer_nav_sections">
                   <p className="drawer_section_label">On this page</p>
                   {[
-                    { label: "About",   href: "#about"   },
+                    { label: "About", href: "#about" },
                     { label: "Hobbies", href: "#hobbies" },
                     { label: "Contact", href: "#contact" },
                   ].map((item, i) => (
@@ -210,7 +235,11 @@ const Header = () => {
                     </a>
                   ))}
                 </div>
-                <Link to="/#contact" className="drawer_cta btn btn_primary" onClick={close}>
+                <Link
+                  to="/#contact"
+                  className="drawer_cta btn btn_primary"
+                  onClick={close}
+                >
                   Let's Connect <i className="fas fa-arrow-right" />
                 </Link>
                 <ThemeToggle theme={theme} toggleTheme={toggleTheme} />

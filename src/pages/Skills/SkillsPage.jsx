@@ -2,6 +2,9 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./skillsPage.css";
 
+import PageHero from "../../components/common/PageHero/PageHero";
+import Footer from "../../components/Footer/Footer";
+
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   skillsData,
@@ -9,15 +12,15 @@ import {
   skillsPageCerts,
   skillsPagePhilisophy,
   skillsStats,
+  skillsPageHero,
 } from "../../../appData";
+
 import {
   fadeInUp,
   stagger,
   scaleIn,
   viewportOptions,
 } from "../../utils/animations";
-
-import Footer from "../../components/Footer/Footer";
 
 const R = 38;
 const CIRC = 2 * Math.PI * R;
@@ -145,67 +148,7 @@ const SkillsPage = () => {
 
   return (
     <div className="sp_root">
-      <section className="sp_hero">
-        <div className="sp_hero_orb sp_orb1" aria-hidden="true" />
-        <div className="sp_hero_orb sp_orb2" aria-hidden="true" />
-        <div className="sp_hero_grid" aria-hidden="true" />
-
-        <div className="sp_hero_inner">
-          <motion.div
-            className="sp_hero_content"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={fadeInUp}>
-              <Link to="/" className="sp_back_link">
-                <i className="fas fa-arrow-left" />
-                Back to Portfolio
-              </Link>
-            </motion.div>
-
-            <motion.h1 className="sp_hero_title" variants={fadeInUp}>
-              Skills &amp;
-              <br />
-              <span className="sp_hero_grad">Expertise.</span>
-            </motion.h1>
-
-            <motion.p className="sp_hero_sub" variants={fadeInUp}>
-              8 years of shipping production-grade applications across frontend,
-              backend, AI, and cloud. Every skill is battle-tested, not just
-              box-checked.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            className="sp_stats_row"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            {[
-              { value: "8+", label: "Years" },
-              { value: "15+", label: "Technologies" },
-              { value: "5", label: "Domains" },
-              { value: "5", label: "Certifications" },
-            ].map((s) => (
-              <StatItem key={s.label} value={s.value} label={s.label} />
-            ))}
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="sp_scroll_cue"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          <span className="sp_scroll_wheel">
-            <span />
-          </span>
-          <span>Scroll to explore</span>
-        </motion.div>
-      </section>
+      <PageHero heroData={skillsPageHero} />
 
       <section className="sp_section sp_even">
         <div className="sp_container">

@@ -8,11 +8,15 @@ import {
   scaleIn,
   viewportOptions,
 } from "../../utils/animations";
-import { worksPageData2, worksPageProcess } from "../../../appData";
+import {
+  worksPageData2,
+  worksPageHero,
+  worksPageProcess,
+} from "../../../appData";
 
 import Footer from "../../components/Footer/Footer";
+import PageHero from "../../components/common/PageHero/PageHero";
 
-/* ── Stat ── */
 const StatBox = ({ value, label }) => (
   <div className="wp_stat">
     <span className="wp_stat_value">{value}</span>
@@ -23,69 +27,7 @@ const StatBox = ({ value, label }) => (
 const WorksPage = () => {
   return (
     <div className="wp_root">
-      <section className="wp_hero">
-        <div className="wp_hero_orb wp_orb1" aria-hidden="true" />
-        <div className="wp_hero_orb wp_orb2" aria-hidden="true" />
-        <div className="wp_hero_grid" aria-hidden="true" />
-
-        <div className="wp_hero_inner">
-          <motion.div
-            className="wp_hero_content"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={fadeInUp}>
-              <Link to="/" className="wp_back_link">
-                <i className="fas fa-arrow-left" />
-                Back to Portfolio
-              </Link>
-            </motion.div>
-
-            <motion.h1 className="wp_hero_title" variants={fadeInUp}>
-              Crafting Digital
-              <br />
-              <span className="wp_hero_grad">Experiences.</span>
-            </motion.h1>
-
-            <motion.p className="wp_hero_sub" variants={fadeInUp}>
-              From AI-powered web apps to Azure-deployed microservices — I
-              deliver end-to-end engineering that scales. Every project is
-              production-grade from commit one.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            className="wp_stats_row"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            {[
-              { value: "8+", label: "Years" },
-              { value: "60+", label: "Projects" },
-              { value: "AI", label: "Integrations" },
-              { value: "☁", label: "Azure Deploys" },
-            ].map((s) => (
-              <motion.div key={s.label} variants={scaleIn}>
-                <StatBox value={s.value} label={s.label} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="wp_scroll_cue"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          <span className="wp_scroll_wheel">
-            <span />
-          </span>
-          <span>Scroll</span>
-        </motion.div>
-      </section>
+      <PageHero heroData={worksPageHero} />
 
       <section className="wp_section">
         <div className="wp_container">

@@ -19,9 +19,11 @@ import {
   testimonyPageCatColors,
   testimonyPageCompanies,
   testimonyPageData,
+  testimonyPageHero,
 } from "../../../appData";
 
 import Footer from "../../components/Footer/Footer";
+import PageHero from "../../components/common/PageHero/PageHero";
 
 const FILTERS = ["All", "Leadership", "Technical", "Product", "Design"];
 
@@ -235,73 +237,7 @@ const TestimonyPage = () => {
 
   return (
     <div className="tp_root">
-      <section className="tp_hero">
-        <div className="tp_orb tp_orb1" aria-hidden="true" />
-        <div className="tp_orb tp_orb2" aria-hidden="true" />
-        <div className="tp_orb tp_orb3" aria-hidden="true" />
-        <div className="tp_hero_grid" aria-hidden="true" />
-
-        <div className="tp_hero_inner">
-          <motion.div
-            className="tp_hero_content"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={fadeInUp}>
-              <Link to="/" className="tp_back_link">
-                <i className="fas fa-arrow-left" />
-                Back to Portfolio
-              </Link>
-            </motion.div>
-
-            <motion.h1 className="tp_hero_title" variants={fadeInUp}>
-              Built on
-              <br />
-              <span className="tp_hero_grad">Trust &amp; Respect.</span>
-            </motion.h1>
-
-            <motion.p className="tp_hero_sub" variants={fadeInUp}>
-              Eight years of shipping with teams that trust each other. These
-              are the words of colleagues, managers, and partners who've seen
-              the work up close.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            className="tp_stats_row"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            {[
-              { val: 20, suffix: "+", label: "Collaborators" },
-              { val: 8, suffix: "+", label: "Years" },
-              { val: 5, suffix: ".0", label: "Avg Rating" },
-              { val: 60, suffix: "+", label: "Projects" },
-            ].map((s) => (
-              <motion.div key={s.label} className="tp_stat" variants={scaleIn}>
-                <span className="tp_stat_val">
-                  <AnimatedCounter target={s.val} suffix={s.suffix} />
-                </span>
-                <span className="tp_stat_label">{s.label}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="tp_scroll_cue"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4 }}
-        >
-          <span className="tp_scroll_wheel">
-            <span />
-          </span>
-          <span>Scroll</span>
-        </motion.div>
-      </section>
+      <PageHero heroData={testimonyPageHero} />
 
       <section className="tp_featured_section">
         <FeaturedCarousel items={testimonyPageData} />

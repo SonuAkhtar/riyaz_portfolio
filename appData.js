@@ -694,6 +694,58 @@ export const skillsPagePhilisophy = [
   },
 ];
 
+export const skillsPageHero = {
+  title1: "Skills &",
+  title2: "Expertise.",
+  desc: "8 years of shipping production-grade applications across frontend, backend, AI, and cloud. Every skill is battle-tested, not just box-checked.",
+  details: [
+    { value: "8+", label: "Years" },
+    { value: "15+", label: "Technologies" },
+    { value: "5", label: "Domains" },
+    { value: "5", label: "Certifications" },
+  ],
+  color: "",
+};
+
+export const worksPageHero = {
+  title1: "Crafting Digital",
+  title2: "Experiences.",
+  desc: "From AI-powered web apps to Azure-deployed microservices - I deliver end-to-end engineering that scales. Every project is production-grade from commit one.",
+  details: [
+    { value: "8+", label: "Years" },
+    { value: "60+", label: "Projects" },
+    { value: "AI", label: "Integrations" },
+    { value: "☁", label: "Azure Deploys" },
+  ],
+  color: "",
+};
+
+export const projectsPageHero = {
+  title1: "Selected",
+  title2: "Projects.",
+  desc: "Production-ready work spanning AI-powered apps, enterprise frontend systems, and cloud-deployed solutions. Every project is a story of solving real problems.",
+  details: [
+    { value: "60+", label: "Projects" },
+    { value: "8+", label: "Years" },
+    { value: "AI", label: "Powered" },
+    { value: "☁", label: "Azure Deployed" },
+  ],
+  color: "",
+};
+
+export const testimonyPageHero = {
+  title1: "Built on",
+  title2: "Trust & Respect.",
+  desc: "Eight years of shipping with teams that trust each other. These are the words of colleagues, managers, and partners who've seen the work up close.",
+  details: [
+    { value: "20+", label: "Collaborators" },
+    { value: "8+", label: "Years" },
+    { value: "4.8", label: "Avg Rating" },
+    { value: "60+", label: "Projects" },
+  ],
+  color: "",
+};
+
 export const worksPageData2 = [
   {
     icon: "fab fa-react",
@@ -1066,3 +1118,184 @@ export const testimonyPageCompanies = [
   { name: "DataFlow Inc" },
   { name: "Sapient Technologies" },
 ];
+
+export const aboutMePageData = {
+  stats: [
+    { to: 8, suffix: "+", label: "Years Experience" },
+    { to: 60, suffix: "+", label: "Projects Shipped" },
+    { to: 5, suffix: "", label: "Companies" },
+    { to: 15, suffix: "+", label: "Tech Stack" },
+  ],
+  coreSkills: [
+    {
+      icon: "fab fa-react",
+      name: "React / Next.js",
+      level: 95,
+      color: "#5b8dee",
+    },
+    { icon: "fas fa-code", name: "TypeScript", level: 90, color: "#7c6ff7" },
+    { icon: "fab fa-node-js", name: "Node.js", level: 80, color: "#5bdc8e" },
+    {
+      icon: "fas fa-paint-brush",
+      name: "UI / UX Design",
+      level: 88,
+      color: "#f5a623",
+    },
+    {
+      icon: "fas fa-database",
+      name: "MongoDB / GraphQL",
+      level: 75,
+      color: "#e06c75",
+    },
+    {
+      icon: "fas fa-mobile-alt",
+      name: "Responsive Web",
+      level: 95,
+      color: "#61dafb",
+    },
+  ],
+
+  aiStack: [
+    {
+      icon: "fas fa-robot",
+      name: "OpenAI API",
+      desc: "GPT-4, Embeddings & DALL·E integration — building intelligent UI components, AI-powered search, and contextual chat interfaces.",
+      badge: "Integration",
+      color: "green",
+    },
+    {
+      icon: "fas fa-brain",
+      name: "Prompt Engineering",
+      desc: "Crafting precise, context-aware prompts for production LLM workflows. Few-shot learning, chain-of-thought, and RAG patterns.",
+      badge: "Proficient",
+      color: "purple",
+    },
+    {
+      icon: "fas fa-link",
+      name: "LangChain / RAG",
+      desc: "Retrieval-Augmented Generation pipelines for knowledge-grounded AI features — pairing LLMs with vector databases.",
+      badge: "Applied",
+      color: "blue",
+    },
+    {
+      icon: "fas fa-magic",
+      name: "GitHub Copilot",
+      desc: "AI-accelerated development workflows — code completion, test generation, and refactoring at scale across large codebases.",
+      badge: "Daily",
+      color: "amber",
+    },
+    {
+      icon: "fas fa-eye",
+      name: "Vision Models",
+      desc: "Multimodal AI integration: image analysis, OCR, and computer vision APIs embedded in web applications.",
+      badge: "Learning",
+      color: "pink",
+    },
+    {
+      icon: "fas fa-microphone",
+      name: "Speech & NLP",
+      desc: "Whisper API transcription, sentiment analysis, and NLP-driven features for richer, more accessible user experiences.",
+      badge: "Applied",
+      color: "teal",
+    },
+  ],
+  azureStack: [
+    {
+      icon: "fas fa-infinity",
+      name: "Azure DevOps",
+      desc: "End-to-end CI/CD pipelines — build, test, and deploy automation for React and Node.js applications across multiple environments.",
+    },
+    {
+      icon: "fas fa-bolt",
+      name: "Azure Functions",
+      desc: "Serverless backend logic: event-driven APIs, webhook handlers, and scheduled jobs — zero infrastructure management.",
+    },
+    {
+      icon: "fas fa-globe",
+      name: "Azure Static Web Apps",
+      desc: "Global CDN deployment for React/Next.js apps with built-in authentication, preview environments, and automatic SSL.",
+    },
+    {
+      icon: "fas fa-brain",
+      name: "Azure AI Services",
+      desc: "Cognitive Services suite: Language Understanding, Form Recognizer, Translator, and Custom Vision APIs integrated into apps.",
+    },
+    {
+      icon: "fas fa-chart-line",
+      name: "Application Insights",
+      desc: "Full observability: performance monitoring, error tracking, user behavior analytics, and custom telemetry dashboards.",
+    },
+    {
+      icon: "fas fa-box",
+      name: "Azure Container Apps",
+      desc: "Containerized microservices deployment with auto-scaling, service discovery, and managed Kubernetes under the hood.",
+    },
+  ],
+  philisophy: [
+    {
+      num: "01",
+      title: "Performance is a Feature",
+      body: "Every millisecond matters. I obsess over Core Web Vitals, bundle sizes, and render performance — because fast apps convert and retain users.",
+    },
+    {
+      num: "02",
+      title: "Design Thinking First",
+      body: "Code is the medium, not the goal. I start from user needs and design intent, then write the minimum code needed to bring that experience to life.",
+    },
+    {
+      num: "03",
+      title: "Scalable by Default",
+      body: "Whether it's a design system or a data-fetching layer, I build for the next engineer — clean abstractions, clear contracts, zero magic.",
+    },
+    {
+      num: "04",
+      title: "AI-Augmented Development",
+      body: "I don't wait for AI to replace my job — I use it to amplify it. Copilot, GPT-4, and intelligent tooling are part of my daily workflow.",
+    },
+  ],
+  journey: [
+    {
+      year: "2018",
+      title: "Started the Journey",
+      org: "B.Tech Computer Science",
+      type: "Education",
+    },
+    {
+      year: "2019",
+      title: "First React App",
+      org: "Freelance Projects",
+      type: "Milestone",
+    },
+    {
+      year: "2020",
+      title: "Jr. Frontend Developer",
+      org: "Startup, Gurgaon",
+      type: "Work",
+    },
+    {
+      year: "2021",
+      title: "React & TypeScript Deep Dive",
+      org: "Mid-size Product Co.",
+      type: "Work",
+    },
+    {
+      year: "2022",
+      title: "Frontend Lead — Design System",
+      org: "Tech Consultancy",
+      type: "Work",
+    },
+    {
+      year: "2023",
+      title: "AI Integration Explorer",
+      org: "OpenAI API, Azure AI",
+      type: "Milestone",
+    },
+    {
+      year: "2024",
+      title: "Lead Engineer",
+      org: "Publicis Sapient",
+      type: "Work",
+      current: true,
+    },
+  ],
+};

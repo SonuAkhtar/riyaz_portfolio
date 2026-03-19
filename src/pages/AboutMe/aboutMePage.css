@@ -1,9 +1,3 @@
-/* ═══════════════════════════════════════════════════════
-   ABOUT ME PAGE  –  /about-me
-   Uses existing CSS variables from app.css
-═══════════════════════════════════════════════════════ */
-
-/* ── Reset page layout — Pastel Violet / Lavender theme ── */
 .amp_root {
   overflow-x: hidden;
   background: var(--bg-primary);
@@ -25,19 +19,6 @@
   --gradient-accent: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
 }
 
-/* ── Shared label ── */
-.amp_label {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 3.5px;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
-  margin-bottom: 0.5rem;
-}
-
-/* ── Gradient text helper ── */
 .amp_grad {
   background: var(--gradient-accent);
   -webkit-background-clip: text;
@@ -53,7 +34,6 @@
   font-weight: 700;
 }
 
-/* ── Container ── */
 .amp_container {
   max-width: 1280px;
   margin: 0 auto;
@@ -61,29 +41,6 @@
   position: relative;
 }
 
-/* ── Ghost watermark ── */
-.amp_wm {
-  position: absolute;
-  top: -0.5rem;
-  left: -1rem;
-  font-family: "Syne", sans-serif;
-  font-size: clamp(4rem, 14vw, 12rem);
-  font-weight: 800;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--border);
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.25;
-  letter-spacing: 0.08em;
-  z-index: 0;
-  line-height: 1;
-}
-.amp_wm_right {
-  left: auto;
-  right: -1rem;
-}
-
-/* ── Section wrapper ── */
 .amp_section {
   padding: clamp(5rem, 9vh, 8rem) 0;
   position: relative;
@@ -93,7 +50,6 @@
   background: var(--bg-secondary);
 }
 
-/* ── Section header ── */
 .amp_section_head {
   margin-bottom: clamp(2.5rem, 5vh, 4rem);
   position: relative;
@@ -118,9 +74,6 @@
   margin-top: 0.75rem;
 }
 
-/* ═══════════════════════════════════════════════════════
-   HERO SECTION
-═══════════════════════════════════════════════════════ */
 .amp_hero {
   min-height: 100vh;
   display: flex;
@@ -128,7 +81,8 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: clamp(6rem, 12vh, 9rem) clamp(1.5rem, 5vw, 6rem) clamp(4rem, 8vh, 6rem);
+  padding: clamp(6rem, 12vh, 9rem) clamp(1.5rem, 5vw, 6rem)
+    clamp(4rem, 8vh, 6rem);
 }
 
 /* noise texture */
@@ -151,14 +105,22 @@
 .amp_o1 {
   width: clamp(280px, 45vw, 560px);
   height: clamp(280px, 45vw, 560px);
-  background: radial-gradient(circle, rgba(91, 141, 238, 0.14) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(91, 141, 238, 0.14) 0%,
+    transparent 70%
+  );
   top: -8%;
   right: -5%;
 }
 .amp_o2 {
   width: clamp(200px, 35vw, 420px);
   height: clamp(200px, 35vw, 420px);
-  background: radial-gradient(circle, rgba(124, 111, 247, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(124, 111, 247, 0.1) 0%,
+    transparent 70%
+  );
   bottom: 5%;
   left: 10%;
 }
@@ -167,12 +129,24 @@
 .amp_hero_grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.045) 1px,
+    transparent 1px
+  );
   background-size: 28px 28px;
   pointer-events: none;
   z-index: 0;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    black 40%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    black 40%,
+    transparent 100%
+  );
 }
 
 .amp_hero_inner {
@@ -182,25 +156,6 @@
   margin: 0 auto;
   width: 100%;
 }
-
-/* back link */
-.amp_back_link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
-  text-decoration: none;
-  margin-bottom: 1.75rem;
-  transition: color 0.25s, gap 0.25s;
-}
-.amp_back_link:hover {
-  color: var(--accent);
-  gap: 0.75rem;
-}
-.amp_back_link i { font-size: 0.75rem; }
 
 .amp_hero_content {
   max-width: 780px;
@@ -325,13 +280,17 @@
   animation: scrollBob 1.8s ease-in-out infinite;
 }
 @keyframes scrollBob {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50%       { transform: translateY(7px); opacity: 0.4; }
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 0.4;
+  }
 }
 
-/* ═══════════════════════════════════════════════════════
-   CORE SKILLS SECTION
-═══════════════════════════════════════════════════════ */
 .amp_skills_grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -403,7 +362,9 @@
   gap: 0.5rem;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 .amp_story_card:hover {
   border-color: var(--border-accent);
@@ -453,11 +414,6 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════
-   AI SECTION
-═══════════════════════════════════════════════════════ */
-
-/* banner */
 .amp_ai_banner {
   display: flex;
   align-items: center;
@@ -508,8 +464,14 @@
   margin-left: 4px;
 }
 @keyframes aiPulse {
-  0%   { transform: translateY(-50%) scale(1); opacity: 0.8; }
-  100% { transform: translateY(-50%) scale(2.8); opacity: 0; }
+  0% {
+    transform: translateY(-50%) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50%) scale(2.8);
+    opacity: 0;
+  }
 }
 .amp_ai_banner_title {
   font-family: "Syne", sans-serif;
@@ -559,30 +521,48 @@
   position: relative;
   overflow: hidden;
   cursor: default;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 .amp_ai_card:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 /* bottom accent line */
 .amp_ai_card_bar {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 3px;
   border-radius: 0 0 1.25rem 1.25rem;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.amp_ai_card:hover .amp_ai_card_bar { transform: scaleX(1); }
+.amp_ai_card:hover .amp_ai_card_bar {
+  transform: scaleX(1);
+}
 
 /* color variants */
-.amp_ai_green  { --ai-c: #5bdc8e; }
-.amp_ai_purple { --ai-c: #a78bfa; }
-.amp_ai_blue   { --ai-c: #5b8dee; }
-.amp_ai_amber  { --ai-c: #f5a623; }
-.amp_ai_pink   { --ai-c: #f472b6; }
-.amp_ai_teal   { --ai-c: #2dd4bf; }
+.amp_ai_green {
+  --ai-c: #5bdc8e;
+}
+.amp_ai_purple {
+  --ai-c: #a78bfa;
+}
+.amp_ai_blue {
+  --ai-c: #5b8dee;
+}
+.amp_ai_amber {
+  --ai-c: #f5a623;
+}
+.amp_ai_pink {
+  --ai-c: #f472b6;
+}
+.amp_ai_teal {
+  --ai-c: #2dd4bf;
+}
 
 .amp_ai_card_icon {
   width: 40px;
@@ -627,9 +607,6 @@
   background: linear-gradient(90deg, var(--ai-c), transparent);
 }
 
-/* ═══════════════════════════════════════════════════════
-   AZURE SECTION
-═══════════════════════════════════════════════════════ */
 .amp_azure_layout {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -719,7 +696,10 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 1.25rem;
-  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s,
+    background 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -731,7 +711,9 @@
 .amp_azure_card::before {
   content: "";
   position: absolute;
-  left: 0; top: 15%; bottom: 15%;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
   width: 3px;
   background: var(--gradient-accent);
   border-radius: 0 2px 2px 0;
@@ -739,7 +721,9 @@
   transform-origin: bottom;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.amp_azure_card:hover::before { transform: scaleY(1); }
+.amp_azure_card:hover::before {
+  transform: scaleY(1);
+}
 
 .amp_azure_card_icon {
   width: 40px;
@@ -754,7 +738,9 @@
   font-size: 0.95rem;
   flex-shrink: 0;
 }
-.amp_azure_card_body { flex: 1; }
+.amp_azure_card_body {
+  flex: 1;
+}
 .amp_azure_card_name {
   font-family: "Syne", sans-serif;
   font-size: 0.95rem;
@@ -769,9 +755,6 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════
-   PHILOSOPHY SECTION
-═══════════════════════════════════════════════════════ */
 .amp_phil_grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -789,7 +772,9 @@
   gap: 0.5rem;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
   cursor: default;
 }
 .amp_phil_card:hover {
@@ -822,7 +807,9 @@
 }
 .amp_phil_bar {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 3px;
   background: var(--gradient-accent);
   border-radius: 0 0 1.5rem 1.5rem;
@@ -830,11 +817,10 @@
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.amp_phil_card:hover .amp_phil_bar { transform: scaleX(1); }
+.amp_phil_card:hover .amp_phil_bar {
+  transform: scaleX(1);
+}
 
-/* ═══════════════════════════════════════════════════════
-   TIMELINE
-═══════════════════════════════════════════════════════ */
 .amp_timeline {
   max-width: 680px;
   position: relative;
@@ -850,7 +836,11 @@
   top: 12px;
   bottom: 12px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--accent) 0%, rgba(91,141,238,0.12) 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--accent) 0%,
+    rgba(91, 141, 238, 0.12) 100%
+  );
   border-radius: 2px;
 }
 
@@ -861,7 +851,9 @@
   padding-bottom: 1.5rem;
   position: relative;
 }
-.amp_tl_item:last-child { padding-bottom: 0; }
+.amp_tl_item:last-child {
+  padding-bottom: 0;
+}
 
 .amp_tl_dot_wrap {
   position: absolute;
@@ -884,7 +876,9 @@
   justify-content: center;
   position: relative;
   z-index: 1;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 .amp_tl_dot_inner {
   width: 6px;
@@ -904,8 +898,14 @@
   animation: tlPulse 2s ease-out infinite;
 }
 @keyframes tlPulse {
-  0%   { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(2.2); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
 }
 .amp_tl_current .amp_tl_dot {
   border-color: var(--accent);
@@ -924,12 +924,16 @@
   gap: 0.4rem;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s, background 0.3s;
+  transition:
+    border-color 0.3s,
+    background 0.3s;
 }
 .amp_tl_card::before {
   content: "";
   position: absolute;
-  left: 0; top: 12%; bottom: 12%;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
   width: 3px;
   background: var(--gradient-accent);
   border-radius: 0 2px 2px 0;
@@ -943,7 +947,9 @@
   background: var(--bg-card-hover);
 }
 .amp_tl_item:hover .amp_tl_card::before,
-.amp_tl_current .amp_tl_card::before { transform: scaleY(1); }
+.amp_tl_current .amp_tl_card::before {
+  transform: scaleY(1);
+}
 
 .amp_tl_top {
   display: flex;
@@ -961,7 +967,10 @@
   align-items: center;
   gap: 0.35rem;
 }
-.amp_tl_year i { color: var(--accent); font-size: 0.6rem; }
+.amp_tl_year i {
+  color: var(--accent);
+  font-size: 0.6rem;
+}
 
 .amp_tl_tag {
   font-size: 0.6rem;
@@ -992,8 +1001,13 @@
   animation: nowBlink 2s ease-in-out infinite;
 }
 @keyframes nowBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 .amp_tl_title {
   font-family: "Syne", sans-serif;
@@ -1012,11 +1026,11 @@
   gap: 0.4rem;
   margin: 0;
 }
-.amp_tl_org i { font-size: 0.68rem; opacity: 0.7; }
+.amp_tl_org i {
+  font-size: 0.68rem;
+  opacity: 0.7;
+}
 
-/* ═══════════════════════════════════════════════════════
-   CTA SECTION
-═══════════════════════════════════════════════════════ */
 .amp_cta_section {
   padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 6rem);
   position: relative;
@@ -1038,7 +1052,11 @@
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(91,141,238,0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(91, 141, 238, 0.1) 0%,
+    transparent 70%
+  );
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1091,7 +1109,10 @@
   background: transparent;
   color: var(--text-secondary);
   border: 1px solid var(--border);
-  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    color 0.25s;
 }
 .btn_ghost:hover {
   background: var(--bg-card);
@@ -1099,9 +1120,6 @@
   color: var(--text-primary);
 }
 
-/* ═══════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════ */
 @media screen and (max-width: 1024px) {
   .amp_azure_layout {
     grid-template-columns: 1fr;

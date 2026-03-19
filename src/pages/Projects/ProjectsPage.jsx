@@ -12,10 +12,12 @@ import {
 import {
   projectsData as appProjects,
   projectsCatColors,
+  projectsPageHero,
   projectsPageProjects,
 } from "../../../appData";
 
 import Footer from "../../components/Footer/Footer";
+import PageHero from "../../components/common/PageHero/PageHero";
 const FILTERS = ["All", "AI/ML", "Frontend", "Full-Stack", "Mobile"];
 
 const getCatColor = (cat) =>
@@ -193,70 +195,7 @@ const ProjectsPage = () => {
 
   return (
     <div className="pp_root">
-      <section className="pp_hero">
-        <div className="pp_hero_orb pp_orb1" aria-hidden="true" />
-        <div className="pp_hero_orb pp_orb2" aria-hidden="true" />
-        <div className="pp_hero_grid" aria-hidden="true" />
-
-        <div className="pp_hero_inner">
-          <motion.div
-            className="pp_hero_content"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={fadeInUp}>
-              <Link to="/" className="pp_back_link">
-                <i className="fas fa-arrow-left" />
-                Back to Portfolio
-              </Link>
-            </motion.div>
-
-            <motion.h1 className="pp_hero_title" variants={fadeInUp}>
-              Selected
-              <br />
-              <span className="pp_hero_grad">Projects.</span>
-            </motion.h1>
-
-            <motion.p className="pp_hero_sub" variants={fadeInUp}>
-              Production-ready work spanning AI-powered apps, enterprise
-              frontend systems, and cloud-deployed solutions. Every project is a
-              story of solving real problems.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            className="pp_stats_row"
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-          >
-            {[
-              { value: "60+", label: "Projects" },
-              { value: "8+", label: "Years" },
-              { value: "AI", label: "Powered" },
-              { value: "☁", label: "Azure Deployed" },
-            ].map((s) => (
-              <motion.div className="pp_stat" key={s.label} variants={scaleIn}>
-                <span className="pp_stat_value">{s.value}</span>
-                <span className="pp_stat_label">{s.label}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="pp_scroll_cue"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          <span className="pp_scroll_wheel">
-            <span />
-          </span>
-          <span>Browse Projects</span>
-        </motion.div>
-      </section>
+      <PageHero heroData={projectsPageHero} />
 
       <section className="pp_section">
         <div className="pp_container">
