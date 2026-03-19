@@ -1,11 +1,17 @@
-import React, { useRef } from "react";
+// React imports
+import { useRef } from "react";
+import "./hero.css";
+
+// Libraries
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import TypewriteComponent from "typewriter-effect";
-import { socialIconsData } from "../../../appData";
-import "./hero.css";
+
+// AppData
+import { socialIconsData, TECHS } from "../../../appData";
+
+// Images
 import heroImage from "/assets/hero/hero.png";
 
-/* ── per-char reveal ── */
 const Word = ({ text, className, delay = 0 }) => (
   <span className={className} aria-label={text}>
     {text.split("").map((ch, i) => (
@@ -26,29 +32,6 @@ const Word = ({ text, className, delay = 0 }) => (
   </span>
 );
 
-const TECHS = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "Figma",
-  "Tailwind",
-  "Redux",
-  "MongoDB",
-  "GraphQL",
-  "AWS",
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "Figma",
-  "Tailwind",
-  "Redux",
-  "MongoDB",
-  "GraphQL",
-  "AWS",
-];
-
 const Hero = () => {
   /* 3-D tilt */
   const sceneRef = useRef(null);
@@ -66,6 +49,7 @@ const Hero = () => {
     mx.set((e.clientX - left) / width - 0.5);
     my.set((e.clientY - top) / height - 0.5);
   };
+
   const onLeave = () => {
     mx.set(0);
     my.set(0);
@@ -73,24 +57,16 @@ const Hero = () => {
 
   return (
     <section className="hero_section" id="hero">
-      {/* ── background ── */}
-      <div className="h_dot_grid" aria-hidden="true" />
-      <div className="h_orb h_o1" aria-hidden="true" />
-      <div className="h_orb h_o2" aria-hidden="true" />
-      <div className="h_noise" aria-hidden="true" />
-      <span className="h_wm" aria-hidden="true">
+      <span className="hero_ghost" aria-hidden="true">
         ENGINEER
       </span>
 
-      {/* ══ BODY — 1fr row ══ */}
-      <div className="h_body">
-        <div className="h_inner">
-          <div className="h_grid">
-            {/* ─── LEFT ─── */}
-            <div className="h_left">
-              {/* availability */}
+      <div className="hero_body">
+        <div className="hero_inner">
+          <div className="hero_grid">
+            <div className="hero_left">
               <motion.span
-                className="h_avail"
+                className="hero_left_avail"
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -104,19 +80,17 @@ const Hero = () => {
                 Available for opportunities
               </motion.span>
 
-              {/* name */}
-              <h1 className="h_name">
+              <h1 className="hero_name">
                 <span className="nl nl1">
-                  <Word text="RIYAZ" className="w_outline" delay={0.12} />
+                  <Word text="RIYAZ" className="word_outline" delay={0.12} />
                 </span>
                 <span className="nl nl2">
                   <Word text="AKHTAR" className="w_fill" delay={0.26} />
                 </span>
               </h1>
 
-              {/* code-tag role */}
               <motion.div
-                className="h_code_role"
+                className="hero_code_role"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -126,11 +100,10 @@ const Hero = () => {
                 }}
               >
                 <span className="cr_bracket">&lt;</span>
-                <span className="cr_text">LeadEngineer</span>
+                <span className="cr_text">Lead Engineer</span>
                 <span className="cr_bracket">&nbsp;/&gt;</span>
               </motion.div>
 
-              {/* typewriter */}
               <motion.div
                 className="h_tw"
                 initial={{ opacity: 0, y: 10 }}
@@ -160,9 +133,8 @@ const Hero = () => {
                 </span>
               </motion.div>
 
-              {/* CTA row */}
               <motion.div
-                className="h_cta_row"
+                className="hero_buttons"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -190,9 +162,8 @@ const Hero = () => {
                 </motion.a>
               </motion.div>
 
-              {/* social + location */}
               <motion.div
-                className="h_social_row"
+                className="hero_social_list"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
@@ -221,10 +192,9 @@ const Hero = () => {
               </motion.div>
             </div>
 
-            {/* ─── RIGHT ─── */}
-            <div className="h_right">
+            <div className="hero_right">
               <motion.div
-                className="h_img_scene"
+                className="hero_img"
                 ref={sceneRef}
                 onMouseMove={onMove}
                 onMouseLeave={onLeave}
@@ -242,17 +212,14 @@ const Hero = () => {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* glow */}
                 <span className="img_glow ig1" aria-hidden="true" />
                 <span className="img_glow ig2" aria-hidden="true" />
 
-                {/* photo */}
                 <div className="img_frame">
                   <img src={heroImage} alt="Riyaz Akhtar" />
                   <div className="img_sheen" aria-hidden="true" />
                 </div>
 
-                {/* floating card */}
                 <motion.div
                   className="img_card"
                   initial={{ opacity: 0, x: 16 }}
@@ -276,7 +243,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* scroll cue */}
         <motion.a
           href="#about"
           className="h_scroll"
@@ -292,9 +258,8 @@ const Hero = () => {
         </motion.a>
       </div>
 
-      {/* ══ TICKER — auto row (always inside 100vh) ══ */}
-      <div className="h_ticker" aria-hidden="true">
-        <div className="h_ticker_track">
+      <div className="hero_ticker" aria-hidden="true">
+        <div className="hero_ticker_track">
           {TECHS.map((t, i) => (
             <span key={i} className="h_tick_item">
               <span className="h_tick_dot">◆</span>

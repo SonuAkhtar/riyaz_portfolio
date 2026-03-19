@@ -1,9 +1,3 @@
-/* ═══════════════════════════════════════════════════════
-   WORKS PAGE  —  worksPage.css
-   Uses CSS custom properties from app.css (no redeclare)
-═══════════════════════════════════════════════════════ */
-
-/* ── Root wrapper — Pastel Amber / Orange theme ── */
 .wp_root {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -25,7 +19,6 @@
   --gradient-accent: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
 }
 
-/* ── Shared container ── */
 .wp_container {
   position: relative;
   max-width: 1280px;
@@ -33,7 +26,6 @@
   padding: 0 clamp(1.5rem, 5vw, 6rem);
 }
 
-/* ── Section padding ── */
 .wp_section {
   padding: clamp(5rem, 9vh, 8rem) 0;
   background-color: var(--bg-primary);
@@ -43,24 +35,6 @@
 
 .wp_even {
   background-color: var(--bg-secondary);
-}
-
-/* ── Ghost watermark ── */
-.wp_ghost_wm {
-  position: absolute;
-  top: -0.1em;
-  left: clamp(1rem, 4vw, 5rem);
-  font-family: "Syne", sans-serif;
-  font-weight: 800;
-  font-size: clamp(5rem, 14vw, 12rem);
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--border);
-  opacity: 0.25;
-  pointer-events: none;
-  user-select: none;
-  line-height: 1;
-  white-space: nowrap;
-  z-index: 0;
 }
 
 .wp_ghost_right {
@@ -105,9 +79,6 @@
   margin-top: 0.35rem;
 }
 
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
 .wp_hero {
   position: relative;
   min-height: 100vh;
@@ -116,7 +87,7 @@
   justify-content: center;
   overflow: hidden;
   background-color: var(--bg-primary);
-  padding: 7rem clamp(1.5rem, 5vw, 6rem) 5rem;
+  padding: 3rem clamp(1.5rem, 5vw, 6rem) 5rem;
 }
 
 .wp_hero_orb {
@@ -131,7 +102,11 @@
   height: 650px;
   top: -140px;
   right: -100px;
-  background: radial-gradient(circle, rgba(91, 141, 238, 0.12) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(91, 141, 238, 0.12) 0%,
+    transparent 70%
+  );
 }
 
 .wp_orb2 {
@@ -139,7 +114,11 @@
   height: 450px;
   bottom: 80px;
   left: -100px;
-  background: radial-gradient(circle, rgba(124, 111, 247, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(124, 111, 247, 0.1) 0%,
+    transparent 70%
+  );
 }
 
 .wp_hero_grid {
@@ -171,18 +150,15 @@
   color: var(--text-secondary);
   font-family: "Space Grotesk", sans-serif;
   letter-spacing: 0.3px;
-  transition: color 0.3s, gap 0.3s;
-  margin-bottom: 1rem;
+  transition:
+    color 0.3s,
+    gap 0.3s;
+  margin-bottom: 2rem;
 }
 
 .wp_back_link:hover {
   color: var(--accent);
   gap: 0.75rem;
-}
-
-.wp_label {
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
 .wp_hero_title {
@@ -294,13 +270,16 @@
 }
 
 @keyframes wp_scroll_anim {
-  0%   { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(8px); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
 }
 
-/* ═══════════════════════════════════════
-   SERVICES GRID
-═══════════════════════════════════════ */
 .wp_services_grid {
   position: relative;
   z-index: 1;
@@ -320,7 +299,10 @@
   gap: 0.75rem;
   overflow: hidden;
   cursor: default;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
 }
 
 .wp_svc_card:hover {
@@ -329,7 +311,6 @@
   box-shadow: var(--shadow-glow);
 }
 
-/* Left accent bar */
 .wp_svc_accent_bar {
   position: absolute;
   left: 0;
@@ -347,7 +328,6 @@
   transform: scaleY(1);
 }
 
-/* Ghost number */
 .wp_svc_ghost_num {
   position: absolute;
   top: -0.15em;
@@ -373,19 +353,27 @@
   width: 52px;
   height: 52px;
   border-radius: 0.875rem;
-  background: color-mix(in srgb, var(--svc-color, var(--accent)) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--svc-color, var(--accent)) 25%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--svc-color, var(--accent)) 12%,
+    transparent
+  );
+  border: 1px solid
+    color-mix(in srgb, var(--svc-color, var(--accent)) 25%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
   color: var(--svc-color, var(--accent));
   flex-shrink: 0;
-  transition: background 0.3s, box-shadow 0.3s;
+  transition:
+    background 0.3s,
+    box-shadow 0.3s;
 }
 
 .wp_svc_card:hover .wp_svc_icon_wrap {
-  box-shadow: 0 0 20px color-mix(in srgb, var(--svc-color, var(--accent)) 30%, transparent);
+  box-shadow: 0 0 20px
+    color-mix(in srgb, var(--svc-color, var(--accent)) 30%, transparent);
 }
 
 .wp_svc_head {
@@ -479,9 +467,6 @@
   opacity: 0.8;
 }
 
-/* ═══════════════════════════════════════
-   PROCESS GRID
-═══════════════════════════════════════ */
 .wp_process_grid {
   position: relative;
   z-index: 1;
@@ -501,7 +486,10 @@
   gap: 0.75rem;
   overflow: visible;
   cursor: default;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
 }
 
 .wp_process_card:hover {
@@ -520,8 +508,13 @@
   width: 46px;
   height: 46px;
   border-radius: 0.75rem;
-  background: color-mix(in srgb, var(--step-color, var(--accent)) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--step-color, var(--accent)) 25%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--step-color, var(--accent)) 12%,
+    transparent
+  );
+  border: 1px solid
+    color-mix(in srgb, var(--step-color, var(--accent)) 25%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -553,7 +546,6 @@
   margin: 0;
 }
 
-/* Connector arrow between cards */
 .wp_process_connector {
   position: absolute;
   right: -0.875rem;
@@ -576,9 +568,6 @@
   background: var(--bg-secondary);
 }
 
-/* ═══════════════════════════════════════
-   AI + AZURE HIGHLIGHT
-═══════════════════════════════════════ */
 .wp_highlight_grid {
   position: relative;
   z-index: 1;
@@ -597,13 +586,20 @@
   flex-direction: column;
   gap: 1.25rem;
   overflow: hidden;
-  transition: border-color 0.35s, box-shadow 0.35s;
+  transition:
+    border-color 0.35s,
+    box-shadow 0.35s;
 }
 
-.wp_ai_card:hover    { border-color: rgba(124, 111, 247, 0.4); box-shadow: 0 0 40px rgba(124, 111, 247, 0.08); }
-.wp_azure_card:hover { border-color: rgba(0, 120, 212, 0.4);   box-shadow: 0 0 40px rgba(0, 120, 212, 0.08); }
+.wp_ai_card:hover {
+  border-color: rgba(124, 111, 247, 0.4);
+  box-shadow: 0 0 40px rgba(124, 111, 247, 0.08);
+}
+.wp_azure_card:hover {
+  border-color: rgba(0, 120, 212, 0.4);
+  box-shadow: 0 0 40px rgba(0, 120, 212, 0.08);
+}
 
-/* Top gradient bar */
 .wp_highlight_card::before {
   content: "";
   position: absolute;
@@ -615,8 +611,12 @@
   transition: opacity 0.35s;
 }
 
-.wp_ai_card::before    { background: linear-gradient(90deg, #7c6ff7, #5b8dee); }
-.wp_azure_card::before { background: linear-gradient(90deg, #0078d4, #50d9ff); }
+.wp_ai_card::before {
+  background: linear-gradient(90deg, #7c6ff7, #5b8dee);
+}
+.wp_azure_card::before {
+  background: linear-gradient(90deg, #0078d4, #50d9ff);
+}
 
 .wp_highlight_card:hover::before {
   opacity: 1;
@@ -635,8 +635,12 @@
   border-radius: 0 2px 2px 0;
 }
 
-.wp_ai_bar    { background: linear-gradient(to top, #7c6ff7, #5b8dee); }
-.wp_azure_bar { background: linear-gradient(to top, #0078d4, #50d9ff); }
+.wp_ai_bar {
+  background: linear-gradient(to top, #7c6ff7, #5b8dee);
+}
+.wp_azure_bar {
+  background: linear-gradient(to top, #0078d4, #50d9ff);
+}
 
 .wp_highlight_card:hover .wp_highlight_accent_bar {
   transform: scaleY(1);
@@ -775,9 +779,6 @@
   flex-shrink: 0;
 }
 
-/* ═══════════════════════════════════════
-   CTA
-═══════════════════════════════════════ */
 .wp_cta_section {
   position: relative;
   padding: clamp(5rem, 9vh, 8rem) clamp(1.5rem, 5vw, 6rem);
@@ -793,7 +794,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(91, 141, 238, 0.09) 0%, transparent 65%);
+  background: radial-gradient(
+    circle,
+    rgba(91, 141, 238, 0.09) 0%,
+    transparent 65%
+  );
   pointer-events: none;
   filter: blur(40px);
 }
@@ -844,9 +849,6 @@
   margin-top: 0.5rem;
 }
 
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
 @media (max-width: 1200px) {
   .wp_services_grid {
     grid-template-columns: repeat(2, 1fr);

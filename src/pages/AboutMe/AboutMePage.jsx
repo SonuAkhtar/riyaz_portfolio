@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import "./aboutMePage.css";
 
 /* ── Count-up ── */
@@ -13,26 +13,45 @@ const CountUp = ({ to, suffix = "", visible }) => {
     const step = to / 36;
     const iv = setInterval(() => {
       cur += step;
-      if (cur >= to) { setVal(to); clearInterval(iv); }
-      else setVal(Math.floor(cur));
+      if (cur >= to) {
+        setVal(to);
+        clearInterval(iv);
+      } else setVal(Math.floor(cur));
     }, 1000 / 36);
     return () => clearInterval(iv);
   }, [visible, to]);
-  return <>{val}{suffix}</>;
+  return (
+    <>
+      {val}
+      {suffix}
+    </>
+  );
 };
 
 /* ── Animation variants ── */
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 const fadeLeft = {
   hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 const fadeRight = {
   hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 const stagger = {
   hidden: {},
@@ -40,7 +59,11 @@ const stagger = {
 };
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.85 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 const vp = { once: true, margin: "-60px" };
 
@@ -48,19 +71,39 @@ const vp = { once: true, margin: "-60px" };
    DATA
 ───────────────────────────────────────── */
 const STATS = [
-  { to: 8,  suffix: "+", label: "Years Experience" },
-  { to: 60, suffix: "+", label: "Projects Shipped"  },
-  { to: 5,  suffix: "",  label: "Companies"         },
-  { to: 15, suffix: "+", label: "Tech Stack"        },
+  { to: 8, suffix: "+", label: "Years Experience" },
+  { to: 60, suffix: "+", label: "Projects Shipped" },
+  { to: 5, suffix: "", label: "Companies" },
+  { to: 15, suffix: "+", label: "Tech Stack" },
 ];
 
 const CORE_SKILLS = [
-  { icon: "fab fa-react",      name: "React / Next.js",  level: 95, color: "#5b8dee" },
-  { icon: "fas fa-code",       name: "TypeScript",        level: 90, color: "#7c6ff7" },
-  { icon: "fab fa-node-js",    name: "Node.js",           level: 80, color: "#5bdc8e" },
-  { icon: "fas fa-paint-brush",name: "UI / UX Design",   level: 88, color: "#f5a623" },
-  { icon: "fas fa-database",   name: "MongoDB / GraphQL", level: 75, color: "#e06c75" },
-  { icon: "fas fa-mobile-alt", name: "Responsive Web",   level: 95, color: "#61dafb" },
+  {
+    icon: "fab fa-react",
+    name: "React / Next.js",
+    level: 95,
+    color: "#5b8dee",
+  },
+  { icon: "fas fa-code", name: "TypeScript", level: 90, color: "#7c6ff7" },
+  { icon: "fab fa-node-js", name: "Node.js", level: 80, color: "#5bdc8e" },
+  {
+    icon: "fas fa-paint-brush",
+    name: "UI / UX Design",
+    level: 88,
+    color: "#f5a623",
+  },
+  {
+    icon: "fas fa-database",
+    name: "MongoDB / GraphQL",
+    level: 75,
+    color: "#e06c75",
+  },
+  {
+    icon: "fas fa-mobile-alt",
+    name: "Responsive Web",
+    level: 95,
+    color: "#61dafb",
+  },
 ];
 
 const AI_STACK = [
@@ -165,13 +208,49 @@ const PHILOSOPHY = [
 ];
 
 const JOURNEY = [
-  { year: "2018", title: "Started the Journey", org: "B.Tech Computer Science", type: "Education" },
-  { year: "2019", title: "First React App", org: "Freelance Projects", type: "Milestone" },
-  { year: "2020", title: "Jr. Frontend Developer", org: "Startup, Gurgaon", type: "Work" },
-  { year: "2021", title: "React & TypeScript Deep Dive", org: "Mid-size Product Co.", type: "Work" },
-  { year: "2022", title: "Frontend Lead — Design System", org: "Tech Consultancy", type: "Work" },
-  { year: "2023", title: "AI Integration Explorer", org: "OpenAI API, Azure AI", type: "Milestone" },
-  { year: "2024", title: "Lead Engineer", org: "Publicis Sapient", type: "Work", current: true },
+  {
+    year: "2018",
+    title: "Started the Journey",
+    org: "B.Tech Computer Science",
+    type: "Education",
+  },
+  {
+    year: "2019",
+    title: "First React App",
+    org: "Freelance Projects",
+    type: "Milestone",
+  },
+  {
+    year: "2020",
+    title: "Jr. Frontend Developer",
+    org: "Startup, Gurgaon",
+    type: "Work",
+  },
+  {
+    year: "2021",
+    title: "React & TypeScript Deep Dive",
+    org: "Mid-size Product Co.",
+    type: "Work",
+  },
+  {
+    year: "2022",
+    title: "Frontend Lead — Design System",
+    org: "Tech Consultancy",
+    type: "Work",
+  },
+  {
+    year: "2023",
+    title: "AI Integration Explorer",
+    org: "OpenAI API, Azure AI",
+    type: "Milestone",
+  },
+  {
+    year: "2024",
+    title: "Lead Engineer",
+    org: "Publicis Sapient",
+    type: "Work",
+    current: true,
+  },
 ];
 
 /* ─────────────────────────────────────────
@@ -194,15 +273,23 @@ const SkillBar = ({ skill, delay }) => {
           <i className={skill.icon} />
         </span>
         <span className="am_skill_bar_name">{skill.name}</span>
-        <span className="am_skill_bar_pct" style={{ color: skill.color }}>{skill.level}%</span>
+        <span className="am_skill_bar_pct" style={{ color: skill.color }}>
+          {skill.level}%
+        </span>
       </div>
       <div className="am_skill_bar_track">
         <motion.div
           className="am_skill_bar_fill"
-          style={{ background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color})` }}
+          style={{
+            background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color})`,
+          }}
           initial={{ width: 0 }}
           animate={inView ? { width: `${skill.level}%` } : {}}
-          transition={{ delay: delay + 0.2, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            delay: delay + 0.2,
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         />
       </div>
     </motion.div>
@@ -213,20 +300,19 @@ const SkillBar = ({ skill, delay }) => {
    PAGE
 ───────────────────────────────────────── */
 const AboutMePage = () => {
-  const statsRef   = useRef(null);
-  const statsVis   = useInView(statsRef, { once: true, margin: "-60px" });
+  const statsRef = useRef(null);
+  const statsVis = useInView(statsRef, { once: true, margin: "-60px" });
 
   return (
     <div className="amp_root">
-
       {/* ══════════════════════════════════
           HERO
       ══════════════════════════════════ */}
       <section className="amp_hero">
         <div className="amp_hero_noise" aria-hidden="true" />
-        <div className="amp_hero_orb amp_o1"  aria-hidden="true" />
-        <div className="amp_hero_orb amp_o2"  aria-hidden="true" />
-        <div className="amp_hero_grid"        aria-hidden="true" />
+        <div className="amp_hero_orb amp_o1" aria-hidden="true" />
+        <div className="amp_hero_orb amp_o2" aria-hidden="true" />
+        <div className="amp_hero_grid" aria-hidden="true" />
 
         <div className="amp_hero_inner">
           <motion.div
@@ -246,7 +332,8 @@ const AboutMePage = () => {
             </motion.span>
 
             <motion.h1 className="amp_hero_title" variants={fadeUp}>
-              Riyaz<br />
+              Riyaz
+              <br />
               <span className="amp_hero_grad">Akhtar.</span>
             </motion.h1>
 
@@ -255,16 +342,26 @@ const AboutMePage = () => {
             </motion.p>
 
             <motion.p className="amp_hero_bio" variants={fadeUp}>
-              I build the interfaces people live in. With 8+ years engineering high-scale web
-              applications, I specialize in React ecosystems, design systems, and now — crafting
-              AI-powered experiences on Azure. Based in Gurgaon, India. Currently at{" "}
-              <span className="amp_hl">Publicis Sapient</span>, delivering enterprise-grade digital
-              products for global clients.
+              I build the interfaces people live in. With 8+ years engineering
+              high-scale web applications, I specialize in React ecosystems,
+              design systems, and now — crafting AI-powered experiences on
+              Azure. Based in Gurgaon, India. Currently at{" "}
+              <span className="amp_hl">Publicis Sapient</span>, delivering
+              enterprise-grade digital products for global clients.
             </motion.p>
 
             <motion.div className="amp_hero_tags" variants={stagger}>
-              {["React", "Next.js", "TypeScript", "Azure", "OpenAI", "Node.js"].map((t) => (
-                <motion.span key={t} className="amp_tag" variants={scaleIn}>{t}</motion.span>
+              {[
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Azure",
+                "OpenAI",
+                "Node.js",
+              ].map((t) => (
+                <motion.span key={t} className="amp_tag" variants={scaleIn}>
+                  {t}
+                </motion.span>
               ))}
             </motion.div>
           </motion.div>
@@ -295,7 +392,9 @@ const AboutMePage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4 }}
         >
-          <span className="amp_scroll_wheel"><span /></span>
+          <span className="amp_scroll_wheel">
+            <span />
+          </span>
           <span>Scroll</span>
         </motion.div>
       </section>
@@ -305,7 +404,9 @@ const AboutMePage = () => {
       ══════════════════════════════════ */}
       <section className="amp_section amp_even">
         <div className="amp_container">
-          <span className="amp_wm" aria-hidden="true">SKILLS</span>
+          <span className="amp_wm" aria-hidden="true">
+            SKILLS
+          </span>
 
           <motion.div
             className="amp_section_head"
@@ -314,13 +415,17 @@ const AboutMePage = () => {
             whileInView="visible"
             viewport={vp}
           >
-            <motion.span className="amp_label" variants={fadeUp}>Core Expertise</motion.span>
+            <motion.span className="amp_label" variants={fadeUp}>
+              Core Expertise
+            </motion.span>
             <motion.h2 className="amp_section_title" variants={fadeUp}>
-              What I Do<br />
+              What I Do
+              <br />
               <span className="amp_grad">Best.</span>
             </motion.h2>
             <motion.p className="amp_section_sub" variants={fadeUp}>
-              8+ years of crafting production-grade applications has sharpened these skills to a fine edge.
+              8+ years of crafting production-grade applications has sharpened
+              these skills to a fine edge.
             </motion.p>
           </motion.div>
 
@@ -344,9 +449,10 @@ const AboutMePage = () => {
                 </div>
                 <h3 className="amp_story_title">Frontend Architect</h3>
                 <p className="amp_story_text">
-                  I don't just write React components — I architect component libraries, define
-                  design token systems, and enforce code contracts that scale teams from 2 to 20
-                  engineers without chaos.
+                  I don't just write React components — I architect component
+                  libraries, define design token systems, and enforce code
+                  contracts that scale teams from 2 to 20 engineers without
+                  chaos.
                 </p>
               </div>
 
@@ -356,9 +462,9 @@ const AboutMePage = () => {
                 </div>
                 <h3 className="amp_story_title">Full-Stack Fluency</h3>
                 <p className="amp_story_text">
-                  While UI is my home, I'm equally comfortable in Node.js APIs, MongoDB schemas,
-                  GraphQL resolvers, and serverless Azure Functions — bridging frontend and backend
-                  seamlessly.
+                  While UI is my home, I'm equally comfortable in Node.js APIs,
+                  MongoDB schemas, GraphQL resolvers, and serverless Azure
+                  Functions — bridging frontend and backend seamlessly.
                 </p>
               </div>
 
@@ -368,8 +474,9 @@ const AboutMePage = () => {
                 </div>
                 <h3 className="amp_story_title">Performance Obsessed</h3>
                 <p className="amp_story_text">
-                  Code splitting, lazy loading, virtualized lists, memoization — I treat every
-                  Lighthouse report as a personal challenge. Sub-2s LCP is the standard, not the goal.
+                  Code splitting, lazy loading, virtualized lists, memoization —
+                  I treat every Lighthouse report as a personal challenge.
+                  Sub-2s LCP is the standard, not the goal.
                 </p>
               </div>
             </motion.div>
@@ -382,7 +489,9 @@ const AboutMePage = () => {
       ══════════════════════════════════ */}
       <section className="amp_section">
         <div className="amp_container">
-          <span className="amp_wm amp_wm_right" aria-hidden="true">AI</span>
+          <span className="amp_wm amp_wm_right" aria-hidden="true">
+            AI
+          </span>
 
           <motion.div
             className="amp_section_head"
@@ -391,14 +500,18 @@ const AboutMePage = () => {
             whileInView="visible"
             viewport={vp}
           >
-            <motion.span className="amp_label" variants={fadeUp}>Artificial Intelligence</motion.span>
+            <motion.span className="amp_label" variants={fadeUp}>
+              Artificial Intelligence
+            </motion.span>
             <motion.h2 className="amp_section_title" variants={fadeUp}>
-              Building with<br />
+              Building with
+              <br />
               <span className="amp_grad">Intelligence.</span>
             </motion.h2>
             <motion.p className="amp_section_sub" variants={fadeUp}>
-              AI isn't the future — it's the present. I integrate LLMs, vision models, and intelligent
-              APIs to build products that feel like they're thinking alongside the user.
+              AI isn't the future — it's the present. I integrate LLMs, vision
+              models, and intelligent APIs to build products that feel like
+              they're thinking alongside the user.
             </motion.p>
           </motion.div>
 
@@ -414,14 +527,22 @@ const AboutMePage = () => {
               <span className="amp_ai_pulse_ring" aria-hidden="true" />
               <span className="amp_ai_pulse_dot" aria-hidden="true" />
               <div>
-                <p className="amp_ai_banner_title">AI-First Development Mindset</p>
-                <p className="amp_ai_banner_sub">Integrating intelligence at every layer of the stack</p>
+                <p className="amp_ai_banner_title">
+                  AI-First Development Mindset
+                </p>
+                <p className="amp_ai_banner_sub">
+                  Integrating intelligence at every layer of the stack
+                </p>
               </div>
             </div>
             <div className="amp_ai_banner_right">
-              {["GPT-4", "LangChain", "RAG", "Copilot", "Embeddings"].map((t) => (
-                <span key={t} className="amp_ai_chip">{t}</span>
-              ))}
+              {["GPT-4", "LangChain", "RAG", "Copilot", "Embeddings"].map(
+                (t) => (
+                  <span key={t} className="amp_ai_chip">
+                    {t}
+                  </span>
+                ),
+              )}
             </div>
           </motion.div>
 
@@ -458,7 +579,9 @@ const AboutMePage = () => {
       ══════════════════════════════════ */}
       <section className="amp_section amp_even amp_azure_section">
         <div className="amp_container">
-          <span className="amp_wm" aria-hidden="true">AZURE</span>
+          <span className="amp_wm" aria-hidden="true">
+            AZURE
+          </span>
 
           <div className="amp_azure_layout">
             {/* left: text */}
@@ -469,19 +592,32 @@ const AboutMePage = () => {
               whileInView="visible"
               viewport={vp}
             >
-              <motion.span className="amp_label" variants={fadeUp}>Cloud Platform</motion.span>
+              <motion.span className="amp_label" variants={fadeUp}>
+                Cloud Platform
+              </motion.span>
               <motion.h2 className="amp_section_title" variants={fadeUp}>
-                Living on<br />
+                Living on
+                <br />
                 <span className="amp_grad">Azure.</span>
               </motion.h2>
               <motion.p className="amp_azure_body" variants={fadeUp}>
-                From CI/CD pipelines that deploy in minutes, to serverless functions that scale to
-                zero and back — Azure is the cloud layer powering my production applications. I build
-                cloud-native by default.
+                From CI/CD pipelines that deploy in minutes, to serverless
+                functions that scale to zero and back — Azure is the cloud layer
+                powering my production applications. I build cloud-native by
+                default.
               </motion.p>
               <motion.div className="amp_azure_badges" variants={stagger}>
-                {["Azure Certified", "CI/CD Expert", "Serverless", "Cloud-Native"].map((b) => (
-                  <motion.span key={b} className="amp_azure_badge" variants={scaleIn}>
+                {[
+                  "Azure Certified",
+                  "CI/CD Expert",
+                  "Serverless",
+                  "Cloud-Native",
+                ].map((b) => (
+                  <motion.span
+                    key={b}
+                    className="amp_azure_badge"
+                    variants={scaleIn}
+                  >
                     <i className="fas fa-check-circle" /> {b}
                   </motion.span>
                 ))}
@@ -540,9 +676,12 @@ const AboutMePage = () => {
             whileInView="visible"
             viewport={vp}
           >
-            <motion.span className="amp_label" variants={fadeUp}>How I Work</motion.span>
+            <motion.span className="amp_label" variants={fadeUp}>
+              How I Work
+            </motion.span>
             <motion.h2 className="amp_section_title" variants={fadeUp}>
-              Engineering<br />
+              Engineering
+              <br />
               <span className="amp_grad">Philosophy.</span>
             </motion.h2>
           </motion.div>
@@ -555,7 +694,12 @@ const AboutMePage = () => {
             viewport={vp}
           >
             {PHILOSOPHY.map((p, i) => (
-              <motion.div key={p.num} className="amp_phil_card" variants={fadeUp} whileHover={{ y: -6 }}>
+              <motion.div
+                key={p.num}
+                className="amp_phil_card"
+                variants={fadeUp}
+                whileHover={{ y: -6 }}
+              >
                 <span className="amp_phil_num">{p.num}</span>
                 <h3 className="amp_phil_title">{p.title}</h3>
                 <p className="amp_phil_body">{p.body}</p>
@@ -571,7 +715,9 @@ const AboutMePage = () => {
       ══════════════════════════════════ */}
       <section className="amp_section amp_even">
         <div className="amp_container">
-          <span className="amp_wm amp_wm_right" aria-hidden="true">JOURNEY</span>
+          <span className="amp_wm amp_wm_right" aria-hidden="true">
+            JOURNEY
+          </span>
 
           <motion.div
             className="amp_section_head"
@@ -580,9 +726,12 @@ const AboutMePage = () => {
             whileInView="visible"
             viewport={vp}
           >
-            <motion.span className="amp_label" variants={fadeUp}>Career Timeline</motion.span>
+            <motion.span className="amp_label" variants={fadeUp}>
+              Career Timeline
+            </motion.span>
             <motion.h2 className="amp_section_title" variants={fadeUp}>
-              The Road<br />
+              The Road
+              <br />
               <span className="amp_grad">Here.</span>
             </motion.h2>
           </motion.div>
@@ -610,14 +759,23 @@ const AboutMePage = () => {
                     <span className="amp_tl_year">
                       <i className="fas fa-clock" /> {item.year}
                     </span>
-                    <span className={`amp_tl_tag${item.current ? " amp_tl_tag_now" : ""}`}>
+                    <span
+                      className={`amp_tl_tag${item.current ? " amp_tl_tag_now" : ""}`}
+                    >
                       {item.current ? (
-                        <><span className="amp_tl_now_dot" />Now</>
-                      ) : item.type}
+                        <>
+                          <span className="amp_tl_now_dot" />
+                          Now
+                        </>
+                      ) : (
+                        item.type
+                      )}
                     </span>
                   </div>
                   <h3 className="amp_tl_title">{item.title}</h3>
-                  <p className="amp_tl_org"><i className="fas fa-building" /> {item.org}</p>
+                  <p className="amp_tl_org">
+                    <i className="fas fa-building" /> {item.org}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -639,9 +797,12 @@ const AboutMePage = () => {
           whileInView="visible"
           viewport={vp}
         >
-          <motion.span className="amp_label" variants={fadeUp}>Ready to build together?</motion.span>
+          <motion.span className="amp_label" variants={fadeUp}>
+            Ready to build together?
+          </motion.span>
           <motion.h2 className="amp_cta_title" variants={fadeUp}>
-            Let's Create<br />
+            Let's Create
+            <br />
             <span className="amp_cta_grad">Something Great.</span>
           </motion.h2>
           <motion.p className="amp_cta_sub" variants={fadeUp}>

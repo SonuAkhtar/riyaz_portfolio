@@ -1,9 +1,3 @@
-/* ═══════════════════════════════════════════════════════
-   PROJECTS PAGE  —  projectsPage.css
-   Uses CSS custom properties from app.css (no redeclare)
-═══════════════════════════════════════════════════════ */
-
-/* ── Root — Pastel Rose / Pink theme ── */
 .pp_root {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -25,7 +19,6 @@
   --gradient-accent: linear-gradient(135deg, #db2777 0%, #9333ea 100%);
 }
 
-/* ── Shared container ── */
 .pp_container {
   position: relative;
   max-width: 1280px;
@@ -33,7 +26,6 @@
   padding: 0 clamp(1.5rem, 5vw, 6rem);
 }
 
-/* ── Section ── */
 .pp_section {
   padding: clamp(5rem, 9vh, 8rem) 0;
   background-color: var(--bg-primary);
@@ -41,27 +33,6 @@
   position: relative;
 }
 
-/* ── Ghost watermark ── */
-.pp_ghost_wm {
-  position: absolute;
-  top: -0.1em;
-  left: clamp(1rem, 4vw, 5rem);
-  font-family: "Syne", sans-serif;
-  font-weight: 800;
-  font-size: clamp(5rem, 14vw, 12rem);
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--border);
-  opacity: 0.25;
-  pointer-events: none;
-  user-select: none;
-  line-height: 1;
-  white-space: nowrap;
-  z-index: 0;
-}
-
-/* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
 .pp_hero {
   position: relative;
   min-height: 100vh;
@@ -70,7 +41,7 @@
   justify-content: center;
   overflow: hidden;
   background-color: var(--bg-primary);
-  padding: 7rem clamp(1.5rem, 5vw, 6rem) 5rem;
+  padding: 3rem clamp(1.5rem, 5vw, 6rem) 5rem;
 }
 
 .pp_hero_orb {
@@ -85,7 +56,11 @@
   height: 620px;
   top: -130px;
   right: -80px;
-  background: radial-gradient(circle, rgba(91, 141, 238, 0.12) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(91, 141, 238, 0.12) 0%,
+    transparent 70%
+  );
 }
 
 .pp_orb2 {
@@ -93,7 +68,11 @@
   height: 420px;
   bottom: 80px;
   left: -80px;
-  background: radial-gradient(circle, rgba(124, 111, 247, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(124, 111, 247, 0.1) 0%,
+    transparent 70%
+  );
 }
 
 .pp_hero_grid {
@@ -125,18 +104,15 @@
   color: var(--text-secondary);
   font-family: "Space Grotesk", sans-serif;
   letter-spacing: 0.3px;
-  transition: color 0.3s, gap 0.3s;
+  transition:
+    color 0.3s,
+    gap 0.3s;
   margin-bottom: 1rem;
 }
 
 .pp_back_link:hover {
   color: var(--accent);
   gap: 0.75rem;
-}
-
-.pp_label {
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
 .pp_hero_title {
@@ -165,7 +141,6 @@
   margin-top: 1rem;
 }
 
-/* Stats */
 .pp_stats_row {
   display: flex;
   gap: 0;
@@ -211,7 +186,6 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
-/* Scroll cue */
 .pp_scroll_cue {
   position: absolute;
   bottom: 2.5rem;
@@ -248,13 +222,17 @@
 }
 
 @keyframes pp_scroll_anim {
-  0%   { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(8px); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
 }
 
-/* ═══════════════════════════════════════
-   FILTER BAR
-═══════════════════════════════════════ */
 .pp_filters {
   position: relative;
   z-index: 1;
@@ -279,7 +257,6 @@
   flex-shrink: 0;
 }
 
-/* Sliding ink */
 .pp_filter_ink {
   position: absolute;
   top: 4px;
@@ -328,7 +305,9 @@
   border: 1px solid var(--border-accent);
   color: var(--accent);
   font-family: "Space Grotesk", sans-serif;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .pp_filter_pill.active .pp_filter_count {
@@ -345,9 +324,6 @@
   flex-shrink: 0;
 }
 
-/* ═══════════════════════════════════════
-   PROJECTS GRID
-═══════════════════════════════════════ */
 .pp_grid {
   position: relative;
   z-index: 1;
@@ -356,7 +332,6 @@
   gap: 1.5rem;
 }
 
-/* ── Project card ── */
 .pp_card {
   position: relative;
   background: var(--bg-card);
@@ -366,16 +341,20 @@
   display: flex;
   flex-direction: column;
   cursor: default;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
 }
 
 .pp_card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-accent);
-  box-shadow: var(--shadow-glow), 0 16px 48px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    var(--shadow-glow),
+    0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
-/* Left accent bar */
 .pp_card_accent_bar {
   position: absolute;
   left: 0;
@@ -394,7 +373,6 @@
   transform: scaleY(1);
 }
 
-/* Image area */
 .pp_card_img_wrap {
   position: relative;
   width: 100%;
@@ -415,7 +393,6 @@
   transform: scale(1.04);
 }
 
-/* Image placeholder */
 .pp_card_img_placeholder {
   width: 100%;
   height: 100%;
@@ -423,7 +400,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary) 0%,
+    var(--bg-card) 100%
+  );
   overflow: hidden;
 }
 
@@ -452,7 +433,6 @@
   opacity: 0.6;
 }
 
-/* Badges on image */
 .pp_card_cat_badge {
   position: absolute;
   top: 0.75rem;
@@ -487,7 +467,6 @@
   z-index: 2;
 }
 
-/* Hover overlay */
 .pp_card_overlay {
   position: absolute;
   inset: 0;
@@ -523,7 +502,10 @@
   border: 1px solid var(--border-accent);
   color: var(--text-primary);
   text-decoration: none;
-  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    color 0.25s;
 }
 
 .pp_overlay_btn:hover {
@@ -545,7 +527,6 @@
   box-shadow: 0 4px 20px var(--accent-glow-strong);
 }
 
-/* Card body */
 .pp_card_body {
   padding: 1.5rem;
   display: flex;
@@ -585,7 +566,10 @@
   font-size: 0.8rem;
   color: var(--text-muted);
   text-decoration: none;
-  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    color 0.25s;
 }
 
 .pp_icon_link:hover {
@@ -639,7 +623,9 @@
   color: var(--text-muted);
   font-family: "Space Grotesk", sans-serif;
   letter-spacing: 0.3px;
-  transition: border-color 0.25s, color 0.25s;
+  transition:
+    border-color 0.25s,
+    color 0.25s;
 }
 
 .pp_card:hover .pp_card_tag {
@@ -647,7 +633,6 @@
   color: var(--text-secondary);
 }
 
-/* ── Empty state ── */
 .pp_empty {
   display: flex;
   flex-direction: column;
@@ -664,9 +649,6 @@
   opacity: 0.4;
 }
 
-/* ═══════════════════════════════════════
-   CTA
-═══════════════════════════════════════ */
 .pp_cta_section {
   position: relative;
   padding: clamp(5rem, 9vh, 8rem) clamp(1.5rem, 5vw, 6rem);
@@ -682,7 +664,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(91, 141, 238, 0.09) 0%, transparent 65%);
+  background: radial-gradient(
+    circle,
+    rgba(91, 141, 238, 0.09) 0%,
+    transparent 65%
+  );
   pointer-events: none;
   filter: blur(40px);
 }
@@ -748,9 +734,6 @@
   margin-top: 0.5rem;
 }
 
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
 @media (max-width: 1200px) {
   .pp_grid {
     grid-template-columns: repeat(2, 1fr);

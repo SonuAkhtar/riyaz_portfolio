@@ -1,6 +1,6 @@
-import React from "react";
+import "./contact.css";
+
 import { motion } from "framer-motion";
-import { contactData, socialIconsData } from "../../../appData";
 import {
   fadeInLeft,
   fadeInRight,
@@ -8,30 +8,18 @@ import {
   stagger,
   viewportOptions,
 } from "../../utils/animations";
-import "./contact.css";
 
-const iconMap = {
-  call: { icon: "fas fa-phone", color: "cc_green" },
-  email: { icon: "fas fa-envelope", color: "cc_blue" },
-  location: { icon: "fas fa-map-marker-alt", color: "cc_purple" },
-};
-
-const socialMeta = {
-  "fab fa-github": { label: "GitHub", short: "SonuAkhtar" },
-  "fab fa-linkedin-in": { label: "LinkedIn", short: "riyaz-akhtar" },
-  "fab fa-twitter": { label: "Twitter", short: "@SonuA007" },
-};
+import {
+  contactData,
+  homeContactIcons,
+  homeSocialIcons,
+  socialIconsData,
+} from "../../../appData";
 
 const Contact = () => {
   return (
     <section className="contact even" id="contact">
       <div className="container">
-        {/* ghost watermark */}
-        <span className="contact_wm" aria-hidden="true">
-          CONTACT
-        </span>
-
-        {/* ── header ── */}
         <motion.div
           className="contact_header"
           variants={stagger}
@@ -44,9 +32,7 @@ const Contact = () => {
           </motion.span>
         </motion.div>
 
-        {/* ── two-column body ── */}
         <div className="contact_body">
-          {/* ── LEFT ── */}
           <motion.div
             className="contact_left"
             variants={fadeInLeft}
@@ -54,14 +40,12 @@ const Contact = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {/* availability badge */}
             <div className="avail_badge">
               <span className="avail_ring" aria-hidden="true" />
               <span className="avail_dot" aria-hidden="true" />
-              Available for new opportunities
+              Open for new opportunities
             </div>
 
-            {/* headline */}
             <h2 className="contact_hl">
               Let's Build
               <br />
@@ -73,13 +57,12 @@ const Contact = () => {
             <p className="contact_bio">
               Open to full-time roles, freelance projects, and interesting
               collaborations. I love turning ideas into polished digital
-              experiences — let's talk.
+              experiences.
             </p>
 
-            {/* social row */}
             <div className="contact_socials">
               {socialIconsData.map((s) => {
-                const meta = socialMeta[s.class] || {
+                const meta = homeSocialIcons[s.class] || {
                   label: "Link",
                   short: "",
                 };
@@ -100,7 +83,6 @@ const Contact = () => {
               })}
             </div>
 
-            {/* quick email CTA */}
             <motion.a
               href="mailto:sonua981@gmail.com"
               className="btn btn_primary contact_cta"
@@ -112,7 +94,6 @@ const Contact = () => {
             </motion.a>
           </motion.div>
 
-          {/* ── RIGHT ── */}
           <motion.div
             className="contact_right"
             variants={fadeInRight}
@@ -122,7 +103,7 @@ const Contact = () => {
           >
             <div className="cchannels">
               {contactData.map((item, i) => {
-                const meta = iconMap[item.alt] || {
+                const meta = homeContactIcons[item.alt] || {
                   icon: "fas fa-info",
                   color: "cc_blue",
                 };
@@ -164,7 +145,6 @@ const Contact = () => {
                 );
               })}
 
-              {/* response meta row */}
               <div className="cc_meta_row">
                 <span className="cc_meta_item">
                   <i className="fas fa-clock" />

@@ -1,24 +1,34 @@
 import React, { useRef, useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { skillsData, certificationsData } from "../../appData";
-import { fadeInUp, stagger, scaleIn, viewportOptions } from "../utils/animations";
-import Footer from "../components/Footer/Footer";
 import "./skillsPage.css";
 
-/* ── SVG Ring constants ── */
-const R    = 38;
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import {
+  skillsData,
+  certificationsData,
+  skillsPageCerts,
+  skillsPagePhilisophy,
+  skillsStats,
+} from "../../../appData";
+import {
+  fadeInUp,
+  stagger,
+  scaleIn,
+  viewportOptions,
+} from "../../utils/animations";
+
+import Footer from "../../components/Footer/Footer";
+
+const R = 38;
 const CIRC = 2 * Math.PI * R;
 
-/* ── Level helper ── */
 const getLevel = (n) => {
-  if (n >= 80) return { label: "Expert",     cls: "expert"     };
+  if (n >= 80) return { label: "Expert", cls: "expert" };
   if (n >= 65) return { label: "Proficient", cls: "proficient" };
-  if (n >= 45) return { label: "Familiar",   cls: "familiar"   };
-  return             { label: "Learning",   cls: "learning"   };
+  if (n >= 45) return { label: "Familiar", cls: "familiar" };
+  return { label: "Learning", cls: "learning" };
 };
 
-/* ── Animated counter ── */
 const CountUp = ({ to, inView }) => {
   const [val, setVal] = React.useState(0);
   React.useEffect(() => {
@@ -28,19 +38,20 @@ const CountUp = ({ to, inView }) => {
     const inc = to / steps;
     const timer = setInterval(() => {
       start += inc;
-      if (start >= to) { setVal(to); clearInterval(timer); }
-      else setVal(Math.floor(start));
+      if (start >= to) {
+        setVal(to);
+        clearInterval(timer);
+      } else setVal(Math.floor(start));
     }, 28);
     return () => clearInterval(timer);
   }, [inView, to]);
   return <>{val}</>;
 };
 
-/* ── Skill Card with SVG ring ── */
 const SkillCard = ({ name, number, delay }) => {
-  const ref    = useRef(null);
+  const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10px" });
-  const level  = getLevel(Number(number));
+  const level = getLevel(Number(number));
   const offset = CIRC - (Number(number) / 100) * CIRC;
 
   return (
@@ -50,25 +61,46 @@ const SkillCard = ({ name, number, delay }) => {
       initial={{ opacity: 0, scale: 0.88, y: 20 }}
       animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
-      whileHover={{ y: -6, transition: { type: "spring", stiffness: 280, damping: 20 } }}
+      whileHover={{
+        y: -6,
+        transition: { type: "spring", stiffness: 280, damping: 20 },
+      }}
     >
       <div className="ring_wrap">
         <svg width="96" height="96" viewBox="0 0 96 96">
-          <circle cx="48" cy="48" r={R} strokeWidth="6" fill="none" className="ring_track" />
+          <circle
+            cx="48"
+            cy="48"
+            r={R}
+            strokeWidth="6"
+            fill="none"
+            className="ring_track"
+          />
           <motion.circle
-            cx="48" cy="48" r={R}
-            strokeWidth="6" fill="none"
+            cx="48"
+            cy="48"
+            r={R}
+            strokeWidth="6"
+            fill="none"
             className={`ring_fill rf_${level.cls}`}
             strokeLinecap="round"
             strokeDasharray={CIRC}
             initial={{ strokeDashoffset: CIRC }}
-            animate={inView ? { strokeDashoffset: offset } : { strokeDashoffset: CIRC }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: delay + 0.15 }}
+            animate={
+              inView ? { strokeDashoffset: offset } : { strokeDashoffset: CIRC }
+            }
+            transition={{
+              duration: 1.5,
+              ease: [0.22, 1, 0.36, 1],
+              delay: delay + 0.15,
+            }}
             style={{ transformOrigin: "48px 48px", rotate: -90 }}
           />
         </svg>
         <div className="ring_center">
-          <span className="ring_pct"><CountUp to={Number(number)} inView={inView} /></span>
+          <span className="ring_pct">
+            <CountUp to={Number(number)} inView={inView} />
+          </span>
           <span className="ring_sym">%</span>
         </div>
       </div>
@@ -78,79 +110,45 @@ const SkillCard = ({ name, number, delay }) => {
   );
 };
 
-/* ── Panel animation ── */
 const panelAnim = {
-  enter:  { opacity: 0, y: 18 },
-  center: { opacity: 1, y: 0,  transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
-  exit:   { opacity: 0, y: -12, transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } },
+  enter: { opacity: 0, y: 18 },
+  center: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: {
+    opacity: 0,
+    y: -12,
+    transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
-/* ── Stats counter item ── */
 const StatItem = ({ value, label }) => {
   const ref = useRef(null);
-  const vis  = useInView(ref, { once: true, margin: "-40px" });
+  const vis = useInView(ref, { once: true, margin: "-40px" });
   return (
-    <motion.div
-      className="sp_stat"
-      ref={ref}
-      variants={scaleIn}
-    >
+    <motion.div className="sp_stat" ref={ref} variants={scaleIn}>
       <span className="sp_stat_value">{value}</span>
       <span className="sp_stat_label">{label}</span>
     </motion.div>
   );
 };
 
-/* ════════════════════════════════════
-   CERTIFICATIONS DATA (fallback)
-════════════════════════════════════ */
-const defaultCerts = [
-  { id: 1, name: "Azure Developer Associate", code: "AZ-204", issuer: "Microsoft", icon: "fab fa-microsoft", color: "azure", year: "2024" },
-  { id: 2, name: "Azure AI Engineer Associate", code: "AI-102", issuer: "Microsoft", icon: "fas fa-brain", color: "azure", year: "2024" },
-  { id: 3, name: "Azure Fundamentals", code: "AZ-900", issuer: "Microsoft", icon: "fab fa-microsoft", color: "azure", year: "2023" },
-  { id: 4, name: "Claude AI Professional", code: "Anthropic", issuer: "Anthropic", icon: "fas fa-robot", color: "claude", year: "2024" },
-  { id: 5, name: "AI Agents Development", code: "Agents", issuer: "Certification Body", icon: "fas fa-network-wired", color: "ai", year: "2024" },
-];
-
-const PHILOSOPHY = [
-  {
-    icon: "fas fa-layer-group",
-    title: "Build Once, Scale Forever",
-    body: "Every component, API, and design token is built as if it will be shared across 10 teams. Composable, documented, and version-controlled from day one.",
-    accent: "#5b8dee",
-  },
-  {
-    icon: "fas fa-brain",
-    title: "AI-First Mindset",
-    body: "LLMs aren't a bolt-on feature — they're architectural decisions. I plan AI integration at the system level: embeddings, context windows, and inference latency.",
-    accent: "#7c6ff7",
-  },
-  {
-    icon: "fas fa-cloud",
-    title: "Cloud by Default",
-    body: "Every application I ship is cloud-native on Azure: CI/CD pipelines, containerized deployments, serverless functions, and Application Insights observability.",
-    accent: "#0078d4",
-  },
-];
-
-/* ════════════════════════════════════
-   PAGE COMPONENT
-════════════════════════════════════ */
 const SkillsPage = () => {
   const [active, setActive] = useState(0);
-  const certs = (certificationsData && certificationsData.length) ? certificationsData : defaultCerts;
-  const cat   = skillsData[active];
+  const certs =
+    certificationsData && certificationsData.length
+      ? certificationsData
+      : skillsPageCerts;
+  const cat = skillsData[active];
 
   return (
     <div className="sp_root">
-
-      {/* ══════════════════════
-          HERO
-      ══════════════════════ */}
       <section className="sp_hero">
         <div className="sp_hero_orb sp_orb1" aria-hidden="true" />
         <div className="sp_hero_orb sp_orb2" aria-hidden="true" />
-        <div className="sp_hero_grid"        aria-hidden="true" />
+        <div className="sp_hero_grid" aria-hidden="true" />
 
         <div className="sp_hero_inner">
           <motion.div
@@ -166,18 +164,16 @@ const SkillsPage = () => {
               </Link>
             </motion.div>
 
-            <motion.span className="section_label sp_label" variants={fadeInUp}>
-              Technical Arsenal
-            </motion.span>
-
             <motion.h1 className="sp_hero_title" variants={fadeInUp}>
-              Skills &amp;<br />
+              Skills &amp;
+              <br />
               <span className="sp_hero_grad">Expertise.</span>
             </motion.h1>
 
             <motion.p className="sp_hero_sub" variants={fadeInUp}>
-              8 years of shipping production-grade applications across frontend, backend, AI, and cloud.
-              Every skill is battle-tested, not just box-checked.
+              8 years of shipping production-grade applications across frontend,
+              backend, AI, and cloud. Every skill is battle-tested, not just
+              box-checked.
             </motion.p>
           </motion.div>
 
@@ -188,10 +184,10 @@ const SkillsPage = () => {
             animate="visible"
           >
             {[
-              { value: "8+",  label: "Years" },
+              { value: "8+", label: "Years" },
               { value: "15+", label: "Technologies" },
-              { value: "5",   label: "Domains" },
-              { value: "5",   label: "Certifications" },
+              { value: "5", label: "Domains" },
+              { value: "5", label: "Certifications" },
             ].map((s) => (
               <StatItem key={s.label} value={s.value} label={s.label} />
             ))}
@@ -204,18 +200,15 @@ const SkillsPage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
         >
-          <span className="sp_scroll_wheel"><span /></span>
+          <span className="sp_scroll_wheel">
+            <span />
+          </span>
           <span>Scroll to explore</span>
         </motion.div>
       </section>
 
-      {/* ══════════════════════
-          CERTIFICATIONS
-      ══════════════════════ */}
       <section className="sp_section sp_even">
         <div className="sp_container">
-          <span className="sp_ghost_wm" aria-hidden="true">CERTS</span>
-
           <motion.div
             className="sp_section_head"
             variants={stagger}
@@ -223,13 +216,17 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            <motion.span className="section_label" variants={fadeInUp}>Verified Credentials</motion.span>
+            <motion.span className="section_label" variants={fadeInUp}>
+              Verified Credentials
+            </motion.span>
             <motion.h2 className="sp_section_title" variants={fadeInUp}>
-              Certifications<br />
+              Certifications
+              <br />
               <span className="sp_grad">&amp; Badges.</span>
             </motion.h2>
             <motion.p className="sp_section_sub" variants={fadeInUp}>
-              Staying ahead through continuous learning and industry-recognized certifications.
+              Staying ahead through continuous learning and industry-recognized
+              certifications.
             </motion.p>
           </motion.div>
 
@@ -245,7 +242,10 @@ const SkillsPage = () => {
                 key={cert.id || i}
                 className={`sp_cert_card sp_cert_${cert.color}`}
                 variants={fadeInUp}
-                whileHover={{ y: -8, transition: { type: "spring", stiffness: 280, damping: 20 } }}
+                whileHover={{
+                  y: -8,
+                  transition: { type: "spring", stiffness: 280, damping: 20 },
+                }}
               >
                 <div className="sp_cert_accent_bar" />
                 <div className={`sp_cert_icon_wrap sp_cert_icon_${cert.color}`}>
@@ -266,13 +266,8 @@ const SkillsPage = () => {
         </div>
       </section>
 
-      {/* ══════════════════════
-          SKILLS WITH TABS
-      ══════════════════════ */}
       <section className="sp_section">
         <div className="sp_container">
-          <span className="sp_ghost_wm sp_ghost_right" aria-hidden="true">SKILLS</span>
-
           <motion.div
             className="sp_section_head"
             variants={stagger}
@@ -280,13 +275,17 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            <motion.span className="section_label" variants={fadeInUp}>Technical Stack</motion.span>
+            <motion.span className="section_label" variants={fadeInUp}>
+              Technical Stack
+            </motion.span>
             <motion.h2 className="sp_section_title" variants={fadeInUp}>
-              Core<br />
+              Core
+              <br />
               <span className="sp_grad">Competencies.</span>
             </motion.h2>
             <motion.p className="sp_section_sub" variants={fadeInUp}>
-              A snapshot of mastery built through shipping real products — ranked by depth of production use.
+              A snapshot of mastery built through shipping real products —
+              ranked by depth of production use.
             </motion.p>
           </motion.div>
 
@@ -307,7 +306,9 @@ const SkillsPage = () => {
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.96 }}
               >
-                <span className="sktab_icon"><i className={c.icon} /></span>
+                <span className="sktab_icon">
+                  <i className={c.icon} />
+                </span>
                 <span className="sktab_body">
                   <span className="sktab_name">{c.title}</span>
                   <span className="sktab_yrs">{c.subtitle}</span>
@@ -320,7 +321,7 @@ const SkillsPage = () => {
               layout
               layoutId="sp_sktab_ink"
               style={{
-                left:  `calc(${active} * (100% / ${skillsData.length}) + 4px)`,
+                left: `calc(${active} * (100% / ${skillsData.length}) + 4px)`,
                 width: `calc(100% / ${skillsData.length} - 8px)`,
               }}
               transition={{ type: "spring", stiffness: 340, damping: 30 }}
@@ -358,12 +359,7 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {[
-              { cls: "expert",     label: "Expert ≥ 80%"     },
-              { cls: "proficient", label: "Proficient ≥ 65%" },
-              { cls: "familiar",   label: "Familiar ≥ 45%"   },
-              { cls: "learning",   label: "Learning"          },
-            ].map((l) => (
+            {skillsStats.map((l) => (
               <span key={l.cls} className={`leg_item li_${l.cls}`}>
                 <span className="leg_dot" />
                 {l.label}
@@ -373,13 +369,8 @@ const SkillsPage = () => {
         </div>
       </section>
 
-      {/* ══════════════════════
-          TECH PHILOSOPHY
-      ══════════════════════ */}
       <section className="sp_section sp_even">
         <div className="sp_container">
-          <span className="sp_ghost_wm" aria-hidden="true">APPROACH</span>
-
           <motion.div
             className="sp_section_head"
             variants={stagger}
@@ -387,7 +378,9 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            <motion.span className="section_label" variants={fadeInUp}>Engineering Mindset</motion.span>
+            <motion.span className="section_label" variants={fadeInUp}>
+              Engineering Mindset
+            </motion.span>
             <motion.h2 className="sp_section_title" variants={fadeInUp}>
               How I<br />
               <span className="sp_grad">Think &amp; Build.</span>
@@ -401,30 +394,36 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {PHILOSOPHY.map((p, i) => (
+            {skillsPagePhilisophy.map((p, i) => (
               <motion.div
                 key={p.title}
                 className="sp_phil_card"
                 variants={fadeInUp}
-                whileHover={{ y: -8, transition: { type: "spring", stiffness: 280, damping: 20 } }}
+                whileHover={{
+                  y: -8,
+                  transition: { type: "spring", stiffness: 280, damping: 20 },
+                }}
               >
                 <div className="sp_phil_accent_bar" />
-                <div className="sp_phil_icon_wrap" style={{ "--phil-color": p.accent }}>
+                <div
+                  className="sp_phil_icon_wrap"
+                  style={{ "--phil-color": p.accent }}
+                >
                   <i className={p.icon} />
                 </div>
                 <span className="sp_phil_num">0{i + 1}</span>
                 <h3 className="sp_phil_title">{p.title}</h3>
                 <p className="sp_phil_body">{p.body}</p>
-                <div className="sp_phil_bottom_line" style={{ background: p.accent }} />
+                <div
+                  className="sp_phil_bottom_line"
+                  style={{ background: p.accent }}
+                />
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ══════════════════════
-          CTA
-      ══════════════════════ */}
       <section className="sp_cta_section">
         <div className="sp_cta_orb" aria-hidden="true" />
 
@@ -435,14 +434,18 @@ const SkillsPage = () => {
           whileInView="visible"
           viewport={viewportOptions}
         >
-          <motion.span className="section_label" variants={fadeInUp}>Ready to work together?</motion.span>
+          <motion.span className="section_label" variants={fadeInUp}>
+            Ready to work together?
+          </motion.span>
           <motion.h2 className="sp_cta_title" variants={fadeInUp}>
-            Let's Build<br />
+            Let's Build
+            <br />
             <span className="sp_cta_grad">Something Impactful.</span>
           </motion.h2>
           <motion.p className="sp_cta_sub" variants={fadeInUp}>
-            Lead Engineer with 8+ years of expertise, ready for the next challenge.
-            Open to leadership roles, AI projects, and Azure-scale systems.
+            Lead Engineer with 8+ years of expertise, ready for the next
+            challenge. Open to leadership roles, AI projects, and Azure-scale
+            systems.
           </motion.p>
           <motion.div className="sp_cta_btns" variants={stagger}>
             <motion.a

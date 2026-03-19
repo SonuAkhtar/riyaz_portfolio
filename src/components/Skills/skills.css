@@ -1,8 +1,3 @@
-/* ═══════════════════════════════════════════════
-   SKILLS SECTION
-═══════════════════════════════════════════════ */
-
-/* ── Section header ── */
 .skills_header {
   display: flex;
   flex-direction: column;
@@ -37,9 +32,6 @@
   margin-top: 0.25rem;
 }
 
-/* ═══════════════════════════════════════════════
-   CATEGORY TABS
-═══════════════════════════════════════════════ */
 .sktabs {
   position: relative;
   display: grid;
@@ -53,7 +45,6 @@
   overflow: hidden;
 }
 
-/* sliding background pill */
 .sktab_ink {
   position: absolute;
   top: 4px;
@@ -90,7 +81,9 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background 0.3s, border-color 0.3s;
+  transition:
+    background 0.3s,
+    border-color 0.3s;
 }
 
 .sktab_icon i {
@@ -100,11 +93,13 @@
 }
 
 .sktab.active .sktab_icon {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-.sktab.active .sktab_icon i { color: #fff; }
+.sktab.active .sktab_icon i {
+  color: #fff;
+}
 
 .sktab_body {
   display: flex;
@@ -125,7 +120,9 @@
   transition: color 0.3s;
 }
 
-.sktab.active .sktab_name { color: #fff; }
+.sktab.active .sktab_name {
+  color: #fff;
+}
 
 .sktab_yrs {
   font-size: 0.68rem;
@@ -134,7 +131,9 @@
   transition: color 0.3s;
 }
 
-.sktab.active .sktab_yrs { color: rgba(255,255,255,0.7); }
+.sktab.active .sktab_yrs {
+  color: rgba(255, 255, 255, 0.7);
+}
 
 .sktab_badge {
   font-size: 0.65rem;
@@ -146,30 +145,28 @@
   color: var(--accent);
   font-family: "Space Grotesk", sans-serif;
   flex-shrink: 0;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s;
 }
 
 .sktab.active .sktab_badge {
-  background: rgba(255,255,255,0.2);
-  border-color: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
   color: #fff;
 }
 
-/* ═══════════════════════════════════════════════
-   SKILLS PANEL
-═══════════════════════════════════════════════ */
 .skills_panel {
   min-height: 280px;
 }
 
-/* ── Cards grid ── */
 .skills_grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.25rem;
 }
 
-/* ── Skill card ── */
 .skill_card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -180,18 +177,34 @@
   align-items: center;
   gap: 0.6rem;
   cursor: default;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-/* Hover border glow per level */
-.skill_card.sc_expert:hover    { border-color: rgba(91,220,142,0.45); box-shadow: 0 12px 40px rgba(91,220,142,0.1); }
-.skill_card.sc_proficient:hover{ border-color: var(--border-accent);   box-shadow: 0 12px 40px rgba(91,141,238,0.12); }
-.skill_card.sc_familiar:hover  { border-color: rgba(240,160,75,0.45);  box-shadow: 0 12px 40px rgba(240,160,75,0.1); }
-.skill_card.sc_learning:hover  { border-color: var(--border);          box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.skill_card.sc_expert:hover {
+  border-color: rgba(91, 220, 142, 0.45);
+  box-shadow: 0 12px 40px rgba(91, 220, 142, 0.1);
+}
 
-/* Subtle gradient backdrop on hover */
+.skill_card.sc_proficient:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 12px 40px rgba(91, 141, 238, 0.12);
+}
+
+.skill_card.sc_familiar:hover {
+  border-color: rgba(240, 160, 75, 0.45);
+  box-shadow: 0 12px 40px rgba(240, 160, 75, 0.1);
+}
+
+.skill_card.sc_learning:hover {
+  border-color: var(--border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
 .skill_card::after {
   content: "";
   position: absolute;
@@ -202,13 +215,34 @@
   border-radius: inherit;
 }
 
-.skill_card.sc_expert::after    { background: radial-gradient(circle at 50% 30%, rgba(91,220,142,0.08), transparent 70%); }
-.skill_card.sc_proficient::after{ background: radial-gradient(circle at 50% 30%, rgba(91,141,238,0.08), transparent 70%); }
-.skill_card.sc_familiar::after  { background: radial-gradient(circle at 50% 30%, rgba(240,160,75,0.08), transparent 70%); }
+.skill_card.sc_expert::after {
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(91, 220, 142, 0.08),
+    transparent 70%
+  );
+}
 
-.skill_card:hover::after { opacity: 1; }
+.skill_card.sc_proficient::after {
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(91, 141, 238, 0.08),
+    transparent 70%
+  );
+}
 
-/* ── Ring ── */
+.skill_card.sc_familiar::after {
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(240, 160, 75, 0.08),
+    transparent 70%
+  );
+}
+
+.skill_card:hover::after {
+  opacity: 1;
+}
+
 .ring_wrap {
   position: relative;
   width: 96px;
@@ -220,13 +254,25 @@
   stroke: var(--border);
 }
 
-/* Ring fill colors per level */
-.rf_expert     { stroke: #5bdc8e; filter: drop-shadow(0 0 4px rgba(91,220,142,0.5)); }
-.rf_proficient { stroke: url(#grad_proficient); filter: drop-shadow(0 0 4px rgba(91,141,238,0.5)); }
-.rf_familiar   { stroke: #f0a04b; filter: drop-shadow(0 0 4px rgba(240,160,75,0.5)); }
-.rf_learning   { stroke: var(--text-muted); }
+.rf_expert {
+  stroke: #5bdc8e;
+  filter: drop-shadow(0 0 4px rgba(91, 220, 142, 0.5));
+}
 
-/* Center label */
+.rf_proficient {
+  stroke: url(#grad_proficient);
+  filter: drop-shadow(0 0 4px rgba(91, 141, 238, 0.5));
+}
+
+.rf_familiar {
+  stroke: #f0a04b;
+  filter: drop-shadow(0 0 4px rgba(240, 160, 75, 0.5));
+}
+
+.rf_learning {
+  stroke: var(--text-muted);
+}
+
 .ring_center {
   position: absolute;
   inset: 0;
@@ -253,7 +299,6 @@
   margin-top: 0.3rem;
 }
 
-/* ── Card name ── */
 .skill_card_name {
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
@@ -263,7 +308,6 @@
   margin: 0;
 }
 
-/* ── Level badge ── */
 .skill_card_lvl {
   font-size: 0.6rem;
   font-weight: 700;
@@ -275,14 +319,30 @@
   text-transform: uppercase;
 }
 
-.lvl_expert     { color: #5bdc8e; border-color: rgba(91,220,142,0.35); background: rgba(91,220,142,0.08); }
-.lvl_proficient { color: var(--accent); border-color: var(--border-accent); background: var(--accent-glow); }
-.lvl_familiar   { color: #f0a04b; border-color: rgba(240,160,75,0.35); background: rgba(240,160,75,0.08); }
-.lvl_learning   { color: var(--text-muted); border-color: var(--border); background: transparent; }
+.lvl_expert {
+  color: #5bdc8e;
+  border-color: rgba(91, 220, 142, 0.35);
+  background: rgba(91, 220, 142, 0.08);
+}
 
-/* ═══════════════════════════════════════════════
-   LEGEND
-═══════════════════════════════════════════════ */
+.lvl_proficient {
+  color: var(--accent);
+  border-color: var(--border-accent);
+  background: var(--accent-glow);
+}
+
+.lvl_familiar {
+  color: #f0a04b;
+  border-color: rgba(240, 160, 75, 0.35);
+  background: rgba(240, 160, 75, 0.08);
+}
+
+.lvl_learning {
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: transparent;
+}
+
 .skills_legend {
   display: flex;
   align-items: center;
@@ -309,20 +369,34 @@
   flex-shrink: 0;
 }
 
-.li_expert     .leg_dot { background: #5bdc8e; box-shadow: 0 0 6px rgba(91,220,142,0.5); }
-.li_proficient .leg_dot { background: var(--accent); box-shadow: 0 0 6px var(--accent-glow-strong); }
-.li_familiar   .leg_dot { background: #f0a04b; box-shadow: 0 0 6px rgba(240,160,75,0.5); }
-.li_learning   .leg_dot { background: var(--text-muted); }
+.li_expert .leg_dot {
+  background: #5bdc8e;
+  box-shadow: 0 0 6px rgba(91, 220, 142, 0.5);
+}
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════ */
+.li_proficient .leg_dot {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow-strong);
+}
+
+.li_familiar .leg_dot {
+  background: #f0a04b;
+  box-shadow: 0 0 6px rgba(240, 160, 75, 0.5);
+}
+
+.li_learning .leg_dot {
+  background: var(--text-muted);
+}
+
 @media screen and (max-width: 780px) {
   .skills_grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 1rem;
   }
-  .sktab_yrs { display: none; }
+
+  .sktab_yrs {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 560px) {
@@ -331,7 +405,9 @@
     border-radius: 1rem;
   }
 
-  .sktab_ink { display: none; }
+  .sktab_ink {
+    display: none;
+  }
 
   .sktab {
     border-radius: 0.75rem;
@@ -349,47 +425,31 @@
     padding: 1.25rem 0.75rem 1rem;
   }
 
-  .ring_wrap { width: 80px; height: 80px; }
-  .ring_pct  { font-size: 1.1rem; }
+  .ring_wrap {
+    width: 80px;
+    height: 80px;
+  }
 
-  .skills_legend { gap: 1rem; }
+  .ring_pct {
+    font-size: 1.1rem;
+  }
+
+  .skills_legend {
+    gap: 1rem;
+  }
 }
 
 @media screen and (max-width: 380px) {
-  .skills_grid { gap: 0.75rem; }
+  .skills_grid {
+    gap: 0.75rem;
+  }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   HOMEPAGE SKILLS — Horizontal Bar Layout  (hsk_* prefix)
-═══════════════════════════════════════════════════════════════ */
-
-/* ── Container ── */
 .hsk_container {
   position: relative;
   padding-block: clamp(4rem, 8vh, 7rem);
 }
 
-/* ── Ghost watermark ── */
-.hsk_ghost_wm {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Syne", sans-serif;
-  font-size: clamp(5rem, 16vw, 14rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--border-accent);
-  opacity: 0.22;
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-  z-index: 0;
-}
-
-/* ── Stats strip ── */
 .hsk_stats_strip {
   position: relative;
   z-index: 1;
@@ -445,7 +505,6 @@
   background: var(--border);
 }
 
-/* ── Main 2-col grid ── */
 .hsk_main_grid {
   position: relative;
   z-index: 1;
@@ -455,9 +514,6 @@
   align-items: start;
 }
 
-/* ══════════════════════════════════════
-   LEFT PANEL
-══════════════════════════════════════ */
 .hsk_left {
   display: flex;
   flex-direction: column;
@@ -466,14 +522,12 @@
   top: clamp(5rem, 10vh, 8rem);
 }
 
-/* Title block */
 .hsk_title_block {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-/* Category tabs (vertical list) */
 .hsk_cat_tabs {
   display: flex;
   flex-direction: column;
@@ -491,7 +545,9 @@
   border-radius: 1rem;
   cursor: pointer;
   text-align: left;
-  transition: background 0.28s ease, border-color 0.28s ease;
+  transition:
+    background 0.28s ease,
+    border-color 0.28s ease;
   overflow: hidden;
 }
 
@@ -505,7 +561,6 @@
   border-color: var(--border);
 }
 
-/* Sliding accent bar on left edge */
 .hsk_tab_accent_bar {
   position: absolute;
   left: 0;
@@ -515,7 +570,6 @@
   border-radius: 999px;
 }
 
-/* Tab icon */
 .hsk_tab_icon {
   width: 40px;
   height: 40px;
@@ -528,10 +582,12 @@
   font-size: 1rem;
   color: var(--text-muted);
   flex-shrink: 0;
-  transition: background 0.28s ease, border-color 0.28s ease, color 0.28s ease;
+  transition:
+    background 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease;
 }
 
-/* Labels */
 .hsk_tab_labels {
   display: flex;
   flex-direction: column;
@@ -565,7 +621,6 @@
   text-overflow: ellipsis;
 }
 
-/* Count badge */
 .hsk_tab_count {
   font-size: 0.65rem;
   font-weight: 700;
@@ -576,10 +631,12 @@
   color: var(--text-muted);
   font-family: "Space Grotesk", sans-serif;
   flex-shrink: 0;
-  transition: background 0.28s ease, border-color 0.28s ease, color 0.28s ease;
+  transition:
+    background 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease;
 }
 
-/* Category blurb */
 .hsk_cat_blurb {
   display: flex;
   align-items: center;
@@ -602,16 +659,12 @@
   flex-shrink: 0;
 }
 
-/* ══════════════════════════════════════
-   RIGHT PANEL
-══════════════════════════════════════ */
 .hsk_right {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
-/* Panel header */
 .hsk_panel_hdr {
   display: flex;
   align-items: center;
@@ -641,16 +694,12 @@
   border-radius: 999px;
 }
 
-/* Bars list */
 .hsk_bars_list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-/* ══════════════════════════════════════
-   SKILL BAR ITEM
-══════════════════════════════════════ */
 .hsk_bar_item {
   display: flex;
   align-items: center;
@@ -659,15 +708,16 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 1rem;
-  transition: border-color 0.28s ease, box-shadow 0.28s ease;
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
 }
 
 .hsk_bar_item:hover {
   border-color: var(--border-accent);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Skill icon */
 .hsk_bar_icon {
   width: 38px;
   height: 38px;
@@ -680,7 +730,6 @@
   flex-shrink: 0;
 }
 
-/* Bar body */
 .hsk_bar_body {
   flex: 1;
   min-width: 0;
@@ -714,7 +763,6 @@
   line-height: 1;
 }
 
-/* Track */
 .hsk_bar_track {
   position: relative;
   height: 6px;
@@ -731,7 +779,6 @@
   border-radius: 999px;
 }
 
-/* Tick marks */
 .hsk_bar_tick {
   position: absolute;
   top: 0;
@@ -741,7 +788,6 @@
   z-index: 1;
 }
 
-/* Level badge */
 .hsk_bar_lvl {
   font-size: 0.6rem;
   font-weight: 700;
@@ -755,15 +801,10 @@
   white-space: nowrap;
 }
 
-/* ══════════════════════════════════════
-   LIGHT THEME
-══════════════════════════════════════ */
-[data-theme="light"] .hsk_ghost_wm { opacity: 0.06; }
-[data-theme="light"] .hsk_bar_item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+[data-theme="light"] .hsk_bar_item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
 
-/* ══════════════════════════════════════
-   RESPONSIVE — Tablet
-══════════════════════════════════════ */
 @media screen and (max-width: 1024px) {
   .hsk_main_grid {
     grid-template-columns: 42fr 58fr;
@@ -809,7 +850,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hsk_tab_sub { display: none; }
+  .hsk_tab_sub {
+    display: none;
+  }
 
   .hsk_bar_item {
     padding: 0.75rem 0.75rem;
@@ -822,13 +865,13 @@
     font-size: 0.95rem;
   }
 
-  .hsk_bar_lvl { display: none; }
+  .hsk_bar_lvl {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 420px) {
   .hsk_cat_tabs {
     grid-template-columns: 1fr;
   }
-
-  .hsk_ghost_wm { opacity: 0.07; font-size: clamp(4rem, 22vw, 8rem); }
 }

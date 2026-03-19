@@ -1,53 +1,28 @@
 import { Routes, Route } from "react-router-dom";
-
-// Layout
-import Header  from "./components/Header/Header";
-import Footer  from "./components/Footer/Footer";
-
-// Home sections
-import Hero            from "./components/Hero/Hero";
-import AboutMe         from "./components/AboutMe/AboutMe";
-import Qualifications  from "./components/Qualifications/Qualifications";
-import Works           from "./components/Works/Works";
-import Skills          from "./components/Skills/Skills";
-import Projects        from "./components/Projects/Projects";
-import Hobbies         from "./components/Hobbies/Hobbies";
-import Contact         from "./components/Contact/Contact";
-
-// Separate pages
-import AboutMePage    from "./pages/AboutMePage";
-import SkillsPage     from "./pages/SkillsPage";
-import WorksPage      from "./pages/WorksPage";
-import ProjectsPage   from "./pages/ProjectsPage";
-import TestimonyPage  from "./pages/TestimonyPage";
-
 import "./app.css";
 
-const HomePage = () => (
-  <>
-    <Hero />
-    <AboutMe />
-    <Qualifications />
-    <Works />
-    <Skills />
-    <Projects />
-    <Hobbies />
-    <Contact />
-    <Footer />
-  </>
-);
+// Layout Components
+import Header from "./components/Header/Header";
+
+// Pages
+import HomePage from "./pages/Home/Homepage";
+import AboutMePage from "./pages/AboutMe/AboutMePage";
+import SkillsPage from "./pages/Skills/SkillsPage";
+import WorksPage from "./pages/Works/WorksPage";
+import ProjectsPage from "./pages/Projects/ProjectsPage";
+import TestimonyPage from "./pages/Testimony/TestimonyPage";
 
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/"          element={<HomePage />}    />
-        <Route path="/about-me"  element={<AboutMePage />} />
-        <Route path="/skills"    element={<SkillsPage />}  />
-        <Route path="/work"      element={<WorksPage />}   />
-        <Route path="/projects"   element={<ProjectsPage />} />
-        <Route path="/testimony"  element={<TestimonyPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about-me" element={<AboutMePage />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/work" element={<WorksPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/testimony" element={<TestimonyPage />} />
       </Routes>
     </>
   );

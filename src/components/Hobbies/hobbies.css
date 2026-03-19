@@ -1,28 +1,8 @@
-/* ═══════════════════════════════════════════════
-   HOBBIES / PHOTOGRAPHY SECTION
-═══════════════════════════════════════════════ */
-
-/* ── Ghost watermark ── */
-.hobbies_wm {
-  position: absolute;
-  top: 1.5rem;
-  left: 0;
-  font-family: "Syne", sans-serif;
-  font-size: clamp(5rem, 18vw, 14rem);
-  font-weight: 800;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--border);
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.4;
-  letter-spacing: 0.1em;
-  z-index: 0;
-  line-height: 1;
+.hobbies .container {
+  position: relative;
+  z-index: 1;
 }
 
-.hobbies .container { position: relative; z-index: 1; }
-
-/* ── Section header ── */
 .hobbies_header {
   margin-bottom: clamp(2rem, 3.5vh, 3rem);
   display: flex;
@@ -64,7 +44,6 @@
   margin: 0;
 }
 
-/* ── Meta chips ── */
 .hobbies_chips {
   display: flex;
   gap: 0.5rem;
@@ -88,21 +67,20 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
-.hchip i { font-size: 0.65rem; }
+.hchip i {
+  font-size: 0.65rem;
+}
 
-/* ═══════════════════════════════════════════════
-   BENTO PHOTO GRID
-═══════════════════════════════════════════════ */
 .hobbies_grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.85rem;
 }
 
-/* Wide cards bookend the layout */
-.hcard_wide { grid-column: span 2; }
+.hcard_wide {
+  grid-column: span 2;
+}
 
-/* ── Photo card ── */
 .hcard {
   position: relative;
   overflow: hidden;
@@ -112,7 +90,6 @@
   isolation: isolate;
 }
 
-/* Subtle border */
 .hcard::after {
   content: "";
   position: absolute;
@@ -128,14 +105,14 @@
   box-shadow: inset 0 0 0 1.5px var(--border-accent);
 }
 
-/* ── Image ── */
 .hcard_img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.65s ease;
+  transition:
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.65s ease;
   will-change: transform;
 }
 
@@ -144,7 +121,6 @@
   filter: brightness(0.75);
 }
 
-/* ── Shot index (top-left) ── */
 .hcard_idx {
   position: absolute;
   top: 1rem;
@@ -155,7 +131,9 @@
   letter-spacing: 1.5px;
   color: rgba(255, 255, 255, 0.55);
   z-index: 2;
-  transition: color 0.4s, opacity 0.4s;
+  transition:
+    color 0.4s,
+    opacity 0.4s;
   background: rgba(0, 0, 0, 0.25);
   padding: 0.18rem 0.5rem;
   border-radius: 999px;
@@ -163,9 +141,10 @@
   -webkit-backdrop-filter: blur(4px);
 }
 
-.hcard:hover .hcard_idx { opacity: 0; }
+.hcard:hover .hcard_idx {
+  opacity: 0;
+}
 
-/* ── Camera icon (top-right) ── */
 .hcard_cam {
   position: absolute;
   top: 1rem;
@@ -182,25 +161,27 @@
   justify-content: center;
   z-index: 2;
   opacity: 0.7;
-  transition: opacity 0.3s, background 0.3s;
+  transition:
+    opacity 0.3s,
+    background 0.3s;
 }
 
-.hcard_cam i { font-size: 0.7rem; color: #fff; }
+.hcard_cam i {
+  font-size: 0.7rem;
+  color: #fff;
+}
 
 .hcard:hover .hcard_cam {
   opacity: 0;
 }
 
-/* ═══════════════════════════════════════════════
-   HOVER OVERLAY
-═══════════════════════════════════════════════ */
 .hcard_overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
     rgba(7, 11, 20, 0.92) 0%,
-    rgba(7, 11, 20, 0.4)  45%,
+    rgba(7, 11, 20, 0.4) 45%,
     transparent 75%
   );
   z-index: 2;
@@ -210,7 +191,9 @@
   align-items: flex-end;
 }
 
-.hcard:hover .hcard_overlay { opacity: 1; }
+.hcard:hover .hcard_overlay {
+  opacity: 1;
+}
 
 .hcard_info {
   padding: 1.25rem 1.4rem;
@@ -219,7 +202,9 @@
   width: 100%;
 }
 
-.hcard:hover .hcard_info { transform: translateY(0); }
+.hcard:hover .hcard_info {
+  transform: translateY(0);
+}
 
 .hcard_info_label {
   font-size: 0.6rem;
@@ -240,7 +225,9 @@
   line-height: 1.25;
 }
 
-.hcard_wide .hcard_info_title { font-size: 1.15rem; }
+.hcard_wide .hcard_info_title {
+  font-size: 1.15rem;
+}
 
 .hcard_info_desc {
   font-size: 0.78rem;
@@ -253,9 +240,6 @@
   overflow: hidden;
 }
 
-/* ═══════════════════════════════════════════════
-   CTA ROW
-═══════════════════════════════════════════════ */
 .hobbies_cta {
   display: flex;
   align-items: center;
@@ -314,9 +298,6 @@
   background-clip: text;
 }
 
-/* ═══════════════════════════════════════════════
-   MOBILE CAROUSEL  (hidden by default, shown ≤560px)
-═══════════════════════════════════════════════ */
 .hcarousel {
   display: none;
   overflow: hidden;
@@ -334,9 +315,10 @@
   cursor: grab;
   will-change: transform;
 }
-.hcarousel_track:active { cursor: grabbing; }
+.hcarousel_track:active {
+  cursor: grabbing;
+}
 
-/* ── Carousel card ── */
 .hcc {
   position: relative;
   overflow: hidden;
@@ -356,7 +338,6 @@
     0 8px 32px rgba(0, 0, 0, 0.45);
 }
 
-/* glowing border on active card */
 .hcc_active::after {
   content: "";
   position: absolute;
@@ -367,7 +348,6 @@
   z-index: 4;
 }
 
-/* ── Card image ── */
 .hcc_img {
   width: 100%;
   height: 100%;
@@ -376,7 +356,6 @@
   pointer-events: none;
 }
 
-/* ── Shot index badge ── */
 .hcc_idx {
   position: absolute;
   top: 1rem;
@@ -394,7 +373,6 @@
   z-index: 3;
 }
 
-/* ── Camera icon ── */
 .hcc_cam_icon {
   position: absolute;
   top: 1rem;
@@ -414,14 +392,13 @@
   font-size: 0.68rem;
 }
 
-/* ── Gradient overlay ── */
 .hcc_overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
     rgba(7, 11, 20, 0.97) 0%,
-    rgba(7, 11, 20, 0.4)  42%,
+    rgba(7, 11, 20, 0.4) 42%,
     transparent 68%
   );
   z-index: 2;
@@ -465,7 +442,6 @@
   overflow: hidden;
 }
 
-/* ── Controls row ── */
 .hcarousel_controls {
   display: flex;
   align-items: center;
@@ -488,7 +464,6 @@
   font-size: 0.88rem;
 }
 
-/* ── Expanding dots ── */
 .hcarousel_dots {
   display: flex;
   align-items: center;
@@ -502,14 +477,16 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s;
+  transition:
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s;
 }
+
 .hcd_active {
   width: 22px;
   background: var(--accent);
 }
 
-/* ── Arrow buttons ── */
 .hcarousel_arrows {
   display: flex;
   gap: 0.4rem;
@@ -527,20 +504,25 @@
   cursor: pointer;
   color: var(--text-secondary);
   font-size: 0.68rem;
-  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s,
+    transform 0.2s;
 }
+
 .hca_btn:hover:not(:disabled) {
   background: var(--accent-glow);
   border-color: var(--border-accent);
   color: var(--accent);
   transform: scale(1.08);
 }
+
 .hca_btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
 
-/* ── Progress bar ── */
 .hcarousel_progress_track {
   height: 2px;
   background: var(--border);
@@ -548,6 +530,7 @@
   overflow: hidden;
   margin: 0.25rem 0.25rem 0;
 }
+
 .hcarousel_progress_fill {
   height: 100%;
   width: 100%;
@@ -556,16 +539,19 @@
   border-radius: 2px;
 }
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════ */
 @media screen and (max-width: 900px) {
   .hobbies_grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
-  .hcard_wide { grid-column: span 1; }
-  .hcard { height: 210px; }
+
+  .hcard_wide {
+    grid-column: span 1;
+  }
+
+  .hcard {
+    height: 210px;
+  }
 }
 
 @media screen and (max-width: 560px) {
@@ -575,14 +561,22 @@
     gap: 1rem;
   }
 
-  /* swap: hide grid, show carousel */
-  .hobbies_grid { display: none; }
-  .hcarousel    { display: block; }
+  .hobbies_grid {
+    display: none;
+  }
+
+  .hcarousel {
+    display: block;
+  }
 
   .hobbies_cta {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-  .hobbies_ig_btn { width: 100%; justify-content: center; }
+
+  .hobbies_ig_btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

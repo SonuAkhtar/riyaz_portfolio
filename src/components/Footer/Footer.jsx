@@ -1,38 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
-import { socialIconsData, navLinks } from "../../../appData";
-import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
 import "./footer.css";
 
-const marqueeItems = [
-  "Lead Engineer",
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Azure Certified",
-  "AI Integration Expert",
-  "Open to Opportunities",
-  "Full-Stack Developer",
-  "Anthropic Claude",
-  "8+ Years Experience",
-];
+import { motion } from "framer-motion";
+import { socialIconsData, navLinks, marqueeItems } from "../../../appData";
+import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
 
 const Footer = () => {
   const year = new Date().getFullYear();
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  /* smart href: on homepage use anchor, on other pages use /#anchor */
   const contactHref = isHome ? "#contact" : "/#contact";
   const topHref = isHome ? "#" : "/";
 
   return (
     <footer className="footer">
-      {/* ── Aurora orbs ── */}
       <span className="fh_aurora fha1" aria-hidden="true" />
       <span className="fh_aurora fha2" aria-hidden="true" />
 
-      {/* ── Hero statement area ── */}
       <div className="footer_hero">
         <motion.div
           className="fh_content"
@@ -41,7 +26,6 @@ const Footer = () => {
           whileInView="visible"
           viewport={viewportOptions}
         >
-          {/* Big name */}
           <motion.div
             className="fh_name"
             variants={fadeInUp}
@@ -52,7 +36,6 @@ const Footer = () => {
             </span>
           </motion.div>
 
-          {/* Status + role */}
           <motion.div className="fh_meta" variants={fadeInUp}>
             <span className="fh_avail">
               <span className="fh_avail_ring" aria-hidden="true" />
@@ -72,7 +55,6 @@ const Footer = () => {
             </span>
           </motion.div>
 
-          {/* CTA */}
           <motion.a
             href={contactHref}
             className="fh_cta"
@@ -88,7 +70,6 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      {/* ── Marquee strip ── */}
       <div className="footer_marquee" aria-hidden="true">
         <div className="fmq_track">
           {[...marqueeItems, ...marqueeItems, ...marqueeItems].map(
@@ -102,7 +83,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* ── Bottom bar ── */}
       <motion.div
         className="footer_bar"
         variants={stagger}
@@ -145,7 +125,6 @@ const Footer = () => {
         </motion.div>
       </motion.div>
 
-      {/* ── Copyright ── */}
       <div className="footer_copy">
         <span>© {year} Riyaz Akhtar. All rights reserved.</span>
         <span className="footer_copy_dot" aria-hidden="true" />

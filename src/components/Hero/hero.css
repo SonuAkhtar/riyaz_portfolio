@@ -1,156 +1,69 @@
-/* ═══════════════════════════════════════════════
-   HERO  —  100vh locked grid: 1fr (body) | auto (ticker)
-   KEY FIX: h_body { min-height: 0 } prevents the 1fr
-   row from expanding beyond its grid allocation.
-═══════════════════════════════════════════════ */
-
-/* ── Section shell ── */
 .hero_section {
   position: relative;
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr auto; /* body | ticker */
+  grid-template-rows: 1fr auto;
   overflow: hidden;
   background: var(--bg-primary);
-}
-
-/* ── dot grid bg ── */
-.h_dot_grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    circle,
-    var(--text-muted) 1px,
-    transparent 1px
-  );
-  background-size: 36px 36px;
-  opacity: 0.09;
-  pointer-events: none;
-  mask-image: radial-gradient(ellipse 80% 80% at 55% 45%, black, transparent);
-  -webkit-mask-image: radial-gradient(
-    ellipse 80% 80% at 55% 45%,
-    black,
-    transparent
-  );
-}
-
-[data-theme="light"] .h_dot_grid {
-  opacity: 0.055;
-}
-
-/* ── ambient orbs ── */
-.h_orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-}
-
-.h_o1 {
-  width: clamp(360px, 48vw, 660px);
-  height: clamp(360px, 48vw, 660px);
-  background: radial-gradient(
-    circle,
-    var(--accent-glow-strong),
-    transparent 65%
-  );
-  top: -18%;
-  right: -10%;
-  animation: orbDrift 13s ease-in-out infinite alternate;
-}
-
-.h_o2 {
-  width: clamp(240px, 32vw, 440px);
-  height: clamp(240px, 32vw, 440px);
-  background: radial-gradient(
-    circle,
-    rgba(124, 111, 247, 0.13),
-    transparent 65%
-  );
-  bottom: 8%;
-  left: -5%;
-  animation: orbDrift 17s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes orbDrift {
   from {
     transform: translate(0, 0) scale(1);
   }
+
   to {
     transform: translate(18px, 14px) scale(1.05);
   }
 }
 
-/* ── film noise ── */
-.h_noise {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-/* ── ghost watermark ── */
-.h_wm {
+.hero_ghost {
   position: absolute;
   right: 0;
   bottom: 12%;
   font-family: "Syne", sans-serif;
-  font-size: clamp(5rem, 12vw, 14rem);
+  width: 100%;
+  text-align: center;
+  font-size: 15vh;
   font-weight: 800;
-  letter-spacing: -0.04em;
   color: transparent;
   -webkit-text-stroke: 1px var(--border-accent);
   pointer-events: none;
   user-select: none;
   opacity: 0.42;
   z-index: 0;
-  line-height: 1;
 }
 
-/* ═══════════════════════════════════════════════
-   BODY  —  1fr row
-   min-height: 0 is THE critical fix: without it,
-   CSS Grid lets this row grow past its 1fr budget
-   to fit content, which pushes the ticker out of view.
-═══════════════════════════════════════════════ */
-.h_body {
-  min-height: 0; /* ← critical grid fix */
+.hero_body {
+  min-height: 0;
   position: relative;
   display: flex;
   z-index: 1;
   overflow: hidden;
 }
 
-/* inner container */
-.h_inner {
+.hero_inner {
   width: 100%;
   max-width: 1320px;
   margin: 0 auto;
   padding: 72px clamp(1.5rem, 6vw, 7rem) clamp(2.5rem, 4vh, 4rem);
 }
 
-/* two-column grid */
-.h_grid {
+.hero_grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(1.5rem, 4vw, 5rem);
   align-items: center;
 }
 
-/* ═══════════════════════════════════════════════
-   LEFT COLUMN
-═══════════════════════════════════════════════ */
-.h_left {
+.hero_left {
   display: flex;
   flex-direction: column;
   /* vh-aware gap: never lets content overflow on short screens */
-  gap: clamp(0.55rem, 1.1vh, 1rem);
+  gap: 1.5rem;
 }
 
-/* ── availability pill ── */
-.h_avail {
+.hero_left_avail {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -191,33 +104,29 @@
     transform: scale(1);
     opacity: 0.8;
   }
+
   100% {
     transform: scale(3.4);
     opacity: 0;
   }
 }
 
-/* ── name ── */
-.h_name {
+.hero_name {
   font-family: "Syne", sans-serif;
   font-weight: 800;
-  /* vh-constrained so two lines always fit inside 1fr body */
   line-height: 0.88;
   letter-spacing: -0.03em;
   margin: 0;
   overflow: visible;
 }
 
-/* each line clips overflow during animation */
 .nl {
   display: block;
   overflow: hidden;
   padding-bottom: 0.06em;
 }
 
-/* RIYAZ — outline */
-.w_outline {
-  /* min(vw, vh) keeps font size proportional to both axes */
+.word_outline {
   font-size: clamp(3rem, min(7.8vw, 11.5vh), 7rem);
   color: transparent;
   -webkit-text-stroke: 2px var(--text-primary);
@@ -225,13 +134,12 @@
   opacity: 0.55;
 }
 
-[data-theme="light"] .w_outline {
+[data-theme="light"] .word_outline {
   opacity: 0.38;
 }
 
-/* AKHTAR — gradient fill, bigger than RIYAZ */
 .w_fill {
-  font-size: clamp(3.8rem, min(9.6vw, 14vh), 8.5rem);
+  font-size: clamp(3.8rem, min(9.6vw, 8vh), 8.5rem);
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -239,8 +147,7 @@
   display: inline-block;
 }
 
-/* ── code-tag role ── */
-.h_code_role {
+.hero_code_role {
   display: inline-flex;
   align-items: center;
   gap: 0.15rem;
@@ -261,7 +168,6 @@
   letter-spacing: 0.3px;
 }
 
-/* ── typewriter row ── */
 .h_tw {
   display: flex;
   align-items: center;
@@ -286,15 +192,13 @@
   color: var(--accent);
 }
 
-/* ── CTA buttons row ── */
-.h_cta_row {
+.hero_buttons {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
-/* ── social + location row ── */
-.h_social_row {
+.hero_social_list {
   display: flex;
   align-items: center;
   gap: 0.45rem;
@@ -351,16 +255,13 @@
   font-size: 0.62rem;
 }
 
-/* ═══════════════════════════════════════════════
-   RIGHT COLUMN — photo
-═══════════════════════════════════════════════ */
-.h_right {
+.hero_right {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.h_img_scene {
+.hero_img {
   position: relative;
   display: flex;
   align-items: center;
@@ -368,7 +269,6 @@
   cursor: default;
 }
 
-/* glow blobs behind image */
 .img_glow {
   position: absolute;
   border-radius: 50%;
@@ -407,13 +307,13 @@
     opacity: 0.6;
     transform: scale(1);
   }
+
   to {
     opacity: 1;
     transform: scale(1.08);
   }
 }
 
-/* photo frame */
 .img_frame {
   position: relative;
   width: clamp(210px, 21vw, 290px);
@@ -457,10 +357,9 @@
   pointer-events: none;
 }
 
-/* floating experience card */
 .img_card {
   position: absolute;
-  bottom: -6%;
+  bottom: -10%;
   right: -22%;
   display: flex;
   align-items: center;
@@ -480,6 +379,7 @@
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(-7px);
   }
@@ -522,9 +422,6 @@
   white-space: nowrap;
 }
 
-/* ═══════════════════════════════════════════════
-   SCROLL CUE
-═══════════════════════════════════════════════ */
 .h_scroll {
   position: absolute;
   bottom: clamp(0.6rem, 8vh, 8rem);
@@ -561,14 +458,17 @@
     transform: translateY(0);
     opacity: 1;
   }
+
   60% {
     transform: translateY(8px);
     opacity: 0;
   }
+
   61% {
     transform: translateY(0);
     opacity: 0;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -584,24 +484,20 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
-/* ═══════════════════════════════════════════════
-   TICKER  —  auto row (pinned inside 100vh)
-═══════════════════════════════════════════════ */
-.h_ticker {
+.hero_ticker {
   overflow: hidden;
   border-top: 1px solid var(--border);
   background: var(--bg-secondary);
-  /* no flex-shrink needed: it's the auto row, not in a flex */
 }
 
-.h_ticker_track {
+.hero_ticker_track {
   display: inline-flex;
   width: max-content;
   padding: 0.6rem 0;
   animation: tickRun 26s linear infinite;
 }
 
-.h_ticker:hover .h_ticker_track {
+.hero_ticker:hover .hero_ticker_track {
   animation-play-state: paused;
 }
 
@@ -609,6 +505,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -634,46 +531,41 @@
   opacity: 0.55;
 }
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════ */
-
 /* Tablet landscape */
 @media screen and (max-width: 1024px) {
-  .h_grid {
+  .hero_grid {
     grid-template-columns: 1fr 0.72fr;
     gap: 2rem;
   }
+
   .img_card {
     right: -12%;
   }
 }
 
-/* Tablet portrait — stack vertically */
+/* Tablet portrait */
 @media screen and (max-width: 768px) {
-  /* On narrow viewports let section grow naturally */
   .hero_section {
     height: auto;
     min-height: 100svh;
   }
 
-  .h_body {
+  .hero_body {
     min-height: unset;
     padding-bottom: 2rem;
   }
 
-  .h_inner {
+  .hero_inner {
     padding-top: 80px;
     padding-bottom: 1.5rem;
   }
 
-  .h_grid {
+  .hero_grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-  /* image above text on mobile */
-  .h_right {
+  .hero_right {
     order: -1;
   }
 
@@ -687,10 +579,10 @@
     bottom: -5%;
   }
 
-  /* font sizes for mobile — use vw only */
-  .w_outline {
+  .word_outline {
     font-size: clamp(2.6rem, 10.5vw, 4.5rem);
   }
+
   .w_fill {
     font-size: clamp(3.2rem, 13vw, 5.5rem);
   }
@@ -698,30 +590,33 @@
   .h_scroll {
     display: none;
   }
-  .h_wm {
-    font-size: 22vw;
+
+  .hero_ghost {
+    font-size: 15vw;
     bottom: 1%;
   }
 }
 
 /* Mobile */
 @media screen and (max-width: 480px) {
-  .h_inner {
+  .hero_inner {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
 
-  .w_outline {
+  .word_outline {
     font-size: 2.4rem;
   }
+
   .w_fill {
     font-size: 3rem;
   }
 
-  .h_cta_row {
+  .hero_buttons {
     flex-direction: column;
   }
-  .h_cta_row .btn {
+
+  .hero_buttons .btn {
     justify-content: center;
     text-align: center;
   }
@@ -731,13 +626,12 @@
   }
 }
 
-/* Short screens — prevent name overflow */
 @media screen and (max-height: 680px) and (min-width: 769px) {
-  .h_left {
-    gap: 0.45rem;
+  .hero_left {
+    gap: 1.5rem;
   }
 
-  .h_inner {
+  .hero_inner {
     padding-top: 60px;
     padding-bottom: 1rem;
   }

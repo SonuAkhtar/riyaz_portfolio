@@ -54,10 +54,11 @@
 
 html {
   scroll-behavior: smooth;
-  transition: background-color 0.35s ease, color 0.35s ease;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
-/* Smooth theme-switch transitions — color only, never transform/animation */
 body *:not([class*="ticker"]):not([class*="orb"]):not([class*="ghost"]) {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.3s;
@@ -80,7 +81,7 @@ a {
   color: inherit;
 }
 
-/* ---- Section Base ---- */
+/* ---- Section ---- */
 section {
   padding: 6rem clamp(1.5rem, 6vw, 7rem);
   min-height: 100vh;
@@ -92,7 +93,6 @@ section {
   color: var(--text-primary);
 }
 
-/* Hero overrides — exact 100vh grid, hero manages its own layout */
 section.hero_section {
   min-height: unset;
   height: 100vh;
@@ -113,7 +113,6 @@ section.even {
   max-width: 1320px;
 }
 
-/* ---- Section Header ---- */
 .section_header {
   margin-bottom: 3.5rem;
   display: flex;
@@ -132,7 +131,7 @@ section.even {
 
 .section_title {
   font-family: "Syne", sans-serif;
-  font-size: 2.6rem;
+  font-size: 2.5rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   line-height: 1.1;
@@ -142,7 +141,7 @@ section.even {
   background-clip: text;
 }
 
-/* ---- Shared Button Styles ---- */
+/* ---- Shared Button ---- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -186,9 +185,11 @@ section.even {
     padding: 5rem 1.5rem;
     min-height: auto;
   }
+
   .section_title {
     font-size: 2rem;
   }
+
   .section_header {
     margin-bottom: 2.5rem;
   }
@@ -198,6 +199,7 @@ section.even {
   section {
     padding: 4rem 1.25rem;
   }
+
   .section_title {
     font-size: 1.75rem;
   }

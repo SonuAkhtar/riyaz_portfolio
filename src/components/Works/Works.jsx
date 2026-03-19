@@ -1,29 +1,24 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { worksData } from "../../../appData";
-import WorkModal from "../WorkModal/WorkModal";
-import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
+import { useState } from "react";
 import "./works.css";
 
-/* per-service tech tags */
-const serviceTags = [
-  ["React", "Next.js", "TypeScript", "Tailwind"],
-  ["Node.js", "REST APIs", "MongoDB", "PostgreSQL"],
-  ["Figma", "Adobe XD", "Prototyping", "A11y"],
-  ["Illustrator", "Branding", "SVG", "Motion"],
-];
+import { motion } from "framer-motion";
+import WorkModal from "../WorkModal/WorkModal";
+
+import { homeWorkTags, worksData } from "../../../appData";
+import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 40 },
   visible: {
-    opacity: 1, y: 0,
+    opacity: 1,
+    y: 0,
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 const Works = () => {
-  const [openModal, setOpenModal]   = useState(false);
-  const [modalData, setModalData]   = useState({});
+  const [openModal, setOpenModal] = useState(false);
+  const [modalData, setModalData] = useState({});
   const [activeCard, setActiveCard] = useState(null);
 
   const handleViewClick = (data) => {
@@ -34,8 +29,6 @@ const Works = () => {
   return (
     <section className="works even" id="works">
       <div className="container">
-
-        {/* ── Section header ── */}
         <motion.div
           className="works_header"
           variants={stagger}
@@ -47,16 +40,16 @@ const Works = () => {
             What I Do
           </motion.span>
           <motion.h2 className="works_title" variants={fadeInUp}>
-            Crafting Digital<br />
+            Crafting Digital
+            <br />
             <span className="works_title_accent">Experiences.</span>
           </motion.h2>
           <motion.p className="works_subtitle" variants={fadeInUp}>
-            End-to-end solutions — from pixel-perfect interfaces to
-            robust, scalable backend systems.
+            End-to-end solutions — from pixel-perfect interfaces to robust,
+            scalable backend systems.
           </motion.p>
         </motion.div>
 
-        {/* ── Cards grid ── */}
         <motion.div
           className="works_grid"
           variants={stagger}
@@ -74,34 +67,25 @@ const Works = () => {
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 260, damping: 22 }}
             >
-              {/* gradient flood overlay */}
               <div className="wc_flood" aria-hidden="true" />
 
-              {/* ghost index number */}
               <span className="wc_ghost_num" aria-hidden="true">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              {/* top row */}
               <div className="wc_top">
                 <div className="wc_icon_wrap">
                   <i className={data.icon} />
                 </div>
-                <span className="wc_label">
-                  Service 0{i + 1}
-                </span>
               </div>
 
-              {/* title */}
               <h3 className="wc_title">{data.name}</h3>
 
-              {/* animated divider */}
               <div className="wc_divider">
                 <span className="wc_divider_line" />
                 <span className="wc_divider_dot" />
               </div>
 
-              {/* features */}
               <ul className="wc_features">
                 {data.features.slice(0, 3).map((feat, j) => (
                   <motion.li
@@ -117,18 +101,15 @@ const Works = () => {
                 ))}
               </ul>
 
-              {/* tech tags */}
               <div className="wc_tags">
-                {serviceTags[i].map((tag, j) => (
-                  <span key={j} className="wc_tag">{tag}</span>
+                {homeWorkTags[i].map((tag, j) => (
+                  <span key={j} className="wc_tag">
+                    {tag}
+                  </span>
                 ))}
               </div>
 
-              {/* CTA */}
-              <button
-                className="wc_btn"
-                onClick={() => handleViewClick(data)}
-              >
+              <button className="wc_btn" onClick={() => handleViewClick(data)}>
                 <span>Explore Service</span>
                 <span className="wc_btn_arrow">
                   <i className="fas fa-arrow-right" />
@@ -138,7 +119,6 @@ const Works = () => {
           ))}
         </motion.div>
 
-        {/* ── Bottom CTA strip ── */}
         <motion.div
           className="works_cta_strip"
           variants={fadeInUp}
@@ -149,7 +129,8 @@ const Works = () => {
           <div className="cta_strip_text">
             <span className="cta_strip_eyebrow">Got a project in mind?</span>
             <p className="cta_strip_title">
-              Let's build something <span className="cts_grad">remarkable</span> together.
+              Let's build something <span className="cts_grad">remarkable</span>{" "}
+              together.
             </p>
           </div>
           <motion.a
@@ -161,7 +142,6 @@ const Works = () => {
             Start a Project <i className="fas fa-arrow-right" />
           </motion.a>
         </motion.div>
-
       </div>
 
       <WorkModal
