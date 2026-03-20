@@ -1,27 +1,27 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import "./projectsPage.css";
 
+// libraries
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   fadeInUp,
   stagger,
   scaleIn,
   viewportOptions,
 } from "../../utils/animations";
-import {
-  projectsData as appProjects,
-  projectsCatColors,
-  projectsPageHero,
-  projectsPageProjects,
-} from "../../../appData";
 
+// appData
+import { projectsPageData } from "../../../appData";
+
+// components
 import Footer from "../../components/Footer/Footer";
 import PageHero from "../../components/common/PageHero/PageHero";
+
 const FILTERS = ["All", "AI/ML", "Frontend", "Full-Stack", "Mobile"];
 
 const getCatColor = (cat) =>
-  projectsCatColors[cat] || projectsCatColors["Frontend"];
+  projectsPageData.catColors[cat] || projectsPageData.catColors["Frontend"];
 
 const cardVariant = {
   hidden: { opacity: 0, y: 32, scale: 0.96 },
@@ -172,8 +172,8 @@ const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const projects =
-    appProjects && appProjects.length
-      ? appProjects.map((p) => ({
+    projectsPageData.projects && projectsPageData.projects.length
+      ? projectsPageData.projects.map((p) => ({
           ...p,
           title: p.name,
           description: p.desc,
@@ -184,18 +184,18 @@ const ProjectsPage = () => {
                 ? "Full-Stack"
                 : "Frontend",
         }))
-      : projectsPageProjects;
+      : projectsPageData.projects;
 
   const filtered =
     activeFilter === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      ? projectsPageData.projects
+      : projectsPageData.projects.filter((p) => p.category === activeFilter);
 
   const filterIdx = FILTERS.indexOf(activeFilter);
 
   return (
     <div className="pp_root">
-      <PageHero heroData={projectsPageHero} />
+      <PageHero heroData={projectsPageData.hero} />
 
       <section className="pp_section">
         <div className="pp_container">

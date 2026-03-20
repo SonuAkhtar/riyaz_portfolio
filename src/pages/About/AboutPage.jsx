@@ -1,11 +1,15 @@
 import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./aboutMePage.css";
+import "./aboutPage.css";
 
+// libraries
 import { motion, useInView } from "framer-motion";
 
+// appData
+import { aboutPageData, appTechs } from "../../../appData";
+
+// components
 import Footer from "../../components/Footer/Footer";
-import { aboutMePageData } from "../../../appData";
 
 const CountUp = ({ to, suffix = "", visible }) => {
   const [val, setVal] = useState(0);
@@ -138,27 +142,19 @@ const AboutMePage = () => {
             </motion.h1>
 
             <motion.p className="amp_hero_sub" variants={fadeUp}>
-              Lead Engineer · Frontend Architect · AI Integrator
+              Lead Engineer · Frontend Developer · AI Integrator
             </motion.p>
 
             <motion.p className="amp_hero_bio" variants={fadeUp}>
-              I build the interfaces people live in. With 8+ years engineering
-              high-scale web applications, I specialize in React ecosystems,
-              design systems, and now — crafting AI-powered experiences on
-              Azure. Based in Gurgaon, India. Currently at{" "}
-              <span className="amp_hl">Publicis Sapient</span>, delivering
-              enterprise-grade digital products for global clients.
+              With 8+ years engineering high-scale web applications, I
+              specialize in React/Next ecosystems, design systems, and now -
+              crafting AI-powered experiences on Azure. Based in Gurgaon, India.
+              Currently at <span className="amp_hl">Publicis Sapient</span>,
+              delivering enterprise-grade digital products for global clients.
             </motion.p>
 
             <motion.div className="amp_hero_tags" variants={stagger}>
-              {[
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Azure",
-                "OpenAI",
-                "Node.js",
-              ].map((t) => (
+              {appTechs.slice(0, 8).map((t) => (
                 <motion.span key={t} className="amp_tag" variants={scaleIn}>
                   {t}
                 </motion.span>
@@ -174,7 +170,7 @@ const AboutMePage = () => {
             initial="hidden"
             animate="visible"
           >
-            {aboutMePageData.stats.map((s, i) => (
+            {aboutPageData.stats.map((s, i) => (
               <motion.div key={i} className="amp_stat" variants={fadeUp}>
                 <span className="amp_stat_num">
                   <CountUp to={s.to} suffix={s.suffix} visible={statsVis} />
@@ -223,7 +219,7 @@ const AboutMePage = () => {
 
           <div className="amp_skills_grid">
             <div className="amp_skills_bars">
-              {aboutMePageData.coreSkills.map((sk, i) => (
+              {aboutPageData.coreSkills.map((sk, i) => (
                 <SkillBar key={sk.name} skill={sk} delay={i * 0.08} />
               ))}
             </div>
@@ -235,42 +231,15 @@ const AboutMePage = () => {
               whileInView="visible"
               viewport={vp}
             >
-              <div className="amp_story_card">
-                <div className="amp_story_icon">
-                  <i className="fas fa-terminal" />
+              {aboutPageData.expertise.map((val, index) => (
+                <div key={index} className="amp_story_card">
+                  <div className="amp_story_icon">
+                    <i className={val.class} />
+                  </div>
+                  <h3 className="amp_story_title">{val.title}</h3>
+                  <p className="amp_story_text">{val.detail} </p>
                 </div>
-                <h3 className="amp_story_title">Frontend Architect</h3>
-                <p className="amp_story_text">
-                  I don't just write React components — I architect component
-                  libraries, define design token systems, and enforce code
-                  contracts that scale teams from 2 to 20 engineers without
-                  chaos.
-                </p>
-              </div>
-
-              <div className="amp_story_card amp_story_card_accent">
-                <div className="amp_story_icon amp_story_icon_accent">
-                  <i className="fas fa-layer-group" />
-                </div>
-                <h3 className="amp_story_title">Full-Stack Fluency</h3>
-                <p className="amp_story_text">
-                  While UI is my home, I'm equally comfortable in Node.js APIs,
-                  MongoDB schemas, GraphQL resolvers, and serverless Azure
-                  Functions — bridging frontend and backend seamlessly.
-                </p>
-              </div>
-
-              <div className="amp_story_card">
-                <div className="amp_story_icon">
-                  <i className="fas fa-tachometer-alt" />
-                </div>
-                <h3 className="amp_story_title">Performance Obsessed</h3>
-                <p className="amp_story_text">
-                  Code splitting, lazy loading, virtualized lists, memoization —
-                  I treat every Lighthouse report as a personal challenge.
-                  Sub-2s LCP is the standard, not the goal.
-                </p>
-              </div>
+              ))}
             </motion.div>
           </div>
         </div>
@@ -294,7 +263,7 @@ const AboutMePage = () => {
               <span className="amp_grad">Intelligence.</span>
             </motion.h2>
             <motion.p className="amp_section_sub" variants={fadeUp}>
-              AI isn't the future — it's the present. I integrate LLMs, vision
+              AI isn't the future - it's the present. I integrate LLMs, vision
               models, and intelligent APIs to build products that feel like
               they're thinking alongside the user.
             </motion.p>
@@ -337,7 +306,7 @@ const AboutMePage = () => {
             whileInView="visible"
             viewport={vp}
           >
-            {aboutMePageData.aiStack.map((item, i) => (
+            {aboutPageData.aiStack.map((item, i) => (
               <motion.div
                 key={item.name}
                 className={`amp_ai_card amp_ai_${item.color}`}
@@ -377,17 +346,12 @@ const AboutMePage = () => {
               </motion.h2>
               <motion.p className="amp_azure_body" variants={fadeUp}>
                 From CI/CD pipelines that deploy in minutes, to serverless
-                functions that scale to zero and back — Azure is the cloud layer
+                functions that scale to zero and back - Azure is the cloud layer
                 powering my production applications. I build cloud-native by
                 default.
               </motion.p>
               <motion.div className="amp_azure_badges" variants={stagger}>
-                {[
-                  "Azure Certified",
-                  "CI/CD Expert",
-                  "Serverless",
-                  "Cloud-Native",
-                ].map((b) => (
+                {aboutPageData.bullets.map((b) => (
                   <motion.span
                     key={b}
                     className="amp_azure_badge"
@@ -398,7 +362,6 @@ const AboutMePage = () => {
                 ))}
               </motion.div>
 
-              {/* Azure logo block */}
               <motion.div className="amp_azure_logo_block" variants={fadeUp}>
                 <div className="amp_azure_logo_icon">
                   <i className="fab fa-microsoft" />
@@ -417,7 +380,7 @@ const AboutMePage = () => {
               whileInView="visible"
               viewport={vp}
             >
-              {aboutMePageData.azureStack.map((item, i) => (
+              {aboutPageData.azureStack.map((item, i) => (
                 <motion.div
                   key={item.name}
                   className="amp_azure_card"
@@ -464,7 +427,7 @@ const AboutMePage = () => {
             whileInView="visible"
             viewport={vp}
           >
-            {aboutMePageData.philisophy.map((p, i) => (
+            {aboutPageData.philisophy.map((p, i) => (
               <motion.div
                 key={p.num}
                 className="amp_phil_card"
@@ -501,7 +464,7 @@ const AboutMePage = () => {
           </motion.div>
 
           <div className="amp_timeline">
-            {aboutMePageData.journey.map((item, i) => (
+            {aboutPageData.journey.map((item, i) => (
               <motion.div
                 key={i}
                 className={`amp_tl_item${item.current ? " amp_tl_current" : ""}`}

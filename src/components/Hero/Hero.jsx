@@ -6,11 +6,16 @@ import "./hero.css";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import TypewriteComponent from "typewriter-effect";
 
-// AppData
-import { socialIconsData, TECHS } from "../../../appData";
-
 // Images
 import heroImage from "/assets/hero/hero.png";
+
+// appData
+import {
+  homeHeroTypewriter,
+  socialIconsData,
+  appTechs,
+} from "../../../appData";
+import Available from "../common/Available/Available";
 
 const Word = ({ text, className, delay = 0 }) => (
   <span className={className} aria-label={text}>
@@ -33,7 +38,6 @@ const Word = ({ text, className, delay = 0 }) => (
 );
 
 const Hero = () => {
-  /* 3-D tilt */
   const sceneRef = useRef(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -65,20 +69,7 @@ const Hero = () => {
         <div className="hero_inner">
           <div className="hero_grid">
             <div className="hero_left">
-              <motion.span
-                className="hero_left_avail"
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: 0.05,
-                }}
-              >
-                <span className="avail_ring" aria-hidden="true" />
-                <span className="avail_dot" aria-hidden="true" />
-                Available for opportunities
-              </motion.span>
+              <Available />
 
               <h1 className="hero_name">
                 <span className="nl nl1">
@@ -118,12 +109,7 @@ const Hero = () => {
                 <span className="tw_val">
                   <TypewriteComponent
                     options={{
-                      strings: [
-                        "Frontend Experiences",
-                        "UI / UX Designs",
-                        "Full‑Stack Apps",
-                        "Scalable Products",
-                      ],
+                      strings: homeHeroTypewriter,
                       delay: 52,
                       deleteSpeed: 26,
                       autoStart: true,
@@ -260,7 +246,7 @@ const Hero = () => {
 
       <div className="hero_ticker" aria-hidden="true">
         <div className="hero_ticker_track">
-          {TECHS.map((t, i) => (
+          {appTechs.map((t, i) => (
             <span key={i} className="h_tick_item">
               <span className="h_tick_dot">◆</span>
               {t}

@@ -1,9 +1,11 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import "./hobbies.css";
 
+// libraries
 import { motion, useMotionValue, animate, useInView } from "framer-motion";
 import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
 
+// appData
 import { hobbiesData, hobbyCat } from "../../../appData";
 
 const WIDE = new Set([0, 5]);

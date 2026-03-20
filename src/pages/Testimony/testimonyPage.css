@@ -492,7 +492,7 @@
   align-items: center;
   gap: 0;
   white-space: nowrap;
-  animation: tp_marquee 28s linear infinite;
+  animation: tp_marquee 10s linear infinite;
 }
 .tp_marquee_wrap:hover .tp_marquee_track {
   animation-play-state: paused;

@@ -6,7 +6,7 @@ import Header from "./components/Header/Header";
 
 // Pages
 import HomePage from "./pages/Home/Homepage";
-import AboutMePage from "./pages/AboutMe/AboutMePage";
+import AboutPage from "./pages/About/AboutPage";
 import SkillsPage from "./pages/Skills/SkillsPage";
 import WorksPage from "./pages/Works/WorksPage";
 import ProjectsPage from "./pages/Projects/ProjectsPage";
@@ -18,7 +18,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/about-me" element={<AboutMePage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/skills" element={<SkillsPage />} />
         <Route path="/work" element={<WorksPage />} />
         <Route path="/projects" element={<ProjectsPage />} />

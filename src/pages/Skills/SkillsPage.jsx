@@ -2,25 +2,21 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./skillsPage.css";
 
-import PageHero from "../../components/common/PageHero/PageHero";
-import Footer from "../../components/Footer/Footer";
-
+// libraries
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import {
-  skillsData,
-  certificationsData,
-  skillsPageCerts,
-  skillsPagePhilisophy,
-  skillsStats,
-  skillsPageHero,
-} from "../../../appData";
 
+// appData
+import { skillsPageData } from "../../../appData";
 import {
   fadeInUp,
   stagger,
   scaleIn,
   viewportOptions,
 } from "../../utils/animations";
+
+// components
+import PageHero from "../../components/common/PageHero/PageHero";
+import Footer from "../../components/Footer/Footer";
 
 const R = 38;
 const CIRC = 2 * Math.PI * R;
@@ -141,14 +137,14 @@ const StatItem = ({ value, label }) => {
 const SkillsPage = () => {
   const [active, setActive] = useState(0);
   const certs =
-    certificationsData && certificationsData.length
-      ? certificationsData
-      : skillsPageCerts;
-  const cat = skillsData[active];
+    skillsPageData.cersData && skillsPageData.cersData.length
+      ? skillsPageData.cersData
+      : skillsPageData.certs;
+  const cat = skillsPageData.skills[active];
 
   return (
     <div className="sp_root">
-      <PageHero heroData={skillsPageHero} />
+      <PageHero heroData={skillsPageData.hero} />
 
       <section className="sp_section sp_even">
         <div className="sp_container">
@@ -240,7 +236,7 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {skillsData.map((c, i) => (
+            {skillsPageData.skills.map((c, i) => (
               <motion.button
                 key={c.id}
                 className={`sktab${active === i ? " active" : ""}`}
@@ -264,8 +260,8 @@ const SkillsPage = () => {
               layout
               layoutId="sp_sktab_ink"
               style={{
-                left: `calc(${active} * (100% / ${skillsData.length}) + 4px)`,
-                width: `calc(100% / ${skillsData.length} - 8px)`,
+                left: `calc(${active} * (100% / ${skillsPageData.skills.length}) + 4px)`,
+                width: `calc(100% / ${skillsPageData.skills.length} - 8px)`,
               }}
               transition={{ type: "spring", stiffness: 340, damping: 30 }}
             />
@@ -302,7 +298,7 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {skillsStats.map((l) => (
+            {skillsPageData.stats.map((l) => (
               <span key={l.cls} className={`leg_item li_${l.cls}`}>
                 <span className="leg_dot" />
                 {l.label}
@@ -337,7 +333,7 @@ const SkillsPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {skillsPagePhilisophy.map((p, i) => (
+            {skillsPageData.philisophy.map((p, i) => (
               <motion.div
                 key={p.title}
                 className="sp_phil_card"

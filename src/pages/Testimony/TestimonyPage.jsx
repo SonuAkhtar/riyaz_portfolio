@@ -1,64 +1,29 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 import "./testimonyPage.css";
 
+// libraries
 import {
   motion,
   AnimatePresence,
-  useInView,
   useMotionValue,
   animate,
 } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   fadeInUp,
   stagger,
   scaleIn,
   viewportOptions,
 } from "../../utils/animations";
-import {
-  testimonyPageCatColors,
-  testimonyPageCompanies,
-  testimonyPageData,
-  testimonyPageHero,
-} from "../../../appData";
 
+// appData
+import { testimonyPageData } from "../../../appData";
+
+// components
 import Footer from "../../components/Footer/Footer";
 import PageHero from "../../components/common/PageHero/PageHero";
 
-const FILTERS = ["All", "Leadership", "Technical", "Product", "Design"];
-
-const AnimatedCounter = ({ target, suffix = "+" }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    const end = parseFloat(target);
-    const duration = 1600;
-    const start = performance.now();
-    let rafId;
-
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(
-        suffix === ".0" ? (eased * end).toFixed(1) : Math.floor(eased * end),
-      );
-      if (progress < 1) rafId = requestAnimationFrame(tick);
-    };
-
-    rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
-  }, [inView, target, suffix]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-};
+const FILTERS = ["All", "Leadership", "Technical", "Product"];
 
 const Stars = ({ count = 5 }) => (
   <div className="tp_stars">
@@ -121,7 +86,7 @@ const FeaturedCarousel = ({ items }) => {
             </div>
             <span
               className="tp_cat_badge"
-              style={{ "--cat": testimonyPageCatColors[current.category] }}
+              style={{ "--cat": testimonyPageData.catColors[current.category] }}
             >
               {current.category}
             </span>
@@ -201,7 +166,7 @@ const TestimonyCard = ({ item }) => {
         <Stars count={item.rating} />
         <span
           className="tp_card_cat"
-          style={{ "--cat": testimonyPageCatColors[item.category] }}
+          style={{ "--cat": testimonyPageData.catColors[item.category] }}
         >
           <span className="tp_cat_dot" />
           {item.category}
@@ -227,20 +192,20 @@ const TestimonyPage = () => {
 
   const filtered =
     filter === "All"
-      ? testimonyPageData
-      : testimonyPageData.filter((t) => t.category === filter);
+      ? testimonyPageData.testimony
+      : testimonyPageData.testimony.filter((t) => t.category === filter);
 
   const countFor = (f) =>
     f === "All"
-      ? testimonyPageData.length
-      : testimonyPageData.filter((t) => t.category === f).length;
+      ? testimonyPageData.testimony.length
+      : testimonyPageData.testimony.filter((t) => t.category === f).length;
 
   return (
     <div className="tp_root">
-      <PageHero heroData={testimonyPageHero} />
+      <PageHero heroData={testimonyPageData.hero} />
 
       <section className="tp_featured_section">
-        <FeaturedCarousel items={testimonyPageData} />
+        <FeaturedCarousel items={testimonyPageData.testimony} />
       </section>
 
       <section className="tp_grid_section">
@@ -261,7 +226,7 @@ const TestimonyPage = () => {
               <span className="tp_grad">Matters.</span>
             </motion.h2>
             <motion.p className="tp_section_sub" variants={fadeInUp}>
-              Filtered by the kind of impact delivered — from engineering
+              Filtered by the kind of impact delivered - from engineering
               leadership to hands-on technical execution.
             </motion.p>
           </motion.div>
@@ -280,14 +245,14 @@ const TestimonyPage = () => {
                 onClick={() => setFilter(f)}
                 style={
                   filter === f && f !== "All"
-                    ? { "--active-color": testimonyPageCatColors[f] }
+                    ? { "--active-color": testimonyPageData.catColors[f] }
                     : undefined
                 }
               >
                 {f !== "All" && (
                   <span
                     className="tp_filter_dot"
-                    style={{ background: testimonyPageCatColors[f] }}
+                    style={{ background: testimonyPageData.catColors[f] }}
                   />
                 )}
                 {f}
@@ -323,14 +288,15 @@ const TestimonyPage = () => {
         <div className="tp_marquee_label">Trusted by teams at</div>
         <div className="tp_marquee_outer">
           <div className="tp_marquee_track">
-            {[...testimonyPageCompanies, ...testimonyPageCompanies].map(
-              (c, i) => (
-                <span key={i} className="tp_company_item">
-                  {c.name}
-                  <span className="tp_company_sep">✦</span>
-                </span>
-              ),
-            )}
+            {[
+              ...testimonyPageData.companies,
+              ...testimonyPageData.companies,
+            ].map((c, i) => (
+              <span key={i} className="tp_company_item">
+                {c.name}
+                <span className="tp_company_sep">✦</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -354,7 +320,7 @@ const TestimonyPage = () => {
             <span className="tp_cta_grad">Story Together.</span>
           </motion.h2>
           <motion.p className="tp_cta_sub" variants={fadeInUp}>
-            Great work speaks for itself. Let's build something remarkable — and
+            Great work speaks for itself. Let's build something remarkable - and
             add your voice to this list.
           </motion.p>
           <motion.div className="tp_cta_btns" variants={stagger}>

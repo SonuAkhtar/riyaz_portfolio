@@ -1,14 +1,8 @@
 import { useRef, useState } from "react";
 import "./skills.css";
 
+// libraries
 import { motion, useInView, AnimatePresence } from "framer-motion";
-
-import {
-  skillsCatColors,
-  skillsData,
-  skillsLevelColors,
-  skillsStats,
-} from "../../../appData";
 import {
   fadeInLeft,
   fadeInRight,
@@ -17,7 +11,9 @@ import {
   viewportOptions,
 } from "../../utils/animations";
 
-/* ── Level helper ── */
+// appData
+import { homeSkillsData } from "../../../appData";
+
 const getLevel = (n) => {
   if (n >= 80) return { label: "Expert", cls: "expert" };
   if (n >= 65) return { label: "Proficient", cls: "proficient" };
@@ -25,12 +21,11 @@ const getLevel = (n) => {
   return { label: "Learning", cls: "learning" };
 };
 
-/* ── Horizontal skill bar ── */
 const SkillBar = ({ name, icon, number, delay, catColor }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10px" });
   const level = getLevel(Number(number));
-  const lc = skillsLevelColors[level.cls];
+  const lc = homeSkillsData.levelColors[level.cls];
   const pct = Number(number);
 
   return (
@@ -45,7 +40,6 @@ const SkillBar = ({ name, icon, number, delay, catColor }) => {
         transition: { type: "spring", stiffness: 300, damping: 22 },
       }}
     >
-      {/* Icon */}
       <div
         className="hsk_bar_icon"
         style={{
@@ -57,7 +51,6 @@ const SkillBar = ({ name, icon, number, delay, catColor }) => {
         <i className={icon} />
       </div>
 
-      {/* Name + bar */}
       <div className="hsk_bar_body">
         <div className="hsk_bar_meta">
           <span className="hsk_bar_name">{name}</span>
@@ -85,8 +78,6 @@ const SkillBar = ({ name, icon, number, delay, catColor }) => {
           <span className="hsk_bar_tick" style={{ left: "75%" }} />
         </div>
       </div>
-
-      {/* Level badge */}
       <span
         className="hsk_bar_lvl"
         style={{
@@ -117,13 +108,12 @@ const panelVariants = {
 
 const Skills = () => {
   const [active, setActive] = useState(0);
-  const cat = skillsData[active];
-  const catColor = skillsCatColors[active];
+  const cat = homeSkillsData.skills[active];
+  const catColor = homeSkillsData.catColors[active];
 
   return (
     <section className="skills" id="skills">
       <div className="container hsk_container">
-        {/* ── Stats strip ── */}
         <motion.div
           className="hsk_stats_strip"
           variants={stagger}
@@ -145,7 +135,6 @@ const Skills = () => {
           ))}
         </motion.div>
 
-        {/* ── Main grid ── */}
         <div className="hsk_main_grid">
           <motion.div
             className="hsk_left"
@@ -154,7 +143,6 @@ const Skills = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {/* Section heading */}
             <div className="hsk_title_block">
               <span className="section_label">Expertise</span>
               <h2 className="skills_title">
@@ -168,20 +156,18 @@ const Skills = () => {
               </p>
             </div>
 
-            {/* Vertical category tabs */}
             <div className="hsk_cat_tabs">
-              {skillsData.map((c, i) => (
+              {homeSkillsData.skills.map((c, i) => (
                 <button
                   key={c.id}
                   className={`hsk_cat_tab${active === i ? " hsk_active" : ""}`}
                   onClick={() => setActive(i)}
                 >
-                  {/* Active accent bar */}
                   {active === i && (
                     <motion.span
                       className="hsk_tab_accent_bar"
                       layoutId="hsk_tab_accent"
-                      style={{ background: skillsCatColors[i] }}
+                      style={{ background: homeSkillsData.catColors[i] }}
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -190,15 +176,14 @@ const Skills = () => {
                     />
                   )}
 
-                  {/* Icon */}
                   <span
                     className="hsk_tab_icon"
                     style={
                       active === i
                         ? {
-                            color: skillsCatColors[i],
-                            background: `${skillsCatColors[i]}18`,
-                            borderColor: `${skillsCatColors[i]}40`,
+                            color: homeSkillsData.catColors[i],
+                            background: `${homeSkillsData.catColors[i]}18`,
+                            borderColor: `${homeSkillsData.catColors[i]}40`,
                           }
                         : {}
                     }
@@ -206,21 +191,19 @@ const Skills = () => {
                     <i className={c.icon} />
                   </span>
 
-                  {/* Labels */}
                   <span className="hsk_tab_labels">
                     <span className="hsk_tab_name">{c.title}</span>
                     <span className="hsk_tab_sub">{c.subtitle}</span>
                   </span>
 
-                  {/* Count */}
                   <span
                     className="hsk_tab_count"
                     style={
                       active === i
                         ? {
-                            color: skillsCatColors[i],
-                            background: `${skillsCatColors[i]}18`,
-                            borderColor: `${skillsCatColors[i]}40`,
+                            color: homeSkillsData.catColors[i],
+                            background: `${homeSkillsData.catColors[i]}18`,
+                            borderColor: `${homeSkillsData.catColors[i]}40`,
                           }
                         : {}
                     }
@@ -231,7 +214,6 @@ const Skills = () => {
               ))}
             </div>
 
-            {/* Active category blurb */}
             <AnimatePresence mode="wait">
               <motion.p
                 key={active}
@@ -249,7 +231,6 @@ const Skills = () => {
             </AnimatePresence>
           </motion.div>
 
-          {/* RIGHT — animated bars panel */}
           <motion.div
             className="hsk_right"
             variants={fadeInRight}
@@ -257,7 +238,6 @@ const Skills = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {/* Panel category header */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={`hdr-${active}`}
@@ -279,7 +259,6 @@ const Skills = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Bars */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -311,7 +290,7 @@ const Skills = () => {
           whileInView="visible"
           viewport={viewportOptions}
         >
-          {skillsStats.map((l) => (
+          {homeSkillsData.stats.map((l) => (
             <span key={l.cls} className={`leg_item li_${l.cls}`}>
               <span className="leg_dot" />
               {l.label}

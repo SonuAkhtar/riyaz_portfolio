@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./aboutMe.css";
 
+// packages
 import { motion, useInView } from "framer-motion";
 import {
   fadeInLeft,
@@ -10,8 +11,11 @@ import {
   viewportOptions,
 } from "../../utils/animations";
 
+// app data
+import { homeAboutData } from "../../../appData";
+
+// images
 import aboutImage from "/assets/about/about_pic.jpg";
-import { AboutStats, AboutTraits } from "../../../appData";
 
 const CountUp = ({ to, suffix = "", visible }) => {
   const [val, setVal] = useState(0);
@@ -105,17 +109,11 @@ const AboutMe = () => {
               whileInView="visible"
               viewport={viewportOptions}
             >
-              {["React", "Next.js", "TypeScript", "Node.js", "AWS"].map(
-                (t, i) => (
-                  <motion.span
-                    key={i}
-                    className="stack_chip"
-                    variants={scaleIn}
-                  >
-                    {t}
-                  </motion.span>
-                ),
-              )}
+              {homeAboutData.tech.map((t, i) => (
+                <motion.span key={i} className="stack_chip" variants={scaleIn}>
+                  {t}
+                </motion.span>
+              ))}
             </motion.div>
           </motion.div>
 
@@ -129,9 +127,9 @@ const AboutMe = () => {
             <motion.div className="about_header" variants={fadeInRight}>
               <span className="section_label">Who I Am</span>
               <h2 className="about_title">
-                The Person
+                Behind the
                 <br />
-                <span className="about_title_grad">Behind the Code.</span>
+                <span className="about_title_grad">Code.</span>
               </h2>
             </motion.div>
 
@@ -154,7 +152,7 @@ const AboutMe = () => {
             </motion.p>
 
             <motion.div className="about_traits" variants={stagger}>
-              {AboutTraits.map((t, i) => (
+              {homeAboutData.traits.map((t, i) => (
                 <motion.div
                   key={i}
                   className="trait_chip"
@@ -174,7 +172,7 @@ const AboutMe = () => {
               ref={statsRef}
               variants={fadeInRight}
             >
-              {AboutStats.map((s, i) => (
+              {homeAboutData.stats.map((s, i) => (
                 <React.Fragment key={i}>
                   <div className="astat">
                     <span className="astat_num">
@@ -186,7 +184,9 @@ const AboutMe = () => {
                     </span>
                     <span className="astat_lbl">{s.label}</span>
                   </div>
-                  {i < AboutStats.length - 1 && <span className="astat_sep" />}
+                  {i < homeAboutData.stats.length - 1 && (
+                    <span className="astat_sep" />
+                  )}
                 </React.Fragment>
               ))}
             </motion.div>

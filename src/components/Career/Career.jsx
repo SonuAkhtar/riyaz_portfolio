@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
-import "./qualifications.css";
+import "./career.css";
 
+// libraries
 import { motion, useInView } from "framer-motion";
 import {
   fadeInLeft,
@@ -10,7 +11,8 @@ import {
   viewportOptions,
 } from "../../utils/animations";
 
-import { educationData, heroQual, homeWorkData } from "../../../appData";
+// appData
+import { homeCareerData } from "../../../appData";
 
 const Spine = () => {
   const ref = useRef(null);
@@ -91,7 +93,7 @@ const ColHead = ({ icon, label, count, accent }) => (
   </div>
 );
 
-const Qualifications = () => (
+const Career = () => (
   <section className="qualification" id="qualification">
     <div className="container">
       <motion.div
@@ -110,8 +112,8 @@ const Qualifications = () => (
           <span className="qual_title_grad">Journey.</span>
         </motion.h2>
         <motion.p className="qual_subtitle" variants={fadeInUp}>
-          {homeWorkData.length} roles across product companies, building for
-          scale since 2017.
+          {homeCareerData.companies.length} roles across product companies,
+          building for scale since 2017.
         </motion.p>
       </motion.div>
 
@@ -122,7 +124,7 @@ const Qualifications = () => (
         whileInView="visible"
         viewport={viewportOptions}
       >
-        {heroQual.map((s, i, arr) => (
+        {homeCareerData.qual.map((s, i, arr) => (
           <React.Fragment key={i}>
             <div className="qstat">
               <span className="qstat_num">{s.num}</span>
@@ -136,28 +138,6 @@ const Qualifications = () => (
       </motion.div>
 
       <div className="qual_grid">
-        {/* Education */}
-        <motion.div
-          className="qual_col"
-          variants={fadeInLeft}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOptions}
-        >
-          <ColHead
-            icon="fas fa-graduation-cap"
-            label="Education"
-            count={educationData.length}
-          />
-          <div className="tl_wrap">
-            <Spine />
-            {educationData.map((item, i) => (
-              <TLItem key={item.id} item={item} index={i} isEdu={true} />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Experience */}
         <motion.div
           className="qual_col"
           variants={fadeInRight}
@@ -168,13 +148,33 @@ const Qualifications = () => (
           <ColHead
             icon="fas fa-briefcase"
             label="Experience"
-            count={homeWorkData.length}
+            count={homeCareerData.companies.length}
             accent
           />
           <div className="tl_wrap">
             <Spine />
-            {homeWorkData.map((item, i) => (
+            {homeCareerData.companies.map((item, i) => (
               <TLItem key={item.id} item={item} index={i} isEdu={false} />
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="qual_col"
+          variants={fadeInLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOptions}
+        >
+          <ColHead
+            icon="fas fa-graduation-cap"
+            label="Education"
+            count={homeCareerData.education.length}
+          />
+          <div className="tl_wrap">
+            <Spine />
+            {homeCareerData.education.map((item, i) => (
+              <TLItem key={item.id} item={item} index={i} isEdu={true} />
             ))}
           </div>
         </motion.div>
@@ -183,4 +183,4 @@ const Qualifications = () => (
   </section>
 );
 
-export default Qualifications;
+export default Career;

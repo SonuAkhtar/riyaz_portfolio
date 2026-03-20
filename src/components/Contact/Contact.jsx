@@ -12,7 +12,6 @@ import {
 import {
   contactData,
   homeContactIcons,
-  homeSocialIcons,
   socialIconsData,
 } from "../../../appData";
 
@@ -62,10 +61,6 @@ const Contact = () => {
 
             <div className="contact_socials">
               {socialIconsData.map((s) => {
-                const meta = homeSocialIcons[s.class] || {
-                  label: "Link",
-                  short: "",
-                };
                 return (
                   <motion.a
                     key={s.id}
@@ -77,7 +72,7 @@ const Contact = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <i className={s.class} />
-                    <span>{meta.label}</span>
+                    <span>{s.label}</span>
                   </motion.a>
                 );
               })}

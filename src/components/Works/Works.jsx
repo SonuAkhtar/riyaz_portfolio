@@ -1,11 +1,15 @@
 import { useState } from "react";
 import "./works.css";
 
+// libraries
 import { motion } from "framer-motion";
-import WorkModal from "../WorkModal/WorkModal";
-
-import { homeWorkTags, worksData } from "../../../appData";
 import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
+
+// appData
+import { homeWorksData } from "../../../appData";
+
+// components
+import WorkModal from "../WorkModal/WorkModal";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -57,7 +61,7 @@ const Works = () => {
           whileInView="visible"
           viewport={viewportOptions}
         >
-          {worksData.map((data, i) => (
+          {homeWorksData.stacks.map((data, i) => (
             <motion.article
               key={i}
               className={`work_card${activeCard === i ? " hovered" : ""}`}
@@ -102,7 +106,7 @@ const Works = () => {
               </ul>
 
               <div className="wc_tags">
-                {homeWorkTags[i].map((tag, j) => (
+                {homeWorksData.tags[i].map((tag, j) => (
                   <span key={j} className="wc_tag">
                     {tag}
                   </span>

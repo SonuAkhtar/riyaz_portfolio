@@ -8,11 +8,7 @@ import {
   scaleIn,
   viewportOptions,
 } from "../../utils/animations";
-import {
-  worksPageData2,
-  worksPageHero,
-  worksPageProcess,
-} from "../../../appData";
+import { worksPageData } from "../../../appData";
 
 import Footer from "../../components/Footer/Footer";
 import PageHero from "../../components/common/PageHero/PageHero";
@@ -27,7 +23,7 @@ const StatBox = ({ value, label }) => (
 const WorksPage = () => {
   return (
     <div className="wp_root">
-      <PageHero heroData={worksPageHero} />
+      <PageHero heroData={worksPageData.hero} />
 
       <section className="wp_section">
         <div className="wp_container">
@@ -59,7 +55,7 @@ const WorksPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {worksPageData2.map((svc, i) => (
+            {worksPageData.works.map((svc, i) => (
               <motion.article
                 key={svc.number}
                 className="wp_svc_card"
@@ -157,7 +153,7 @@ const WorksPage = () => {
             whileInView="visible"
             viewport={viewportOptions}
           >
-            {worksPageProcess.map((step, i) => (
+            {worksPageData.process.map((step, i) => (
               <motion.div
                 key={step.num}
                 className="wp_process_card"
@@ -183,7 +179,7 @@ const WorksPage = () => {
                 </div>
                 <h3 className="wp_process_title">{step.title}</h3>
                 <p className="wp_process_body">{step.body}</p>
-                {i < worksPageProcess.length - 1 && (
+                {i < worksPageData.process.length - 1 && (
                   <span className="wp_process_connector" aria-hidden="true">
                     <i className="fas fa-arrow-right" />
                   </span>
