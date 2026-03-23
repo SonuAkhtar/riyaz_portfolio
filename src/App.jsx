@@ -4,7 +4,7 @@ import "./app.css";
 import Header from "./components/Header/Header";
 import Cursor from "./components/Cursor/Cursor";
 
-import HomePage from "./pages/Home/Homepage";
+import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/About/AboutPage";
 import SkillsPage from "./pages/Skills/SkillsPage";
 import WorksPage from "./pages/Works/WorksPage";
