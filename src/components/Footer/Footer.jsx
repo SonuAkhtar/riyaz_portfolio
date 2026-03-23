@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./footer.css";
 
 import { motion } from "framer-motion";
-import { socialIconsData, navLinks, marqueeItems } from "../../../appData";
+import { socialIconsData, navLinks } from "../../../appData";
 import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
 
 const Footer = () => {
@@ -15,41 +15,41 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <span className="fh_aurora fha1" aria-hidden="true" />
-      <span className="fh_aurora fha2" aria-hidden="true" />
+      <span className="footer__aurora footer__aurora--1" aria-hidden="true" />
+      <span className="footer__aurora footer__aurora--2" aria-hidden="true" />
 
-      <div className="footer_hero">
+      <div className="footer__hero">
         <motion.div
-          className="fh_content"
+          className="footer__hero-content"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOptions}
         >
           <motion.div
-            className="fh_name"
+            className="footer__hero-name"
             variants={fadeInUp}
             aria-label="Riyaz Akhtar"
           >
-            <span className="fhn_outline" aria-hidden="true">
+            <span className="footer__name-outline" aria-hidden="true">
               RIYAZ
             </span>
           </motion.div>
 
-          <motion.div className="fh_meta" variants={fadeInUp}>
-            <span className="fh_avail">
-              <span className="fh_avail_ring" aria-hidden="true" />
-              <span className="fh_avail_dot" aria-hidden="true" />
+          <motion.div className="footer__hero-meta" variants={fadeInUp}>
+            <span className="footer__avail">
+              <span className="footer__avail-ring" aria-hidden="true" />
+              <span className="footer__avail-dot" aria-hidden="true" />
               Available
             </span>
-            <span className="fh_meta_sep" aria-hidden="true">
+            <span className="footer__meta-sep" aria-hidden="true">
               |
             </span>
-            <span className="fh_role">Lead Engineer @ Publicis Sapient</span>
-            <span className="fh_meta_sep" aria-hidden="true">
+            <span className="footer__role">Lead Engineer @ Publicis Sapient</span>
+            <span className="footer__meta-sep" aria-hidden="true">
               |
             </span>
-            <span className="fh_loc">
+            <span className="footer__loc">
               <i className="fas fa-map-pin" aria-hidden="true" />
               Gurgaon, India
             </span>
@@ -57,13 +57,13 @@ const Footer = () => {
 
           <motion.a
             href={contactHref}
-            className="fh_cta"
+            className="footer__cta"
             variants={fadeInUp}
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
             <span>Start a Conversation</span>
-            <span className="fh_cta_arrow">
+            <span className="footer__cta-arrow">
               <i className="fas fa-arrow-right" />
             </span>
           </motion.a>
@@ -71,32 +71,32 @@ const Footer = () => {
       </div>
 
       <motion.div
-        className="footer_bar"
+        className="footer__bar"
         variants={stagger}
         initial="hidden"
         whileInView="visible"
         viewport={viewportOptions}
       >
         <motion.nav
-          className="footer_nav"
+          className="footer__nav"
           variants={fadeInUp}
           aria-label="Footer navigation"
         >
           {navLinks.map((l) => (
-            <Link key={l.id} to={l.href} className="footer_link">
+            <Link key={l.id} to={l.href} className="footer__link">
               {l.label}
             </Link>
           ))}
         </motion.nav>
 
-        <motion.div className="footer_social" variants={fadeInUp}>
+        <motion.div className="footer__social" variants={fadeInUp}>
           {socialIconsData.map((s, i) => (
             <motion.a
               key={i}
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="footer_soc"
+              className="footer__soc"
               whileHover={{ y: -4, scale: 1.12 }}
               whileTap={{ scale: 0.92 }}
             >
@@ -106,10 +106,10 @@ const Footer = () => {
         </motion.div>
       </motion.div>
 
-      <div className="footer_copy">
+      <div className="footer__copy">
         <span>© {year} Riyaz Akhtar. All rights reserved.</span>
-        <span className="footer_copy_dot" aria-hidden="true" />
-        <a href={topHref} className="footer_totop" aria-label="Back to top">
+        <span className="footer__copy-dot" aria-hidden="true" />
+        <a href={topHref} className="footer__totop" aria-label="Back to top">
           <i className="fas fa-arrow-up" />
           <span>Top</span>
         </a>

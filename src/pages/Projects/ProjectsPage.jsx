@@ -18,7 +18,7 @@ import { projectsPageData } from "../../../appData";
 import Footer from "../../components/Footer/Footer";
 import PageHero from "../../components/common/PageHero/PageHero";
 
-const FILTERS = ["All", "AI/ML", "Frontend", "Full-Stack", "Mobile"];
+const FILTERS = ["All", "AI/ML", "Frontend", "Full-Stack"];
 
 const getCatColor = (cat) =>
   projectsPageData.catColors[cat] || projectsPageData.catColors["Frontend"];
@@ -115,7 +115,7 @@ const ProjectCard = ({ project, index }) => {
                 className="pp_overlay_btn pp_overlay_btn_primary"
                 onClick={(e) => e.stopPropagation()}
               >
-                <i className="fas fa-external-link-alt" /> Live
+                <i className="fas fa-arrow-up-right-from-square" /> Live
               </a>
             )}
           </div>
@@ -147,7 +147,7 @@ const ProjectCard = ({ project, index }) => {
                 className="pp_icon_link pp_icon_link_accent"
                 aria-label="Live Demo"
               >
-                <i className="fas fa-external-link-alt" />
+                <i className="fas fa-arrow-up-right-from-square" />
               </a>
             )}
           </div>
@@ -311,7 +311,7 @@ const ProjectsPage = () => {
             </motion.a>
             <motion.div variants={scaleIn}>
               <Link to="/" className="btn btn_outline">
-                <i className="fas fa-home" /> Back to Home
+                <i className="fas fa-house" /> Back to Home
               </Link>
             </motion.div>
           </motion.div>

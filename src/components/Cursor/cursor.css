@@ -1,0 +1,63 @@
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor__dot,
+.cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.cursor__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    background 0.2s ease;
+}
+
+.cursor__dot--hovered {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+}
+
+.cursor__ring {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--accent);
+  opacity: 0.55;
+  transition:
+    width 0.22s ease,
+    height 0.22s ease,
+    opacity 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.cursor__ring--hovered {
+  width: 44px;
+  height: 44px;
+  opacity: 0.35;
+  border-color: var(--accent);
+}
+
+/* Only show on pointer-capable (desktop) devices */
+@media (hover: none), (pointer: coarse) {
+  .cursor__dot,
+  .cursor__ring {
+    display: none;
+  }
+
+  html,
+  body,
+  a,
+  button {
+    cursor: auto !important;
+  }
+}

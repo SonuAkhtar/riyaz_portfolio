@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import "./career.css";
 
-// libraries
 import { motion, useInView } from "framer-motion";
 import {
   fadeInLeft,
@@ -11,7 +10,6 @@ import {
   viewportOptions,
 } from "../../utils/animations";
 
-// appData
 import { homeCareerData } from "../../../appData";
 
 const Spine = () => {
@@ -20,7 +18,7 @@ const Spine = () => {
   return (
     <motion.span
       ref={ref}
-      className="tl_spine"
+      className="career__spine"
       initial={{ scaleY: 0 }}
       animate={inView ? { scaleY: 1 } : {}}
       transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
@@ -30,50 +28,46 @@ const Spine = () => {
   );
 };
 
-const TLItem = ({ item, index, isEdu }) => {
+const TimelineItem = ({ item, index, isEdu }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-20px" });
 
   return (
     <motion.div
       ref={ref}
-      className={`tl_item${item.current ? " tl_current" : ""}`}
+      className={`career__item${item.current ? " career__item--current" : ""}`}
       initial={{ opacity: 0, x: isEdu ? -24 : 24 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{
-        duration: 0.55,
-        ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.1,
-      }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
     >
-      <div className="tl_dot_wrap">
-        <span className="tl_dot">
-          <span className="tl_dot_inner" />
+      <div className="career__dot-wrap">
+        <span className="career__dot">
+          <span className="career__dot-inner" />
         </span>
-        {item.current && <span className="tl_dot_ring" aria-hidden="true" />}
+        {item.current && <span className="career__dot-ring" aria-hidden="true" />}
       </div>
 
-      <div className="tl_card">
-        <div className="tl_card_top">
-          <span className="tl_year">
-            <i className="fas fa-calendar-alt" aria-hidden="true" />
+      <div className="career__card">
+        <div className="career__card-top">
+          <span className="career__year">
+            <i className="fas fa-calendar-days" aria-hidden="true" />
             {item.year}
           </span>
           {item.current ? (
-            <span className="tl_now">
-              <span className="tl_now_dot" />
+            <span className="career__now">
+              <span className="career__now-dot" />
               Now
             </span>
           ) : (
-            <span className="tl_tag">{item.tag || item.field}</span>
+            <span className="career__tag">{item.tag || item.field}</span>
           )}
         </div>
 
-        <h3 className="tl_title">{item.title}</h3>
+        <h3 className="career__card-title">{item.title}</h3>
 
-        <span className="tl_org">
+        <span className="career__org">
           <i
-            className={isEdu ? "fas fa-university" : "fas fa-building"}
+            className={isEdu ? "fas fa-building-columns" : "fas fa-building"}
             aria-hidden="true"
           />
           {item.org}
@@ -84,12 +78,12 @@ const TLItem = ({ item, index, isEdu }) => {
 };
 
 const ColHead = ({ icon, label, count, accent }) => (
-  <div className={`qcol_head${accent ? " qcol_head_accent" : ""}`}>
-    <span className="qcol_icon">
+  <div className={`career__col-head${accent ? " career__col-head--accent" : ""}`}>
+    <span className="career__col-icon">
       <i className={icon} />
     </span>
-    <span className="qcol_label">{label}</span>
-    <span className="qcol_count">{count} entries</span>
+    <span className="career__col-label">{label}</span>
+    <span className="career__col-count">{count} entries</span>
   </div>
 );
 
@@ -97,7 +91,7 @@ const Career = () => (
   <section className="qualification" id="qualification">
     <div className="container">
       <motion.div
-        className="qual_header"
+        className="career__header"
         variants={stagger}
         initial="hidden"
         whileInView="visible"
@@ -106,40 +100,21 @@ const Career = () => (
         <motion.span className="section_label" variants={fadeInUp}>
           Background
         </motion.span>
-        <motion.h2 className="qual_title" variants={fadeInUp}>
+        <motion.h2 className="career__title" variants={fadeInUp}>
           Career
           <br />
-          <span className="qual_title_grad">Journey.</span>
+          <span className="career__title-grad">Journey.</span>
         </motion.h2>
-        <motion.p className="qual_subtitle" variants={fadeInUp}>
+        <motion.p className="career__subtitle" variants={fadeInUp}>
           {homeCareerData.companies.length} roles across product companies,
           building for scale since 2017.
         </motion.p>
       </motion.div>
 
-      <motion.div
-        className="qual_stats"
-        variants={fadeInUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOptions}
-      >
-        {homeCareerData.qual.map((s, i, arr) => (
-          <React.Fragment key={i}>
-            <div className="qstat">
-              <span className="qstat_num">{s.num}</span>
-              <span className="qstat_label">{s.label}</span>
-            </div>
-            {i < arr.length - 1 && (
-              <span className="qstat_sep" aria-hidden="true" />
-            )}
-          </React.Fragment>
-        ))}
-      </motion.div>
 
-      <div className="qual_grid">
+      <div className="career__grid">
         <motion.div
-          className="qual_col"
+          className="career__col"
           variants={fadeInRight}
           initial="hidden"
           whileInView="visible"
@@ -151,16 +126,16 @@ const Career = () => (
             count={homeCareerData.companies.length}
             accent
           />
-          <div className="tl_wrap">
+          <div className="career__timeline">
             <Spine />
             {homeCareerData.companies.map((item, i) => (
-              <TLItem key={item.id} item={item} index={i} isEdu={false} />
+              <TimelineItem key={item.id} item={item} index={i} isEdu={false} />
             ))}
           </div>
         </motion.div>
 
         <motion.div
-          className="qual_col"
+          className="career__col"
           variants={fadeInLeft}
           initial="hidden"
           whileInView="visible"
@@ -171,10 +146,10 @@ const Career = () => (
             label="Education"
             count={homeCareerData.education.length}
           />
-          <div className="tl_wrap">
+          <div className="career__timeline">
             <Spine />
             {homeCareerData.education.map((item, i) => (
-              <TLItem key={item.id} item={item} index={i} isEdu={true} />
+              <TimelineItem key={item.id} item={item} index={i} isEdu={true} />
             ))}
           </div>
         </motion.div>

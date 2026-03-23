@@ -9,18 +9,14 @@ import {
   viewportOptions,
 } from "../../utils/animations";
 
-import {
-  contactData,
-  homeContactIcons,
-  socialIconsData,
-} from "../../../appData";
+import { contactData, homeContactIcons, socialIconsData } from "../../../appData";
 
 const Contact = () => {
   return (
     <section className="contact even" id="contact">
       <div className="container">
         <motion.div
-          className="contact_header"
+          className="contact__header"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -31,56 +27,54 @@ const Contact = () => {
           </motion.span>
         </motion.div>
 
-        <div className="contact_body">
+        <div className="contact__body">
           <motion.div
-            className="contact_left"
+            className="contact__left"
             variants={fadeInLeft}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOptions}
           >
-            <div className="avail_badge">
-              <span className="avail_ring" aria-hidden="true" />
-              <span className="avail_dot" aria-hidden="true" />
+            <div className="contact__avail">
+              <span className="contact__avail-ring" aria-hidden="true" />
+              <span className="contact__avail-dot" aria-hidden="true" />
               Open for new opportunities
             </div>
 
-            <h2 className="contact_hl">
+            <h2 className="contact__heading">
               Let's Build
               <br />
-              <span className="contact_hl_grad">Something</span>
+              <span className="contact__heading-grad">Something</span>
               <br />
               Remarkable.
             </h2>
 
-            <p className="contact_bio">
+            <p className="contact__bio">
               Open to full-time roles, freelance projects, and interesting
               collaborations. I love turning ideas into polished digital
               experiences.
             </p>
 
-            <div className="contact_socials">
-              {socialIconsData.map((s) => {
-                return (
-                  <motion.a
-                    key={s.id}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="csoc_btn"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <i className={s.class} />
-                    <span>{s.label}</span>
-                  </motion.a>
-                );
-              })}
+            <div className="contact__socials">
+              {socialIconsData.map((s) => (
+                <motion.a
+                  key={s.id}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact__soc-btn"
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <i className={s.class} />
+                  <span>{s.label}</span>
+                </motion.a>
+              ))}
             </div>
 
             <motion.a
               href="mailto:sonua981@gmail.com"
-              className="btn btn_primary contact_cta"
+              className="btn btn_primary contact__cta"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -90,23 +84,26 @@ const Contact = () => {
           </motion.div>
 
           <motion.div
-            className="contact_right"
+            className="contact__right"
             variants={fadeInRight}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOptions}
           >
-            <div className="cchannels">
+            <div className="contact__channels">
               {contactData.map((item, i) => {
                 const meta = homeContactIcons[item.alt] || {
                   icon: "fas fa-info",
-                  color: "cc_blue",
+                  color: "contact__channel-icon--blue",
                 };
+                const colorClass = `contact__channel-icon--${
+                  meta.color.replace("cc_", "")
+                }`;
                 const Tag = item.href ? "a" : "div";
                 return (
                   <motion.div
                     key={item.id}
-                    className="cchannel_wrap"
+                    className="contact__channel-wrap"
                     initial={{ opacity: 0, x: 28 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -117,21 +114,21 @@ const Contact = () => {
                     }}
                   >
                     <Tag
-                      className={`cchannel${item.href ? " cc_link" : ""}`}
+                      className={`contact__channel${item.href ? " contact__channel--link" : ""}`}
                       href={item.href}
                       {...(item.href
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
                     >
-                      <span className={`cc_icon_wrap ${meta.color}`}>
+                      <span className={`contact__channel-icon ${colorClass}`}>
                         <i className={meta.icon} />
                       </span>
-                      <span className="cc_body">
-                        <span className="cc_label">{item.name}</span>
-                        <span className="cc_value">{item.info}</span>
+                      <span className="contact__channel-body">
+                        <span className="contact__channel-label">{item.name}</span>
+                        <span className="contact__channel-value">{item.info}</span>
                       </span>
                       {item.href && (
-                        <span className="cc_arrow" aria-hidden="true">
+                        <span className="contact__channel-arrow" aria-hidden="true">
                           <i className="fas fa-arrow-right" />
                         </span>
                       )}
@@ -140,13 +137,13 @@ const Contact = () => {
                 );
               })}
 
-              <div className="cc_meta_row">
-                <span className="cc_meta_item">
+              <div className="contact__meta-row">
+                <span className="contact__meta-item">
                   <i className="fas fa-clock" />
                   Replies within <strong>24 hrs</strong>
                 </span>
-                <span className="cc_meta_sep" aria-hidden="true" />
-                <span className="cc_meta_item">
+                <span className="contact__meta-sep" aria-hidden="true" />
+                <span className="contact__meta-item">
                   <i className="fas fa-map-pin" />
                   Based in <strong>Gurgaon, India</strong>
                 </span>

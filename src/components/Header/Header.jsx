@@ -38,12 +38,10 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
-  /* close drawer on route change */
   useEffect(() => {
     setDrawerOpen(false);
   }, [location.pathname]);
 
-  /* scroll listener — state + progress bar */
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
@@ -55,7 +53,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* lock body scroll when drawer open */
   useEffect(() => {
     document.body.style.overflow = drawerOpen ? "hidden" : "";
     return () => {
@@ -71,27 +68,25 @@ const Header = () => {
   return (
     <>
       <motion.header
-        className={`header${scrolled ? " scrolled" : ""}`}
+        className={`header${scrolled ? " header--scrolled" : ""}`}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <nav className="nav_inner">
-          {/* Logo */}
-          <Link to="/" className="nav_logo">
-            <span className="logo_text">Riyaz</span>
-            <span className="logo_dot">.</span>
+        <nav className="header__nav">
+          <Link to="/" className="header__logo">
+            <span className="header__logo-text">Riyaz</span>
+            <span className="header__logo-dot">.</span>
           </Link>
 
-          {/* Desktop nav links */}
-          <div className="nav_links_desk">
+          <div className="header__links">
             {navLinks.map((link) => (
               <NavLink
                 key={link.id}
                 to={link.href}
                 end={link.href === "/"}
                 className={({ isActive }) =>
-                  `nav_link${isActive ? " nav_link_active" : ""}`
+                  `header__link${isActive ? " header__link--active" : ""}`
                 }
               >
                 {link.label}
@@ -99,13 +94,11 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Right side: theme + CTA + hamburger */}
-          <div className="nav_right">
+          <div className="header__right">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
 
-            {/* Hamburger */}
             <button
-              className={`nav_ham${drawerOpen ? " nav_ham_open" : ""}`}
+              className={`header__ham${drawerOpen ? " header__ham--open" : ""}`}
               onClick={toggle}
               aria-label="Toggle navigation menu"
               aria-expanded={drawerOpen}
@@ -117,9 +110,8 @@ const Header = () => {
           </div>
         </nav>
 
-        {/* scroll progress bar */}
         <div
-          className="nav_progress_bar"
+          className="header__progress"
           style={{ transform: `scaleX(${scrollProgress / 100})` }}
         />
       </motion.header>
@@ -127,9 +119,8 @@ const Header = () => {
       <AnimatePresence>
         {drawerOpen && (
           <>
-            {/* backdrop */}
             <motion.div
-              className="drawer_backdrop"
+              className="drawer__backdrop"
               variants={overlayVariant}
               initial="hidden"
               animate="visible"
@@ -137,7 +128,6 @@ const Header = () => {
               onClick={close}
             />
 
-            {/* drawer panel */}
             <motion.div
               className="drawer"
               variants={drawerVariant}
@@ -148,24 +138,22 @@ const Header = () => {
               aria-modal="true"
               aria-label="Navigation menu"
             >
-              {/* drawer header */}
-              <div className="drawer_head">
-                <Link to="/" className="drawer_logo" onClick={close}>
+              <div className="drawer__head">
+                <Link to="/" className="drawer__logo" onClick={close}>
                   <span>Riyaz</span>
-                  <span className="drawer_logo_dot">.</span>
+                  <span className="drawer__logo-dot">.</span>
                 </Link>
                 <button
-                  className="drawer_close"
+                  className="drawer__close"
                   onClick={close}
                   aria-label="Close menu"
                 >
-                  <i className="fas fa-times" />
+                  <i className="fas fa-xmark" />
                 </button>
               </div>
 
-              {/* nav links */}
-              <nav className="drawer_nav">
-                <p className="drawer_section_label">Pages</p>
+              <nav className="drawer__nav">
+                <p className="drawer__label">Pages</p>
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.id}
@@ -178,27 +166,25 @@ const Header = () => {
                       to={link.href}
                       end={link.href === "/"}
                       className={({ isActive }) =>
-                        `drawer_link${isActive ? " drawer_link_active" : ""}`
+                        `drawer__link${isActive ? " drawer__link--active" : ""}`
                       }
                       onClick={close}
                     >
-                      <span className="drawer_link_icon">
+                      <span className="drawer__link-icon">
                         <i className={link.icon} />
                       </span>
-                      <span className="drawer_link_label">{link.label}</span>
-                      <i className="fas fa-chevron-right drawer_link_arrow" />
+                      <span className="drawer__link-label">{link.label}</span>
+                      <i className="fas fa-chevron-right drawer__link-arrow" />
                     </NavLink>
                   </motion.div>
                 ))}
               </nav>
 
-              {/* divider */}
-              <div className="drawer_divider" />
+              <div className="drawer__divider" />
 
-              {/* section links for homepage */}
               {isHome && (
-                <nav className="drawer_nav drawer_nav_sections">
-                  <p className="drawer_section_label">On this page</p>
+                <nav className="drawer__nav drawer__nav--sections">
+                  <p className="drawer__label">On this page</p>
                   {[
                     { label: "About", href: "#about" },
                     { label: "Hobbies", href: "#hobbies" },
@@ -207,29 +193,28 @@ const Header = () => {
                     <motion.a
                       key={item.label}
                       href={item.href}
-                      className="drawer_link drawer_link_sm"
+                      className="drawer__link drawer__link--sm"
                       onClick={close}
                       custom={navLinks.length + i}
                       variants={itemVariant}
                       initial="hidden"
                       animate="visible"
                     >
-                      <span className="drawer_link_label">{item.label}</span>
+                      <span className="drawer__link-label">{item.label}</span>
                     </motion.a>
                   ))}
                 </nav>
               )}
 
-              {/* footer area */}
-              <div className="drawer_foot">
-                <div className="drawer_socials">
+              <div className="drawer__foot">
+                <div className="drawer__socials">
                   {socialIconsData.map((s, i) => (
                     <a
                       key={i}
                       href={s.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="drawer_soc"
+                      className="drawer__soc"
                     >
                       <i className={s.class} />
                     </a>
@@ -237,7 +222,7 @@ const Header = () => {
                 </div>
                 <Link
                   to="/#contact"
-                  className="drawer_cta btn btn_primary"
+                  className="drawer__cta btn btn_primary"
                   onClick={close}
                 >
                   Let's Connect <i className="fas fa-arrow-right" />

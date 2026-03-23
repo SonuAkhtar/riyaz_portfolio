@@ -169,18 +169,19 @@ const SkillsPage = () => {
             </motion.p>
           </motion.div>
 
-          <motion.div
-            className="sp_cert_grid"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOptions}
-          >
+          <div className="sp_cert_grid">
             {certs.map((cert, i) => (
               <motion.div
                 key={cert.id || i}
                 className={`sp_cert_card sp_cert_${cert.color}`}
-                variants={fadeInUp}
+                initial={{ opacity: 0, y: 48, clipPath: "inset(12% 4% 0% 4% round 1.25rem)" }}
+                whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0% round 1.25rem)" }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{
+                  duration: 0.62,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: (i % 4) * 0.1,
+                }}
                 whileHover={{
                   y: -8,
                   transition: { type: "spring", stiffness: 280, damping: 20 },
@@ -195,13 +196,13 @@ const SkillsPage = () => {
                 <div className="sp_cert_footer">
                   <span className="sp_cert_year">{cert.year}</span>
                   <span className="sp_cert_verified">
-                    <i className="fas fa-check-circle" />
+                    <i className="fas fa-circle-check" />
                     Verified
                   </span>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -398,7 +399,7 @@ const SkillsPage = () => {
             </motion.a>
             <motion.div variants={scaleIn}>
               <Link to="/" className="btn btn_outline">
-                <i className="fas fa-home" /> Back to Home
+                <i className="fas fa-house" /> Back to Home
               </Link>
             </motion.div>
           </motion.div>

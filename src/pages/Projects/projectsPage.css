@@ -83,7 +83,7 @@
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-secondary);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   white-space: nowrap;
   transition: color 0.2s;
 }
@@ -104,7 +104,7 @@
   background: var(--accent-glow);
   border: 1px solid var(--border-accent);
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   transition:
     background 0.2s,
     color 0.2s;
@@ -120,7 +120,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   flex-shrink: 0;
 }
 
@@ -243,7 +243,7 @@
   text-transform: uppercase;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   backdrop-filter: blur(8px);
   z-index: 2;
 }
@@ -260,7 +260,7 @@
   background: rgba(240, 160, 75, 0.15);
   border: 1px solid rgba(240, 160, 75, 0.3);
   color: #f0a04b;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -297,7 +297,7 @@
   border-radius: 0.6rem;
   font-size: 0.82rem;
   font-weight: 600;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   background: var(--bg-card);
   border: 1px solid var(--border-accent);
   color: var(--text-primary);
@@ -346,7 +346,7 @@
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 1px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
 .pp_card_links {
@@ -421,7 +421,7 @@
   background: var(--bg-primary);
   border: 1px solid var(--border);
   color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   letter-spacing: 0.3px;
   transition:
     border-color 0.25s,

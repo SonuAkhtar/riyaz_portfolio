@@ -52,15 +52,6 @@ const fadeLeft = {
   },
 };
 
-const fadeRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
 const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
@@ -75,46 +66,6 @@ const scaleIn = {
   },
 };
 const vp = { once: true, margin: "-60px" };
-
-const SkillBar = ({ skill, delay }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      className="am_skill_bar"
-      initial={{ opacity: 0, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="am_skill_bar_top">
-        <span className="am_skill_bar_icon" style={{ color: skill.color }}>
-          <i className={skill.icon} />
-        </span>
-        <span className="am_skill_bar_name">{skill.name}</span>
-        <span className="am_skill_bar_pct" style={{ color: skill.color }}>
-          {skill.level}%
-        </span>
-      </div>
-      <div className="am_skill_bar_track">
-        <motion.div
-          className="am_skill_bar_fill"
-          style={{
-            background: `linear-gradient(90deg, ${skill.color}cc, ${skill.color})`,
-          }}
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${skill.level}%` } : {}}
-          transition={{
-            delay: delay + 0.2,
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        />
-      </div>
-    </motion.div>
-  );
-};
 
 const AboutMePage = () => {
   const statsRef = useRef(null);
@@ -194,57 +145,6 @@ const AboutMePage = () => {
         </motion.div>
       </section>
 
-      <section className="amp_section amp_even">
-        <div className="amp_container">
-          <motion.div
-            className="amp_section_head"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={vp}
-          >
-            <motion.span className="amp_label" variants={fadeUp}>
-              Core Expertise
-            </motion.span>
-            <motion.h2 className="amp_section_title" variants={fadeUp}>
-              What I Do
-              <br />
-              <span className="amp_grad">Best.</span>
-            </motion.h2>
-            <motion.p className="amp_section_sub" variants={fadeUp}>
-              8+ years of crafting production-grade applications has sharpened
-              these skills to a fine edge.
-            </motion.p>
-          </motion.div>
-
-          <div className="amp_skills_grid">
-            <div className="amp_skills_bars">
-              {aboutPageData.coreSkills.map((sk, i) => (
-                <SkillBar key={sk.name} skill={sk} delay={i * 0.08} />
-              ))}
-            </div>
-
-            <motion.div
-              className="amp_skills_story"
-              variants={fadeRight}
-              initial="hidden"
-              whileInView="visible"
-              viewport={vp}
-            >
-              {aboutPageData.expertise.map((val, index) => (
-                <div key={index} className="amp_story_card">
-                  <div className="amp_story_icon">
-                    <i className={val.class} />
-                  </div>
-                  <h3 className="amp_story_title">{val.title}</h3>
-                  <p className="amp_story_text">{val.detail} </p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       <section className="amp_section">
         <div className="amp_container">
           <motion.div
@@ -289,13 +189,11 @@ const AboutMePage = () => {
               </div>
             </div>
             <div className="amp_ai_banner_right">
-              {["GPT-4", "LangChain", "RAG", "Copilot", "Embeddings"].map(
-                (t) => (
-                  <span key={t} className="amp_ai_chip">
-                    {t}
-                  </span>
-                ),
-              )}
+              {aboutPageData.tagPills.map((t) => (
+                <span key={t} className="amp_ai_chip">
+                  {t}
+                </span>
+              ))}
             </div>
           </motion.div>
 
@@ -357,7 +255,7 @@ const AboutMePage = () => {
                     className="amp_azure_badge"
                     variants={scaleIn}
                   >
-                    <i className="fas fa-check-circle" /> {b}
+                    <i className="fas fa-circle-check" /> {b}
                   </motion.span>
                 ))}
               </motion.div>
@@ -556,7 +454,7 @@ const AboutMePage = () => {
             </motion.a>
             <motion.div variants={scaleIn}>
               <Link to="/" className="btn btn_ghost">
-                <i className="fas fa-home" /> Back to Portfolio
+                <i className="fas fa-house" /> Back to Portfolio
               </Link>
             </motion.div>
           </motion.div>

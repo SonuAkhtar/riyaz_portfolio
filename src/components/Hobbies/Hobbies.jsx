@@ -280,7 +280,7 @@ const Hobbies = () => (
           More shots on Instagram
         </span>
         <motion.a
-          href="https://www.instagram.com/just_about_clicks/"
+          href="https://www.instagram.com/riyazclicks/"
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn_outline hobbies_ig_btn"
@@ -288,7 +288,7 @@ const Hobbies = () => (
           whileTap={{ scale: 0.97 }}
         >
           <i className="fab fa-instagram" />
-          @just_about_clicks
+          @riyazclicks
         </motion.a>
       </motion.div>
     </div>

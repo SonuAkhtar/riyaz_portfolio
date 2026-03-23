@@ -1,11 +1,15 @@
-.about_grid {
+/* ============================================================
+   ABOUT ME — BEM
+   ============================================================ */
+.about__grid {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
 }
 
-.about_visual {
+/* ---- Visual column ---- */
+.about__visual {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,57 +17,53 @@
   gap: 1.5rem;
 }
 
-.about_dot_grid {
+.about__dot-grid {
   position: absolute;
   bottom: -1rem;
   right: -1.5rem;
   width: 90px;
   height: 90px;
-  background-image: radial-gradient(
-    circle,
-    var(--accent) 1.5px,
-    transparent 1.5px
-  );
+  background-image: radial-gradient(circle, var(--accent) 1.5px, transparent 1.5px);
   background-size: 12px 12px;
-  opacity: 0.25;
+  opacity: 0.2;
   pointer-events: none;
   z-index: 0;
 }
 
-.about_photo_stack {
+.about__photo-stack {
   position: relative;
   z-index: 1;
 }
 
-.stack_card {
+.about__stack-card {
   position: absolute;
   border-radius: 1.5rem;
   pointer-events: none;
 }
 
-.stack_card.c2 {
+.about__stack-card--back {
   inset: 0;
   transform: translate(16px, 16px);
   background: var(--bg-primary);
   border: 1px solid var(--border-accent);
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
-.stack_card.c1 {
+.about__stack-card--mid {
   inset: 0;
   transform: translate(8px, 8px);
   background: var(--gradient-accent);
-  opacity: 0.12;
+  opacity: 0.1;
 }
 
-[data-theme="light"] .stack_card.c2 {
+[data-theme="light"] .about__stack-card--back {
   background: var(--bg-secondary);
 }
 
-.about_photo {
+.about__photo {
   position: relative;
-  width: clamp(220px, 24vw, 300px);
-  height: clamp(270px, 30vw, 370px);
+  width: clamp(220px, 24vw, 295px);
+  height: clamp(270px, 30vw, 365px);
   border-radius: 1.4rem;
   overflow: hidden;
   border: 1.5px solid var(--border-accent);
@@ -71,17 +71,18 @@
   box-shadow:
     0 0 0 5px var(--bg-secondary),
     0 0 0 6px var(--border-accent),
-    0 32px 64px rgba(0, 0, 0, 0.3);
+    0 32px 64px rgba(0, 0, 0, 0.42),
+    0 0 48px var(--accent-glow);
 }
 
-[data-theme="light"] .about_photo {
+[data-theme="light"] .about__photo {
   box-shadow:
     0 0 0 5px var(--bg-secondary),
     0 0 0 6px var(--border-accent),
-    0 24px 48px rgba(74, 126, 227, 0.12);
+    0 24px 48px rgba(0, 184, 156, 0.12);
 }
 
-.about_photo img {
+.about__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -90,11 +91,11 @@
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.about_photo:hover img {
+.about__photo:hover img {
   transform: scale(1.04);
 }
 
-.photo_fade {
+.about__photo-fade {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -104,32 +105,37 @@
   pointer-events: none;
 }
 
-.photo_badge {
+/* ---- Floating badges ---- */
+.about__badge {
   position: absolute;
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: var(--bg-card);
+  background: rgba(12, 26, 36, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-accent);
   border-radius: 0.875rem;
   padding: 0.55rem 0.85rem;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(12px);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 229, 200, 0.06);
   white-space: nowrap;
   z-index: 3;
 }
 
-[data-theme="light"] .photo_badge {
-  box-shadow: 0 6px 22px rgba(74, 126, 227, 0.14);
+[data-theme="light"] .about__badge {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 6px 22px rgba(0, 184, 156, 0.14);
 }
 
-.badge_role {
+.about__badge--role {
   top: 1.25rem;
   left: -1.75rem;
-  animation: badgeFloat 4s ease-in-out infinite alternate;
+  animation: aboutBadgeFloat 4s ease-in-out infinite alternate;
 }
 
-.badge_exp {
+.about__badge--exp {
   bottom: 1.75rem;
   right: -1.5rem;
   flex-direction: column;
@@ -138,20 +144,16 @@
   padding: 0.65rem 1rem;
   background: var(--gradient-accent);
   border-color: transparent;
-  animation: badgeFloat 5s ease-in-out infinite alternate-reverse;
+  animation: aboutBadgeFloat 5s ease-in-out infinite alternate-reverse;
 }
 
-@keyframes badgeFloat {
-  from {
-    transform: translateY(0);
-  }
-
+@keyframes aboutBadgeFloat {
   to {
     transform: translateY(-7px);
   }
 }
 
-.badge_icon {
+.about__badge-icon {
   width: 32px;
   height: 32px;
   border-radius: 0.5rem;
@@ -163,31 +165,31 @@
   flex-shrink: 0;
 }
 
-.badge_icon i {
+.about__badge-icon i {
   color: var(--accent);
   font-size: 0.85rem;
 }
 
-.badge_body {
+.about__badge-body {
   display: flex;
   flex-direction: column;
   gap: 0.05rem;
 }
 
-.badge_title {
+.about__badge-title {
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
-.badge_sub {
+.about__badge-sub {
   font-size: 0.64rem;
   color: var(--text-muted);
   font-weight: 500;
 }
 
-.exp_num {
+.about__badge-exp-num {
   font-family: "Syne", sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
@@ -195,15 +197,16 @@
   line-height: 1;
 }
 
-.exp_lbl {
-  font-size: 0.62rem;
+.about__badge-exp-lbl {
+  font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
 }
 
-.about_stack {
+/* ---- Tech chips ---- */
+.about__tech-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -212,10 +215,10 @@
   z-index: 1;
 }
 
-.stack_chip {
+.about__tech-chip {
   font-size: 0.72rem;
-  font-weight: 700;
-  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-family: "JetBrains Mono", monospace;
   letter-spacing: 0.3px;
   padding: 0.3rem 0.8rem;
   border-radius: 999px;
@@ -229,28 +232,27 @@
   cursor: default;
 }
 
-.stack_chip:hover {
+.about__tech-chip:hover {
   color: var(--accent);
   background: var(--accent-glow);
   border-color: var(--accent);
 }
 
-.about_content {
+/* ---- Content column ---- */
+.about__content {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 2vh, 1.5rem);
 }
 
-.about_header {
-  position: relative;
-  z-index: 1;
+.about__header {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.about_title {
+.about__title {
   font-family: "Syne", sans-serif;
   font-size: clamp(2rem, 3.8vw, 3.2rem);
   font-weight: 800;
@@ -260,7 +262,7 @@
   margin: 0;
 }
 
-.about_title_grad {
+.about__title-grad {
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -268,13 +270,13 @@
   display: block;
 }
 
-.about_bio {
+/* ---- Bio ---- */
+.about__bio {
   position: relative;
   padding-left: 1.25rem;
-  z-index: 1;
 }
 
-.bio_quote_mark {
+.about__bio-quote {
   position: absolute;
   top: -0.4em;
   left: -0.2em;
@@ -286,12 +288,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0.25;
+  opacity: 0.22;
   pointer-events: none;
   user-select: none;
 }
 
-.bio_text {
+.about__bio-text {
   font-size: clamp(0.9rem, 1.15vw, 1.02rem);
   line-height: 1.85;
   color: var(--text-secondary);
@@ -299,41 +301,20 @@
   z-index: 1;
 }
 
-.bio_text_sm {
+.about__bio-text--accent {
   font-size: 0.92rem;
   padding-left: 1.25rem;
   border-left: 2px solid var(--border-accent);
-  z-index: 1;
-  position: relative;
 }
 
-.hl {
-  color: var(--text-primary);
-  font-weight: 600;
-  position: relative;
-  display: inline;
-}
-
-.hl::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 1.5px;
-  background: var(--gradient-accent);
-  border-radius: 2px;
-  opacity: 0.7;
-}
-
-.about_traits {
+/* ---- Trait chips ---- */
+.about__traits {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.6rem;
-  z-index: 1;
 }
 
-.trait_chip {
+.about__trait {
   display: flex;
   align-items: center;
   gap: 0.65rem;
@@ -348,13 +329,13 @@
     box-shadow 0.3s;
 }
 
-.trait_chip:hover {
+.about__trait:hover {
   border-color: var(--border-accent);
   background: var(--bg-card-hover);
   box-shadow: var(--shadow-glow);
 }
 
-.trait_icon {
+.about__trait-icon {
   width: 30px;
   height: 30px;
   border-radius: 0.5rem;
@@ -366,40 +347,57 @@
   flex-shrink: 0;
 }
 
-.trait_icon i {
+.about__trait-icon i {
   font-size: 0.75rem;
   color: var(--accent);
 }
 
-.trait_label {
+.about__trait-label {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-primary);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   letter-spacing: 0.2px;
 }
 
-.about_stats_row {
+/* ---- Glassmorphism stat cards ---- */
+.about__stats {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.25rem 1.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  align-items: stretch;
+  gap: 0;
   border-radius: 1.25rem;
-  z-index: 1;
+  overflow: hidden;
+  border: 1px solid var(--border-accent);
+  background: rgba(12, 26, 36, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
 }
 
-.astat {
+.about__stats::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-accent);
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+[data-theme="light"] .about__stats {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.about__stat {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  flex: 1;
   align-items: center;
-  text-align: center;
+  gap: 0.2rem;
+  padding: 1.4rem 1rem;
+  position: relative;
 }
 
-.astat_num {
+.about__stat-num {
   font-family: "Syne", sans-serif;
   font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   font-weight: 800;
@@ -410,85 +408,112 @@
   background-clip: text;
 }
 
-.astat_lbl {
-  font-size: 0.68rem;
+.about__stat-label {
+  font-size: 0.64rem;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
+  text-align: center;
 }
 
-.astat_sep {
+.about__stat-sep {
   width: 1px;
-  height: 36px;
   background: var(--border-accent);
+  align-self: stretch;
   flex-shrink: 0;
 }
 
-.about_cta {
+.about__cta {
   align-self: flex-start;
 }
 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media screen and (max-width: 960px) {
-  .about_grid {
+  .about__grid {
     grid-template-columns: 0.8fr 1.2fr;
     gap: 3rem;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .about_grid {
+  .about__grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 
-  .about_visual {
+  .about__visual {
     align-items: center;
   }
 
-  .badge_role {
+  .about__badge--role {
     left: -0.75rem;
   }
 
-  .badge_exp {
+  .about__badge--exp {
     right: -0.75rem;
   }
 
-  .about_traits {
+  .about__traits {
     grid-template-columns: 1fr 1fr;
   }
 
-  .about_title {
+  .about__title {
     font-size: 2rem;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .about_traits {
-    grid-template-columns: 1fr;
+  /* Keep 2 cols — saves vertical space vs single-column stack */
+  .about__traits {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .about_stats_row {
-    gap: 1rem;
-    padding: 1rem;
+  .about__trait {
+    padding: 0.5rem 0.65rem;
+    gap: 0.5rem;
   }
 
-  .badge_role {
+  .about__trait-label {
+    font-size: 0.7rem;
+  }
+
+  /* Smaller photo on small screens */
+  .about__photo {
+    width: clamp(170px, 68vw, 230px);
+    height: clamp(200px, 80vw, 280px);
+  }
+
+  .about__stats {
+    gap: 0;
+  }
+
+  .about__stat {
+    padding: 0.85rem 0.5rem;
+  }
+
+  .about__stat-num {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+  }
+
+  .about__badge--role {
     display: none;
   }
 
-  .badge_exp {
+  .about__badge--exp {
     right: -0.5rem;
     bottom: 1rem;
   }
 
-  .bio_text_sm {
+  .about__bio-text--accent {
     border-left: none;
     padding-left: 0;
   }
 
-  .about_cta {
+  .about__cta {
     align-self: stretch;
     justify-content: center;
   }

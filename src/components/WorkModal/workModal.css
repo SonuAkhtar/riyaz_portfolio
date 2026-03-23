@@ -84,7 +84,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
 .modal_close {

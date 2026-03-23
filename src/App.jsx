@@ -1,10 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import "./app.css";
 
-// Layout Components
 import Header from "./components/Header/Header";
+import Cursor from "./components/Cursor/Cursor";
 
-// Pages
 import HomePage from "./pages/Home/Homepage";
 import AboutPage from "./pages/About/AboutPage";
 import SkillsPage from "./pages/Skills/SkillsPage";
@@ -15,6 +14,7 @@ import TestimonyPage from "./pages/Testimony/TestimonyPage";
 function App() {
   return (
     <>
+      <Cursor />
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

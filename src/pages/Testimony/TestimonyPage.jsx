@@ -335,7 +335,7 @@ const TestimonyPage = () => {
             </motion.a>
             <motion.div variants={scaleIn}>
               <Link to="/" className="btn btn_outline">
-                <i className="fas fa-home" /> Back to Home
+                <i className="fas fa-house" /> Back to Home
               </Link>
             </motion.div>
           </motion.div>

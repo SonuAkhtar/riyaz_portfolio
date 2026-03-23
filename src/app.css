@@ -1,5 +1,4 @@
-/* Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap");
 
 * {
   -webkit-tap-highlight-color: transparent;
@@ -9,47 +8,53 @@
   outline: none;
 }
 
+html,
+body {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
 /* ---- Dark Theme (default) ---- */
 :root,
 [data-theme="dark"] {
-  --bg-primary: #070b14;
-  --bg-secondary: #0d1525;
-  --bg-card: #111b2e;
-  --bg-card-hover: #172035;
-  --accent: #5b8dee;
-  --accent-2: #7c6ff7;
-  --accent-glow: rgba(91, 141, 238, 0.18);
-  --accent-glow-strong: rgba(91, 141, 238, 0.35);
-  --text-primary: #e2e8f0;
-  --text-secondary: #8892a4;
-  --text-muted: #4b5e75;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-accent: rgba(91, 141, 238, 0.3);
-  --gradient-accent: linear-gradient(135deg, #5b8dee 0%, #7c6ff7 100%);
-  --gradient-text: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 30px rgba(91, 141, 238, 0.15);
+  --bg-primary: #040a0e;
+  --bg-secondary: #071118;
+  --bg-card: #0c1a24;
+  --bg-card-hover: #0f2232;
+  --accent: #00e5c8;
+  --accent-2: #6c8ef5;
+  --accent-glow: rgba(0, 229, 200, 0.1);
+  --accent-glow-strong: rgba(0, 229, 200, 0.25);
+  --text-primary: #e4edf5;
+  --text-secondary: #7a8fa5;
+  --text-muted: #384a5c;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(0, 229, 200, 0.2);
+  --gradient-accent: linear-gradient(135deg, #00e5c8 0%, #6c8ef5 100%);
+  --gradient-text: linear-gradient(135deg, #e4edf5 0%, #7a8fa5 100%);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 32px rgba(0, 229, 200, 0.1);
 }
 
 /* ---- Light Theme ---- */
 [data-theme="light"] {
-  --bg-primary: #f4f6fb;
-  --bg-secondary: #eaeff8;
+  --bg-primary: #f0f4f8;
+  --bg-secondary: #e4eaf2;
   --bg-card: #ffffff;
-  --bg-card-hover: #eef2ff;
-  --accent: #4a7ee3;
-  --accent-2: #6357d4;
-  --accent-glow: rgba(74, 126, 227, 0.1);
-  --accent-glow-strong: rgba(74, 126, 227, 0.22);
-  --text-primary: #18263a;
-  --text-secondary: #4b5a72;
-  --text-muted: #8898aa;
+  --bg-card-hover: #eef5ff;
+  --accent: #00b89c;
+  --accent-2: #5272e0;
+  --accent-glow: rgba(0, 184, 156, 0.1);
+  --accent-glow-strong: rgba(0, 184, 156, 0.22);
+  --text-primary: #0f1c28;
+  --text-secondary: #4a5a6a;
+  --text-muted: #8898a8;
   --border: rgba(0, 0, 0, 0.08);
-  --border-accent: rgba(74, 126, 227, 0.25);
-  --gradient-accent: linear-gradient(135deg, #4a7ee3 0%, #6357d4 100%);
-  --gradient-text: linear-gradient(135deg, #18263a 0%, #4b5a72 100%);
-  --shadow-card: 0 4px 24px rgba(74, 126, 227, 0.09);
-  --shadow-glow: 0 0 30px rgba(74, 126, 227, 0.14);
+  --border-accent: rgba(0, 184, 156, 0.25);
+  --gradient-accent: linear-gradient(135deg, #00b89c 0%, #5272e0 100%);
+  --gradient-text: linear-gradient(135deg, #0f1c28 0%, #4a5a6a 100%);
+  --shadow-card: 0 4px 24px rgba(0, 184, 156, 0.09);
+  --shadow-glow: 0 0 32px rgba(0, 184, 156, 0.14);
 }
 
 html {
@@ -57,9 +62,10 @@ html {
   transition:
     background-color 0.35s ease,
     color 0.35s ease;
+  cursor: none;
 }
 
-body *:not([class*="ticker"]):not([class*="orb"]):not([class*="ghost"]) {
+body *:not([class*="ticker"]):not([class*="orb"]):not([class*="ghost"]):not([class*="cursor"]) {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.3s;
   transition-timing-function: ease;
@@ -70,6 +76,12 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+a,
+button {
+  cursor: none;
 }
 
 ul {
@@ -93,7 +105,7 @@ section {
   color: var(--text-primary);
 }
 
-section.hero_section {
+section.hero {
   min-height: unset;
   height: 100vh;
   padding: 0;
@@ -113,23 +125,23 @@ section.even {
   max-width: 1320px;
 }
 
-.section_header {
+.section-header {
   margin-bottom: 3.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-.section_label {
-  font-size: 0.7rem;
+.section-label {
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
-.section_title {
+.section-title {
   font-family: "Syne", sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
@@ -152,10 +164,34 @@ section.even {
   font-weight: 600;
   font-family: "Inter", sans-serif;
   transition: box-shadow 0.3s;
-  cursor: pointer;
+  cursor: none;
   text-decoration: none;
 }
 
+.btn--primary {
+  background: var(--gradient-accent);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 6px 28px var(--accent-glow-strong);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-accent);
+}
+
+.btn--outline:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Legacy button class aliases — keeps older components working */
 .btn_primary {
   background: var(--gradient-accent);
   color: #fff;
@@ -179,6 +215,26 @@ section.even {
   color: var(--accent);
 }
 
+/* ---- Shared highlight ---- */
+.hl {
+  color: var(--text-primary);
+  font-weight: 600;
+  position: relative;
+  display: inline;
+}
+
+.hl::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
 /* Responsive */
 @media screen and (max-width: 768px) {
   section {
@@ -186,11 +242,11 @@ section.even {
     min-height: auto;
   }
 
-  .section_title {
+  .section-title {
     font-size: 2rem;
   }
 
-  .section_header {
+  .section-header {
     margin-bottom: 2.5rem;
   }
 }
@@ -200,7 +256,17 @@ section.even {
     padding: 4rem 1.25rem;
   }
 
-  .section_title {
+  .section-title {
     font-size: 1.75rem;
   }
+}
+
+/* Fallback — section_label still used in some components */
+.section_label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
 }

@@ -34,7 +34,7 @@ const WorkModal = ({ openModal, setOpenModal, modalData }) => {
                 onClick={() => setOpenModal(false)}
                 aria-label="Close"
               >
-                <i className="fas fa-times" />
+                <i className="fas fa-xmark" />
               </button>
             </div>
 

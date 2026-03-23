@@ -182,7 +182,7 @@
   font-size: clamp(0.9rem, 1.8vw, 1.1rem);
   font-weight: 600;
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   letter-spacing: 0.5px;
   margin: 0 0 1.25rem;
 }
@@ -210,7 +210,7 @@
   background: var(--accent-glow);
   border: 1px solid var(--border-accent);
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
 /* stats strip */
@@ -243,7 +243,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
 /* scroll cue */
@@ -260,7 +260,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   z-index: 1;
 }
 .amp_scroll_wheel {
@@ -327,7 +327,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--text-primary);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 .am_skill_bar_pct {
   font-size: 0.75rem;
@@ -499,7 +499,7 @@
   background: var(--accent-glow);
   border: 1px solid var(--border-accent);
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 
 /* AI grid */
@@ -588,7 +588,7 @@
   background: color-mix(in srgb, var(--ai-c) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--ai-c) 30%, transparent);
   color: var(--ai-c);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 .amp_ai_card_name {
   font-family: "Syne", sans-serif;
@@ -641,7 +641,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 .amp_azure_badge i {
   color: var(--accent);
@@ -962,7 +962,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -981,7 +981,7 @@
   background: var(--accent-glow);
   border: 1px solid var(--border-accent);
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
 }
 .amp_tl_tag_now {
   display: inline-flex;
@@ -1020,7 +1020,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--accent);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   display: flex;
   align-items: center;
   gap: 0.4rem;

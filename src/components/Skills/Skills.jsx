@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import "./skills.css";
 
-// libraries
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   fadeInLeft,
@@ -11,7 +10,6 @@ import {
   viewportOptions,
 } from "../../utils/animations";
 
-// appData
 import { homeSkillsData } from "../../../appData";
 
 const getLevel = (n) => {
@@ -31,17 +29,14 @@ const SkillBar = ({ name, icon, number, delay, catColor }) => {
   return (
     <motion.div
       ref={ref}
-      className="hsk_bar_item"
+      className="skills__bar-item"
       initial={{ opacity: 0, x: 28 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1], delay }}
-      whileHover={{
-        x: 5,
-        transition: { type: "spring", stiffness: 300, damping: 22 },
-      }}
+      whileHover={{ x: 5, transition: { type: "spring", stiffness: 300, damping: 22 } }}
     >
       <div
-        className="hsk_bar_icon"
+        className="skills__bar-icon"
         style={{
           color: catColor,
           background: `${catColor}14`,
@@ -51,16 +46,16 @@ const SkillBar = ({ name, icon, number, delay, catColor }) => {
         <i className={icon} />
       </div>
 
-      <div className="hsk_bar_body">
-        <div className="hsk_bar_meta">
-          <span className="hsk_bar_name">{name}</span>
-          <span className="hsk_bar_pct" style={{ color: lc.fill }}>
+      <div className="skills__bar-body">
+        <div className="skills__bar-meta">
+          <span className="skills__bar-name">{name}</span>
+          <span className="skills__bar-pct" style={{ color: lc.fill }}>
             {pct}%
           </span>
         </div>
-        <div className="hsk_bar_track">
+        <div className="skills__bar-track">
           <motion.div
-            className="hsk_bar_fill"
+            className="skills__bar-fill"
             style={{
               background: `linear-gradient(90deg, ${lc.fill}bb, ${lc.fill})`,
               boxShadow: `0 0 12px ${lc.glow}`,
@@ -73,13 +68,13 @@ const SkillBar = ({ name, icon, number, delay, catColor }) => {
               delay: delay + 0.18,
             }}
           />
-          <span className="hsk_bar_tick" style={{ left: "25%" }} />
-          <span className="hsk_bar_tick" style={{ left: "50%" }} />
-          <span className="hsk_bar_tick" style={{ left: "75%" }} />
+          <span className="skills__bar-tick" style={{ left: "25%" }} />
+          <span className="skills__bar-tick" style={{ left: "50%" }} />
+          <span className="skills__bar-tick" style={{ left: "75%" }} />
         </div>
       </div>
       <span
-        className="hsk_bar_lvl"
+        className="skills__bar-level"
         style={{
           color: lc.fill,
           borderColor: `${lc.fill}45`,
@@ -113,9 +108,9 @@ const Skills = () => {
 
   return (
     <section className="skills" id="skills">
-      <div className="container hsk_container">
+      <div className="container skills__container">
         <motion.div
-          className="hsk_stats_strip"
+          className="skills__stats"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -127,57 +122,53 @@ const Skills = () => {
             { val: "4", lbl: "Skill Domains" },
             { val: "5", lbl: "Certifications" },
           ].map((s, i) => (
-            <motion.div key={s.lbl} className="hsk_stat" variants={fadeInUp}>
-              <span className="hsk_stat_val">{s.val}</span>
-              <span className="hsk_stat_lbl">{s.lbl}</span>
-              {i < 3 && <span className="hsk_stat_sep" aria-hidden="true" />}
+            <motion.div key={s.lbl} className="skills__stat" variants={fadeInUp}>
+              <span className="skills__stat-val">{s.val}</span>
+              <span className="skills__stat-label">{s.lbl}</span>
+              {i < 3 && <span className="skills__stat-sep" aria-hidden="true" />}
             </motion.div>
           ))}
         </motion.div>
 
-        <div className="hsk_main_grid">
+        <div className="skills__main">
           <motion.div
-            className="hsk_left"
+            className="skills__left"
             variants={fadeInLeft}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOptions}
           >
-            <div className="hsk_title_block">
+            <div className="skills__header">
               <span className="section_label">Expertise</span>
-              <h2 className="skills_title">
+              <h2 className="skills__title">
                 Technical
                 <br />
-                <span className="skills_title_grad">Expertise.</span>
+                <span className="skills__title-grad">Expertise.</span>
               </h2>
-              <p className="skills_subtitle">
+              <p className="skills__subtitle">
                 Core competencies built through years of shipping real
                 production systems.
               </p>
             </div>
 
-            <div className="hsk_cat_tabs">
+            <div className="skills__tabs">
               {homeSkillsData.skills.map((c, i) => (
                 <button
                   key={c.id}
-                  className={`hsk_cat_tab${active === i ? " hsk_active" : ""}`}
+                  className={`skills__tab${active === i ? " skills__tab--active" : ""}`}
                   onClick={() => setActive(i)}
                 >
                   {active === i && (
                     <motion.span
-                      className="hsk_tab_accent_bar"
-                      layoutId="hsk_tab_accent"
+                      className="skills__tab-accent"
+                      layoutId="skills_tab_accent"
                       style={{ background: homeSkillsData.catColors[i] }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 32,
-                      }}
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
 
                   <span
-                    className="hsk_tab_icon"
+                    className="skills__tab-icon"
                     style={
                       active === i
                         ? {
@@ -191,13 +182,13 @@ const Skills = () => {
                     <i className={c.icon} />
                   </span>
 
-                  <span className="hsk_tab_labels">
-                    <span className="hsk_tab_name">{c.title}</span>
-                    <span className="hsk_tab_sub">{c.subtitle}</span>
+                  <span className="skills__tab-labels">
+                    <span className="skills__tab-name">{c.title}</span>
+                    <span className="skills__tab-sub">{c.subtitle}</span>
                   </span>
 
                   <span
-                    className="hsk_tab_count"
+                    className="skills__tab-count"
                     style={
                       active === i
                         ? {
@@ -217,22 +208,19 @@ const Skills = () => {
             <AnimatePresence mode="wait">
               <motion.p
                 key={active}
-                className="hsk_cat_blurb"
+                className="skills__blurb"
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0, transition: { duration: 0.32 } }}
                 exit={{ opacity: 0, y: -5, transition: { duration: 0.18 } }}
               >
-                <span
-                  className="hsk_cat_blurb_dot"
-                  style={{ background: catColor }}
-                />
+                <span className="skills__blurb-dot" style={{ background: catColor }} />
                 {cat.data.length} skills · {cat.subtitle}
               </motion.p>
             </AnimatePresence>
           </motion.div>
 
           <motion.div
-            className="hsk_right"
+            className="skills__right"
             variants={fadeInRight}
             initial="hidden"
             whileInView="visible"
@@ -241,17 +229,17 @@ const Skills = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`hdr-${active}`}
-                className="hsk_panel_hdr"
+                className="skills__panel-header"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0, transition: { duration: 0.32 } }}
                 exit={{ opacity: 0, y: -6, transition: { duration: 0.18 } }}
               >
-                <span className="hsk_panel_cat" style={{ color: catColor }}>
+                <span className="skills__panel-cat" style={{ color: catColor }}>
                   <i className={cat.icon} />
                   {cat.title}
                 </span>
                 <div
-                  className="hsk_panel_line"
+                  className="skills__panel-line"
                   style={{
                     background: `linear-gradient(90deg, ${catColor}80, transparent)`,
                   }}
@@ -262,7 +250,7 @@ const Skills = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
-                className="hsk_bars_list"
+                className="skills__bars"
                 variants={panelVariants}
                 initial="enter"
                 animate="center"
@@ -284,15 +272,15 @@ const Skills = () => {
         </div>
 
         <motion.div
-          className="skills_legend"
+          className="skills__legend"
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOptions}
         >
           {homeSkillsData.stats.map((l) => (
-            <span key={l.cls} className={`leg_item li_${l.cls}`}>
-              <span className="leg_dot" />
+            <span key={l.cls} className={`skills__legend-item skills__legend-item--${l.cls}`}>
+              <span className="skills__legend-dot" />
               {l.label}
             </span>
           ))}
