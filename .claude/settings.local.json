@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\LENOVO\\\\OneDrive\\\\Desktop\\\\Practice\\\\2026\\\\riyaz_portfolio\" -Force)",
+      "Bash(Select-Object Name)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\LENOVO\\\\OneDrive\\\\Desktop\\\\Practice\\\\2026\\\\riyaz_portfolio\\\\public\\\\assets\" -Recurse | Where-Object {$_.Extension -eq \".gif\" -or $_.Extension -eq \".png\"} | Select-Object FullName)",
+      "PowerShell(ls \"C:\\\\Users\\\\LENOVO\\\\OneDrive\\\\Desktop\\\\Practice\\\\2026\\\\riyaz_portfolio\" | Where-Object {$_.Extension -eq \".svg\" -or $_.Extension -eq \".ico\"})",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npm audit *)"
+    ]
+  }
+}

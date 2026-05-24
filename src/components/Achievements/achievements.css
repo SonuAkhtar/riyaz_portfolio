@@ -1,0 +1,159 @@
+.achievements_root {
+  --color-text: var(--text-primary);
+  --color-text-soft: var(--text-secondary);
+  --color-text-mute: var(--text-muted);
+  --color-line: var(--border);
+  --grid-line: color-mix(in srgb, var(--text-primary) 4%, transparent);
+  --gradient-text-display: linear-gradient(180deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+
+  --font-display: "Clash Display", "Sora", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --fs-caption: 0.75rem;
+  --tracking-wider: 0.12em;
+
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-8: 3rem;
+
+  --container-max: 1440px;
+  --container-padding: clamp(1.25rem, 4vw, 3rem);
+  --section-padding-y: clamp(5rem, 10vw, 9rem);
+
+  padding: var(--section-padding-y) 0 !important;
+  display: block !important;
+  align-items: unset !important;
+  justify-content: unset !important;
+  min-height: unset !important;
+  overflow: hidden !important;
+  background-color: transparent !important;
+  color: var(--color-text);
+  font-family: var(--font-display);
+
+  border-block: 1px solid var(--color-line);
+  position: relative;
+}
+
+.achievements_root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: center;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.achievements_inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  gap: var(--space-8);
+}
+
+.achievements_eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-mute);
+}
+
+.achievements_eyebrow span {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.achievements_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievements_item {
+  border-left: 1px solid var(--color-line);
+  padding: var(--space-3) var(--space-5);
+  display: grid;
+  gap: var(--space-2);
+}
+
+.achievements_item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.achievements_item-value {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  
+  color: var(--color-text);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: flex-end;
+}
+.achievements_roll {
+  display: inline-flex;
+  align-items: flex-end;
+  line-height: 1;
+}
+
+.achievements_digit {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+  vertical-align: bottom;
+  font-variant-numeric: tabular-nums;
+}
+
+.achievements_digit-col {
+  display: inline-flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.achievements_digit-cell {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.achievements_suffix {
+  display: inline-block;
+  line-height: 1;
+}
+
+.achievements_item-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-mute);
+}
+
+@media (max-width: 760px) {
+  .achievements_grid { grid-template-columns: 1fr 1fr; }
+  .achievements_item:nth-child(3) {
+    border-left: none;
+    padding-left: 0;
+  }
+}

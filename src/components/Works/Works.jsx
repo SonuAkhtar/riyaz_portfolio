@@ -1,184 +1,93 @@
-import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
+import { palette } from "../../utils/themeColors";
+import { servicesPreview } from "../../../appData";
 import "./works.css";
 
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
-import { homeWorksData } from "../../../appData";
-
-const SERVICE_META = [
-  {
-    color: "#61dafb",
-    desc: "Pixel-perfect React & Next.js apps, design systems, and Core Web Vitals-optimized experiences.",
-  },
-  {
-    color: "#a855f7",
-    desc: "GPT-4, LangChain, and RAG pipelines woven into products — AI that ships to production.",
-  },
-  {
-    color: "#0078d4",
-    desc: "CI/CD, serverless functions, and Application Insights monitoring on Azure at scale.",
-  },
-  {
-    color: "#10b981",
-    desc: "RESTful & GraphQL APIs, Node.js microservices, and battle-tested data layer architecture.",
-  },
-];
-
-const WorksRow = ({ data, index, tags, isLast }) => {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  const meta = SERVICE_META[index];
-
-  return (
-    <motion.div
-      ref={ref}
-      className={`works__row${open ? " works__row--open" : ""}`}
-      initial={{ opacity: 0, y: 48 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{
-        duration: 0.65,
-        ease: [0.22, 1, 0.36, 1],
-        delay: index * 0.1,
-      }}
-      style={{ "--row-color": meta.color }}
-    >
-      {/* left accent bar */}
-      <span className="works__row-bar" aria-hidden="true" />
-
-      {/* clickable main row */}
-      <button
-        className="works__row-main"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-      >
-        <span className="works__row-num" aria-hidden="true">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-
-        <span className="works__row-icon">
-          <i className={data.icon} />
-        </span>
-
-        <span className="works__row-body">
-          <span className="works__row-title">{data.name}</span>
-          <span className="works__row-desc">{meta.desc}</span>
-        </span>
-
-        <span className="works__row-tags" aria-hidden="true">
-          {tags.map((tag, j) => (
-            <span key={j} className="works__row-tag">
-              {tag}
-            </span>
-          ))}
-        </span>
-
-        <motion.span
-          className="works__row-chevron"
-          animate={{ rotate: open ? 45 : 0 }}
-          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <i className="fas fa-plus" />
-        </motion.span>
-      </button>
-
-      {/* expandable features */}
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            className="works__row-expand"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <ul className="works__row-features">
-              {data.features.map((feat, j) => (
-                <motion.li
-                  key={j}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: j * 0.07,
-                  }}
-                >
-                  <span className="works__row-feat-dot" aria-hidden="true" />
-                  {feat}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {!isLast && <span className="works__row-divider" aria-hidden="true" />}
-    </motion.div>
-  );
-};
+const SLOT_ACCENTS = [palette.violet400, palette.blue600, palette.cyan300];
+const SERVICES_PREVIEW = servicesPreview.map((s, i) => ({
+  ...s,
+  accent: SLOT_ACCENTS[i % SLOT_ACCENTS.length],
+}));
 
 const Works = () => (
-  <section className="works even" id="works">
-    <div className="container">
-      {/* ── Header ── */}
+  <section className="works" id="works">
+    <div className="works_inner">
       <motion.div
-        className="works__header"
-        variants={stagger}
+        className="works_head"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOptions}
+        variants={stagger}
       >
         <motion.span className="section_label" variants={fadeInUp}>
-          What I Do
+          What I do
         </motion.span>
-        <motion.h2 className="works__title" variants={fadeInUp}>
-          Crafting Digital
+        <motion.h2 className="works_title" variants={fadeInUp}>
+          Three disciplines.
           <br />
-          <span className="works__title-accent">Experiences.</span>
+          <em className="works_title_em">One opinionated builder.</em>
         </motion.h2>
-        <motion.p className="works__subtitle" variants={fadeInUp}>
-          End-to-end solutions — from pixel-perfect interfaces to robust,
-          scalable backend systems.
+        <motion.p className="works_subtitle" variants={fadeInUp}>
+          I don't sell hours - I sell shipped outcomes. Pick the surface area
+          that fits your problem; I'll bring the rest.
         </motion.p>
       </motion.div>
 
-      {/* ── Service rows ── */}
-      <div className="works__list">
-        {homeWorksData.stacks.map((data, i) => (
-          <WorksRow
-            key={data.id}
-            data={data}
-            index={i}
-            tags={homeWorksData.tags[i]}
-            isLast={i === homeWorksData.stacks.length - 1}
-          />
-        ))}
-      </div>
-
-      {/* ── CTA ── */}
       <motion.div
-        className="works__cta"
-        variants={fadeInUp}
+        className="works_grid"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOptions}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+          },
+        }}
       >
-        <div className="works__cta-text">
-          <span className="works__cta-eyebrow">Got a project in mind?</span>
-          <p className="works__cta-title">
-            Let's build something{" "}
-            <span className="works__cta-grad">remarkable</span> together.
-          </p>
-        </div>
-        <motion.a
-          href="#contact"
-          className="btn btn_primary"
-          whileHover={{ scale: 1.05, y: -2 }}
-          whileTap={{ scale: 0.97 }}
+        {SERVICES_PREVIEW.map((s) => (
+          <motion.article
+            key={s.num}
+            className="work_card"
+            style={{ "--svc-color": s.accent }}
+            variants={{
+              hidden: { opacity: 0, y: 48, scale: 0.96, filter: "blur(8px)" },
+              visible: {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: "blur(0px)",
+                transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+              },
+            }}
+          >
+            <span className="wc_num">{s.num}</span>
+            <div className="wc_icon_wrap">
+              <i className={s.icon} />
+            </div>
+            <h3 className="wc_title">{s.title}</h3>
+            <p className="wc_summary">{s.summary}</p>
+          </motion.article>
+        ))}
+      </motion.div>
+
+      <motion.div
+        className="works_footer"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewportOptions}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Link
+          to="/services"
+          className="works_more_cta"
+          aria-label="See all services"
         >
-          Start a Project <i className="fas fa-arrow-right" />
-        </motion.a>
+          See all services
+          <i className="fas fa-arrow-right" />
+        </Link>
       </motion.div>
     </div>
   </section>

@@ -1,0 +1,26 @@
+.ab_root {
+  
+  --color-text:        var(--text-primary);
+  --color-text-soft:   var(--text-secondary);
+  --color-text-mute:   var(--text-muted);
+  --color-text-dim:    var(--text-muted);
+  --color-line:        var(--border);
+  --color-line-strong: var(--border-accent);
+  --color-ink-1000:    var(--bg-primary);
+  --ab-page-bg:        var(--bg-primary);
+
+  
+  --font-display: "Clash Display", "Sora", "Inter", sans-serif;
+  --font-body: "Inter", "General Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  overflow-x: clip;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+.ab_root .contact {
+  background-color: var(--bg-primary);
+}

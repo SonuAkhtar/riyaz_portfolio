@@ -1,196 +1,104 @@
-import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
+import { profile } from "../../../appData";
 import "./aboutMe.css";
 
-import { motion, useInView } from "framer-motion";
-import {
-  fadeInLeft,
-  fadeInRight,
-  stagger,
-  scaleIn,
-  viewportOptions,
-} from "../../utils/animations";
+const TRAITS = [
+  { icon: "fas fa-bolt", label: "Performance-first" },
+  { icon: "fas fa-layer-group", label: "Design systems" },
+  { icon: "fas fa-code-branch", label: "Clean architecture" },
+  { icon: "fas fa-users", label: "Team leadership" },
+];
 
-import { homeAboutData } from "../../../appData";
-import aboutImage from "/assets/about/about_pic.jpg";
+const AboutMe = () => (
+  <section className="about" id="about">
+    <div className="about_inner">
+      <span className="about_wm" aria-hidden="true">
+        ABOUT
+      </span>
 
-const CountUp = ({ to, suffix = "", visible }) => {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!visible) return;
-    let cur = 0;
-    const step = to / 32;
-    const iv = setInterval(() => {
-      cur += step;
-      if (cur >= to) {
-        setVal(to);
-        clearInterval(iv);
-      } else setVal(Math.floor(cur));
-    }, 1000 / 32);
-    return () => clearInterval(iv);
-  }, [visible, to]);
-  return (
-    <>
-      {val}
-      {suffix}
-    </>
-  );
-};
+      <motion.div
+        className="about_head"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOptions}
+        variants={stagger}
+      >
+        <motion.span
+          className="section_label about_section_label"
+          variants={fadeInUp}
+        >
+          Who I am
+        </motion.span>
+        <motion.h2 className="about_statement" variants={fadeInUp}>
+          I build digital products
+          <br />
+          <em className="about_stmt_accent">that actually ship.</em>
+        </motion.h2>
+      </motion.div>
 
-const AboutMe = () => {
-  const statsRef = useRef(null);
-  const statsVisible = useInView(statsRef, { once: true, margin: "-80px" });
+      <motion.div
+        className="about_rule"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={viewportOptions}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+      />
 
-  return (
-    <section className="about even" id="about">
-      <div className="container">
-        <div className="about__grid">
-          <motion.div
-            className="about__visual"
-            variants={fadeInLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOptions}
+      <div className="about_body">
+        <motion.div
+          className="about_bio_col"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOptions}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
+          <p className="about_bio_text">
+            I lead frontend at <strong>{profile.currentCompany}</strong> -
+            turning ambiguous problems into clean, scalable systems. My work
+            spans React frontends, micro-frontend architecture, and the testing
+            and security discipline that keeps enterprise products calm in
+            production - across healthcare, consulting, and SaaS teams.
+          </p>
+          <p className="about_bio_text">
+            The hard part isn't writing the code - it's knowing what to ship,
+            what to cut, and what to keep boring on purpose.
+          </p>
+
+          <Link
+            to="/about"
+            className="about_more_cta"
+            aria-label="Read the full story"
           >
-            <div className="about__dot-grid" aria-hidden="true" />
+            Read the full story
+            <i className="fas fa-arrow-right" />
+          </Link>
+        </motion.div>
 
-            <div className="about__photo-stack">
-              <div className="about__stack-card about__stack-card--back" />
-              <div className="about__stack-card about__stack-card--mid" />
-
-              <div className="about__photo">
-                <img src={aboutImage} alt="Riyaz Akhtar" />
-                <div className="about__photo-fade" />
-              </div>
-
-              <motion.div
-                className="about__badge about__badge--role"
-                initial={{ opacity: 0, x: -20, y: 10 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={viewportOptions}
-                transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="about__badge-icon">
-                  <i className="fas fa-briefcase" />
-                </span>
-                <div className="about__badge-body">
-                  <span className="about__badge-title">Publicis Sapient</span>
-                  <span className="about__badge-sub">Lead Engineer</span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="about__badge about__badge--exp"
-                initial={{ opacity: 0, x: 20, y: 10 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={viewportOptions}
-                transition={{ delay: 0.55, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="about__badge-exp-num">8+</span>
-                <span className="about__badge-exp-lbl">Yrs</span>
-              </motion.div>
-            </div>
-
+        <motion.div
+          className="about_traits_col"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOptions}
+          variants={stagger}
+        >
+          {TRAITS.map((t) => (
             <motion.div
-              className="about__tech-chips"
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportOptions}
+              key={t.label}
+              className="about_trait"
+              variants={fadeInUp}
             >
-              {homeAboutData.tech.map((t, i) => (
-                <motion.span key={i} className="about__tech-chip" variants={scaleIn}>
-                  {t}
-                </motion.span>
-              ))}
+              <span className="about_trait_icon">
+                <i className={t.icon} />
+              </span>
+              <span className="about_trait_label">{t.label}</span>
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="about__content"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOptions}
-          >
-            <motion.div className="about__header" variants={fadeInRight}>
-              <span className="section_label">Who I Am</span>
-              <h2 className="about__title">
-                Behind the
-                <br />
-                <span className="about__title-grad">Code.</span>
-              </h2>
-            </motion.div>
-
-            <motion.div className="about__bio" variants={fadeInRight}>
-              <span className="about__bio-quote" aria-hidden="true">"</span>
-              <p className="about__bio-text">
-                I'm a <span className="hl">Senior Software Engineer</span>{" "}
-                specialising in building exceptional digital experiences. With
-                over 8 years in the industry, I bring deep expertise in{" "}
-                <span className="hl">frontend architecture</span>,{" "}
-                <span className="hl">design systems</span>, and full-stack
-                development.
-              </p>
-            </motion.div>
-
-            <motion.p className="about__bio-text about__bio-text--accent" variants={fadeInRight}>
-              Currently leading frontend initiatives at{" "}
-              <span className="hl">Publicis Sapient</span> — delivering
-              enterprise-scale digital experiences.
-            </motion.p>
-
-            <motion.div className="about__traits" variants={stagger}>
-              {homeAboutData.traits.map((t, i) => (
-                <motion.div
-                  key={i}
-                  className="about__trait"
-                  variants={scaleIn}
-                  whileHover={{ y: -3 }}
-                >
-                  <span className="about__trait-icon">
-                    <i className={t.icon} />
-                  </span>
-                  <span className="about__trait-label">{t.label}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              className="about__stats"
-              ref={statsRef}
-              variants={fadeInRight}
-            >
-              {homeAboutData.stats.map((s, i) => (
-                <React.Fragment key={i}>
-                  <div className="about__stat">
-                    <span className="about__stat-num">
-                      <CountUp to={s.to} suffix={s.suffix} visible={statsVisible} />
-                    </span>
-                    <span className="about__stat-label">{s.label}</span>
-                  </div>
-                  {i < homeAboutData.stats.length - 1 && (
-                    <span className="about__stat-sep" aria-hidden="true" />
-                  )}
-                </React.Fragment>
-              ))}
-            </motion.div>
-
-            <motion.div variants={fadeInRight}>
-              <motion.a
-                href="/assets/Riyaz_Akhtar_Resume.pdf"
-                download
-                className="btn btn--primary about__cta"
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Download Résumé <i className="fas fa-download" />
-              </motion.a>
-            </motion.div>
-          </motion.div>
-        </div>
+          ))}
+        </motion.div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default AboutMe;

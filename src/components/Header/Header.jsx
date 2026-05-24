@@ -1,238 +1,191 @@
-import { useEffect, useState, useCallback } from "react";
-import "./header.css";
-
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState, useCallback, useRef } from "react";
+import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { useTheme } from "../../utils/useTheme";
 import { navLinks, socialIconsData } from "../../../appData";
+import "./header.css";
+import heroImage from "/assets/hero/hero.png";
 
-const drawerVariant = {
-  hidden: {
-    x: "100%",
-    transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
-  },
-  visible: { x: 0, transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } },
+const NAV_ITEMS = navLinks.filter((l) => l.href !== "/");
+const SCROLL_THRESHOLD = 60;
+
+const ROUTE_PREFETCH = {
+  "/about":    () => import("../../pages/AboutMePage"),
+  "/services": () => import("../../pages/WorksPage"),
+  "/projects": () => import("../../pages/ProjectsPage"),
+  "/skills":   () => import("../../pages/SkillsPage"),
+  "/contact":  () => import("../../pages/ContactPage"),
 };
-const overlayVariant = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.3 } },
+
+const prefetched = new Set();
+const prefetchRoute = (path) => {
+  if (prefetched.has(path)) return;
+  const load = ROUTE_PREFETCH[path];
+  if (!load) return;
+  prefetched.add(path);
+  load().catch(() => prefetched.delete(path));
 };
-const itemVariant = {
-  hidden: { opacity: 0, x: 24 },
-  visible: (i) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: i * 0.06 + 0.1,
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
+const RollText = ({ text }) => (
+  <span className="roll_wrap" aria-hidden="true">
+    {[...text].map((char, i) => (
+      <span
+        key={i}
+        className="roll_char"
+        style={{ transitionDelay: `${i * 0.018}s` }}
+      >
+        {char === " " ? "\u00a0" : char}
+      </span>
+    ))}
+  </span>
+);
 
 const Header = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navState, setNavState] = useState("top");
+  const lastScrollY = useRef(0);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
-  useEffect(() => {
-    setDrawerOpen(false);
-  }, [location.pathname]);
+  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      setScrolled(y > 50);
-      setScrollProgress(total > 0 ? (y / total) * 100 : 0);
+      if (y <= SCROLL_THRESHOLD) {
+        setNavState("top");
+      } else if (y > lastScrollY.current) {
+        setNavState("hidden");
+      } else {
+        setNavState("compact");
+      }
+      lastScrollY.current = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = drawerOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [drawerOpen]);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
-  const toggle = useCallback(() => setDrawerOpen((v) => !v), []);
-  const close = useCallback(() => setDrawerOpen(false), []);
-
-  const isHome = location.pathname === "/";
+  const open = useCallback(() => setMenuOpen(true), []);
+  const close = useCallback(() => setMenuOpen(false), []);
 
   return (
     <>
       <motion.header
-        className={`header${scrolled ? " header--scrolled" : ""}`}
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className={`site_header ${navState}${menuOpen ? " menu_open" : ""}`}
+        initial={{ y: "-100%", opacity: 0 }}
+        animate={{ y: navState === "hidden" ? "-110%" : 0, opacity: 1 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       >
-        <nav className="header__nav">
-          <Link to="/" className="header__logo">
-            <span className="header__logo-text">Riyaz</span>
-            <span className="header__logo-dot">.</span>
-          </Link>
-
-          <div className="header__links">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.id}
-                to={link.href}
-                end={link.href === "/"}
-                className={({ isActive }) =>
-                  `header__link${isActive ? " header__link--active" : ""}`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </div>
-
-          <div className="header__right">
-            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-
-            <button
-              className={`header__ham${drawerOpen ? " header__ham--open" : ""}`}
-              onClick={toggle}
-              aria-label="Toggle navigation menu"
-              aria-expanded={drawerOpen}
+        <Link to="/" className="site_logo">RA.</Link>
+        <nav className="site_nav_desk" aria-hidden={navState !== "top"}>
+          {NAV_ITEMS.map((link) => (
+            <NavLink
+              key={link.id}
+              to={link.href}
+              tabIndex={navState !== "top" ? -1 : 0}
+              aria-label={link.label}
+              onMouseEnter={() => prefetchRoute(link.href)}
+              onFocus={() => prefetchRoute(link.href)}
+              className={({ isActive }) =>
+                `site_nav_link${isActive ? " active" : ""}`
+              }
             >
-              <span />
-              <span />
-              <span />
-            </button>
-          </div>
+              <RollText text={link.label.toUpperCase()} />
+            </NavLink>
+          ))}
         </nav>
+        <button
+          className={`site_menu_btn${menuOpen ? " is_open" : ""}`}
+          onClick={menuOpen ? close : open}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          tabIndex={navState === "compact" || menuOpen ? 0 : -1}
+        >
+          <RollText text="Menu" />
+          <span className="site_menu_btn_icon" aria-hidden="true">
+            <span /><span />
+          </span>
+        </button>
 
-        <div
-          className="header__progress"
-          style={{ transform: `scaleX(${scrollProgress / 100})` }}
-        />
+        <div className="site_nav_right">
+          <Link to="/contact" className="site_cta" aria-label="Start a project">
+            <img src={heroImage} className="site_cta_thumb" alt="" aria-hidden="true" />
+            <RollText text="Start a project" />
+          </Link>
+          <button
+            className={`site_ham${menuOpen ? " open" : ""}`}
+            onClick={menuOpen ? close : open}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span /><span />
+          </button>
+        </div>
       </motion.header>
 
-      <AnimatePresence>
-        {drawerOpen && (
-          <>
-            <motion.div
-              className="drawer__backdrop"
-              variants={overlayVariant}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              onClick={close}
-            />
+      <div
+        className={`fullmenu${menuOpen ? " active" : ""}`}
+        aria-hidden={!menuOpen}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+      >
+        <div className="fullmenu_tile">
+          <div className="fullmenu_head">
+            <Link to="/" className="fullmenu_logo" onClick={close}>RA.</Link>
+            <button className="fullmenu_close" onClick={close} aria-label="Close menu">
+              <span /><span />
+            </button>
+          </div>
 
-            <motion.div
-              className="drawer"
-              variants={drawerVariant}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Navigation menu"
-            >
-              <div className="drawer__head">
-                <Link to="/" className="drawer__logo" onClick={close}>
-                  <span>Riyaz</span>
-                  <span className="drawer__logo-dot">.</span>
-                </Link>
-                <button
-                  className="drawer__close"
+          <nav className="fullmenu_nav">
+            {NAV_ITEMS.map((link, i) => (
+              <div key={link.id} className="fullmenu_item_outer">
+                <NavLink
+                  to={link.href}
+                  className={({ isActive }) =>
+                    `fullmenu_item${isActive ? " fm_active" : ""}`
+                  }
+                  aria-label={link.label}
                   onClick={close}
-                  aria-label="Close menu"
+                  onMouseEnter={() => prefetchRoute(link.href)}
+                  onFocus={() => prefetchRoute(link.href)}
                 >
-                  <i className="fas fa-xmark" />
-                </button>
+                  <span className="fullmenu_item_num" aria-hidden="true">0{i + 1}</span>
+                  <span className="fullmenu_item_label" aria-hidden="true">
+                    <RollText text={link.label.toUpperCase()} />
+                  </span>
+                  <span className="fullmenu_item_arrow" aria-hidden="true">
+                    <i className="fas fa-arrow-right" />
+                  </span>
+                </NavLink>
               </div>
+            ))}
+          </nav>
 
-              <nav className="drawer__nav">
-                <p className="drawer__label">Pages</p>
-                {navLinks.map((link, i) => (
-                  <motion.div
-                    key={link.id}
-                    custom={i}
-                    variants={itemVariant}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    <NavLink
-                      to={link.href}
-                      end={link.href === "/"}
-                      className={({ isActive }) =>
-                        `drawer__link${isActive ? " drawer__link--active" : ""}`
-                      }
-                      onClick={close}
-                    >
-                      <span className="drawer__link-icon">
-                        <i className={link.icon} />
-                      </span>
-                      <span className="drawer__link-label">{link.label}</span>
-                      <i className="fas fa-chevron-right drawer__link-arrow" />
-                    </NavLink>
-                  </motion.div>
+          <div className="fullmenu_foot">
+            <div className="fullmenu_foot_left">
+              <div className="fullmenu_socials">
+                {socialIconsData.map((s, i) => (
+                  <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                    className="fullmenu_soc">
+                    <i className={s.class} />
+                  </a>
                 ))}
-              </nav>
-
-              <div className="drawer__divider" />
-
-              {isHome && (
-                <nav className="drawer__nav drawer__nav--sections">
-                  <p className="drawer__label">On this page</p>
-                  {[
-                    { label: "About", href: "#about" },
-                    { label: "Hobbies", href: "#hobbies" },
-                    { label: "Contact", href: "#contact" },
-                  ].map((item, i) => (
-                    <motion.a
-                      key={item.label}
-                      href={item.href}
-                      className="drawer__link drawer__link--sm"
-                      onClick={close}
-                      custom={navLinks.length + i}
-                      variants={itemVariant}
-                      initial="hidden"
-                      animate="visible"
-                    >
-                      <span className="drawer__link-label">{item.label}</span>
-                    </motion.a>
-                  ))}
-                </nav>
-              )}
-
-              <div className="drawer__foot">
-                <div className="drawer__socials">
-                  {socialIconsData.map((s, i) => (
-                    <a
-                      key={i}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="drawer__soc"
-                    >
-                      <i className={s.class} />
-                    </a>
-                  ))}
-                </div>
-                <Link
-                  to="/#contact"
-                  className="drawer__cta btn btn_primary"
-                  onClick={close}
-                >
-                  Let's Connect <i className="fas fa-arrow-right" />
-                </Link>
-                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
               </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+              <span className="fullmenu_foot_sep" aria-hidden="true" />
+              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+            </div>
+            <Link to="/contact" className="fullmenu_cta" onClick={close}>
+              Let's Connect <i className="fas fa-arrow-right" />
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -1,118 +1,105 @@
-import { Link, useLocation } from "react-router-dom";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import RollText from "../RollText/RollText";
+import { navLinks, socialIconsData } from "../../../appData";
 import "./footer.css";
 
-import { motion } from "framer-motion";
-import { socialIconsData, navLinks } from "../../../appData";
-import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
+const ArrowUpRight = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <line x1="7" y1="17" x2="17" y2="7" />
+    <polyline points="7 7 17 7 17 17" />
+  </svg>
+);
 
 const Footer = () => {
-  const year = new Date().getFullYear();
-  const location = useLocation();
-  const isHome = location.pathname === "/";
-
-  const contactHref = isHome ? "#contact" : "/#contact";
-  const topHref = isHome ? "/" : "#";
+  const ref = useRef(null);
 
   return (
-    <footer className="footer">
-      <span className="footer__aurora footer__aurora--1" aria-hidden="true" />
-      <span className="footer__aurora footer__aurora--2" aria-hidden="true" />
+    <footer ref={ref} className="footer_root">
+      <div className="footer_aurora" aria-hidden />
 
-      <div className="footer__hero">
-        <motion.div
-          className="footer__hero-content"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOptions}
-        >
-          <motion.div
-            className="footer__hero-name"
-            variants={fadeInUp}
-            aria-label="Riyaz Akhtar"
-          >
-            <span className="footer__name-outline" aria-hidden="true">
-              RIYAZ
-            </span>
-          </motion.div>
-
-          <motion.div className="footer__hero-meta" variants={fadeInUp}>
-            <span className="footer__avail">
-              <span className="footer__avail-ring" aria-hidden="true" />
-              <span className="footer__avail-dot" aria-hidden="true" />
-              Available
-            </span>
-            <span className="footer__meta-sep" aria-hidden="true">
-              |
-            </span>
-            <span className="footer__role">Lead Engineer @ Publicis Sapient</span>
-            <span className="footer__meta-sep" aria-hidden="true">
-              |
-            </span>
-            <span className="footer__loc">
-              <i className="fas fa-map-pin" aria-hidden="true" />
-              Gurgaon, India
-            </span>
-          </motion.div>
-
-          <motion.a
-            href={contactHref}
-            className="footer__cta"
-            variants={fadeInUp}
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <span>Start a Conversation</span>
-            <span className="footer__cta-arrow">
-              <i className="fas fa-arrow-right" />
-            </span>
-          </motion.a>
-        </motion.div>
-      </div>
-
-      <motion.div
-        className="footer__bar"
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOptions}
-      >
-        <motion.nav
-          className="footer__nav"
-          variants={fadeInUp}
-          aria-label="Footer navigation"
-        >
-          {navLinks.map((l) => (
-            <Link key={l.id} to={l.href} className="footer__link">
-              {l.label}
+      <div className="footer_inner">
+        <div className="footer_grid">
+          <div className="footer_grid-brand">
+            <Link to="/" className="footer_brand">
+              Riyaz Akhtar
             </Link>
-          ))}
-        </motion.nav>
-
-        <motion.div className="footer__social" variants={fadeInUp}>
-          {socialIconsData.map((s, i) => (
-            <motion.a
-              key={i}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer__soc"
-              whileHover={{ y: -4, scale: 1.12 }}
-              whileTap={{ scale: 0.92 }}
+            <p className="footer_tagline">
+              Independent creative studio crafting cinematic digital products,
+              brand systems, and immersive web experiences.
+            </p>
+            <Link
+              to="/contact"
+              className="footer_cta"
+              aria-label="Start a project"
             >
-              <i className={s.class} />
-            </motion.a>
-          ))}
-        </motion.div>
-      </motion.div>
+              <RollText text="Start a project" />
+              <ArrowUpRight />
+            </Link>
+          </div>
 
-      <div className="footer__copy">
-        <span>© {year} Riyaz Akhtar. All rights reserved.</span>
-        <span className="footer__copy-dot" aria-hidden="true" />
-        <a href={topHref} className="footer__totop" aria-label="Back to top">
-          <i className="fas fa-arrow-up" />
-          <span>Top</span>
-        </a>
+          <div className="footer_grid-cols">
+            <div className="footer_col">
+              <h4 className="footer_col-title">Navigate</h4>
+              <ul className="footer_col-list">
+                {navLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      to={item.href}
+                      className="footer_col-link footer_col-link--nav"
+                    >
+                      <span>{item.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="footer_col">
+              <h4 className="footer_col-title">Connect</h4>
+              <ul className="footer_col-list">
+                {socialIconsData.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="footer_col-link footer_col-link--social"
+                    >
+                      <span>{item.label}</span>
+                      <ArrowUpRight />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer_meta">
+          <span className="footer_meta-row">
+            <span className="footer_meta-pulse" />
+            Available for select projects in Q3 2026
+          </span>
+          <span className="footer_meta-row">
+            © {new Date().getFullYear()} Riyaz Akhtar. All rights reserved.
+          </span>
+        </div>
+
+        <div className="footer_wordmark" aria-hidden>
+          RIYAZ AKHTAR
+        </div>
       </div>
     </footer>
   );

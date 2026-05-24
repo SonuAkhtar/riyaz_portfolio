@@ -1,0 +1,148 @@
+.process_root {
+  padding-block: clamp(5rem, 9vh, 8rem);
+  border-top: 1px solid var(--border);
+  background: var(--bg-primary);
+}
+
+.process_inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  display: grid;
+  gap: 4rem;
+}
+
+.process_header {
+  display: grid;
+  gap: 1rem;
+}
+
+.process_eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.process_eyebrow > span {
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.process_title {
+  font-family: "Clash Display", "Sora", "Inter", sans-serif;
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.process_title-soft {
+  color: var(--text-muted);
+}
+
+.process_reveal {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  padding-bottom: 0.05em;
+}
+
+.process_reveal-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+.process_timeline {
+  position: relative;
+}
+
+.process_timeline-rail {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+}
+
+.process_timeline-rail span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b5cf6 0%, #4f7cff 100%);
+  transform-origin: left;
+}
+
+.process_timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.process_step {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 2.5rem;
+  position: relative;
+}
+
+.process_step-dot {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  box-shadow:
+    0 0 0 4px var(--bg-primary),
+    0 0 0 5px color-mix(in srgb, var(--text-primary) 18%, transparent);
+}
+
+.process_step-number {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.process_step-title {
+  font-family: "Clash Display", "Sora", "Inter", sans-serif;
+  font-size: clamp(1.375rem, 2vw, 1.875rem);
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.process_step-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .process_timeline-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .process_timeline-grid {
+    grid-template-columns: 1fr;
+  }
+}
