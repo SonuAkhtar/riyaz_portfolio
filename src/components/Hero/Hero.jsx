@@ -18,7 +18,7 @@ import {
 import RollText from "../RollText/RollText";
 import MagneticButton from "../MagneticButton/MagneticButton";
 import "./hero.css";
-import heroImage from "/assets/hero/hero.png";
+import heroImage from "/assets/hero/hero.webp";
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -193,16 +193,16 @@ const Hero = () => (
           transition={{ duration: 0.6, delay: 0.85 }}
         >
           <div className="hero_socials" aria-label="Social links">
-            {socialIconsData.map((s, i) => (
+            {socialIconsData.map((s) => (
               <a
-                key={i}
+                key={s.id}
                 href={s.href}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hero_soc"
-                aria-label={s.class}
+                aria-label={s.label}
               >
-                <i className={s.class} />
+                <i className={s.class} aria-hidden="true" />
               </a>
             ))}
           </div>
@@ -262,7 +262,7 @@ const Hero = () => (
     <div className="hero_marquee" aria-hidden="true">
       <div className="hero_marquee_inner">
         {MARQUEE_TRIPLED.map((s, i) => (
-          <span key={i} className="hero_marquee_item">
+          <span key={`${i}-${s}`} className="hero_marquee_item">
             <span className="hero_marquee_dot">●</span> {s}
           </span>
         ))}

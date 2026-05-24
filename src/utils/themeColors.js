@@ -51,6 +51,7 @@ export const PROJECT_VARIANTS = PROJECT_COLORS.map((hex) => ({
 
 export const SKILL_TAB_ACCENTS = [
   { accent: palette.violet400, accentSoft: "rgba(139, 92, 246, 0.18)" },
+  { accent: palette.green400,  accentSoft: "rgba(94, 226, 151, 0.18)" },
   { accent: palette.blue600,   accentSoft: "rgba(79, 124, 255, 0.18)" },
   { accent: palette.cyan300,   accentSoft: "rgba(103, 232, 249, 0.18)" },
 ];

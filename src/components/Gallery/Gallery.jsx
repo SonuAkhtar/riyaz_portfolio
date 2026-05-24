@@ -84,7 +84,7 @@ const Gallery = () => {
             aria-label="Previous"
             onClick={() => step(-1)}
             disabled={!canPrev}
-            className={`gallery_btn${!canPrev ? " gallery_btn-disabled" : ""}`}
+            className={`gallery_btn gallery_btn--head${!canPrev ? " gallery_btn-disabled" : ""}`}
           >
             <Arrow dir="left" />
           </button>
@@ -93,7 +93,7 @@ const Gallery = () => {
             aria-label="Next"
             onClick={() => step(1)}
             disabled={!canNext}
-            className={`gallery_btn${!canNext ? " gallery_btn-disabled" : ""}`}
+            className={`gallery_btn gallery_btn--head${!canNext ? " gallery_btn-disabled" : ""}`}
           >
             <Arrow dir="right" />
           </button>
@@ -118,6 +118,27 @@ const Gallery = () => {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="gallery_foot">
+        <button
+          type="button"
+          aria-label="Previous"
+          onClick={() => step(-1)}
+          disabled={!canPrev}
+          className={`gallery_btn gallery_btn--foot${!canPrev ? " gallery_btn-disabled" : ""}`}
+        >
+          <Arrow dir="left" />
+        </button>
+        <button
+          type="button"
+          aria-label="Next"
+          onClick={() => step(1)}
+          disabled={!canNext}
+          className={`gallery_btn gallery_btn--foot${!canNext ? " gallery_btn-disabled" : ""}`}
+        >
+          <Arrow dir="right" />
+        </button>
       </div>
     </section>
   );

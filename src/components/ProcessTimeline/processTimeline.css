@@ -1,5 +1,5 @@
 .process_root {
-  padding-block: clamp(5rem, 9vh, 8rem);
+  padding-block: clamp(2.25rem, 4.5vh, 3.5rem);
   border-top: 1px solid var(--border);
   background: var(--bg-primary);
 }
@@ -10,7 +10,7 @@
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 4vw, 3rem);
   display: grid;
-  gap: 4rem;
+  gap: clamp(1.75rem, 3.5vh, 2.5rem);
 }
 
 .process_header {

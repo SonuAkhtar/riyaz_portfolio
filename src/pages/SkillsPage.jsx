@@ -287,6 +287,7 @@ const SkillsPage = () => {
   const cat = skillsData[active];
   const catColor = CAT_COLORS[active];
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -457,41 +458,6 @@ const SkillsPage = () => {
         </motion.div>
       </section>
 
-      <section className="sp_section sp_even">
-        <div className="sp_container">
-          <span className="sp_ghost_wm" aria-hidden="true">
-            CERTS
-          </span>
-
-          <motion.div
-            className="sp_section_head"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOptions}
-          >
-            <motion.span className="section_label" variants={fadeInUp}>
-              Verified Credentials
-            </motion.span>
-            <motion.h2 className="sp_section_title" variants={fadeInUp}>
-              Certifications
-              <br />
-              <span className="sp_grad">&amp; Badges.</span>
-            </motion.h2>
-            <motion.p className="sp_section_sub" variants={fadeInUp}>
-              Staying ahead through continuous learning and industry-recognised
-              certifications.
-            </motion.p>
-          </motion.div>
-
-          <div className="sp_cert_grid">
-            {certificationsData.map((cert, i) => (
-              <CertCard key={cert.id} cert={cert} delay={i * 0.09} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="sp_section">
         <div className="sp_container">
           <span className="sp_ghost_wm sp_ghost_right" aria-hidden="true">
@@ -514,41 +480,44 @@ const SkillsPage = () => {
               <span className="sp_grad">Competencies.</span>
             </motion.h2>
             <motion.p className="sp_section_sub" variants={fadeInUp}>
-              A snapshot of mastery built through shipping real products -
+              A snapshot of mastery built through shipping real products,
               ranked by depth of production use.
             </motion.p>
           </motion.div>
 
-          <motion.div
-            className="sp_pill_tabs"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOptions}
-          >
-            {skillsData.map((c, i) => (
-              <motion.button
-                key={c.id}
-                className={`sp_pill_tab${active === i ? " sp_tab_active" : ""}`}
-                style={active === i ? { "--tab-color": CAT_COLORS[i] } : {}}
-                variants={fadeInUp}
-                onClick={() => setActive(i)}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="sp_tab_icon">
-                  <i className={c.icon} />
-                </span>
-                <span className="sp_tab_name">{c.title}</span>
-                <span className="sp_tab_yrs">{c.subtitle}</span>
-                <span
-                  className="sp_tab_count"
-                  style={active === i ? { color: CAT_COLORS[i] } : {}}
+          <div className="sp_hs_tabs" role="tablist" aria-label="Skill categories">
+            {skillsData.map((c, i) => {
+              const isActive = active === i;
+              return (
+                <button
+                  key={c.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActive(i)}
+                  className={`sp_hs_tab${isActive ? " sp_hs_tab-active" : ""}`}
+                  style={{ "--tab-accent": CAT_COLORS[i] }}
                 >
-                  {c.data.length}
-                </span>
-              </motion.button>
-            ))}
-          </motion.div>
+                  {isActive && (
+                    <motion.span
+                      layoutId="sp_active_pill"
+                      className="sp_hs_tab-bg"
+                      transition={{ type: "spring", stiffness: 340, damping: 32 }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className="sp_hs_tab-icon">
+                    <i className={c.icon} />
+                  </span>
+                  <span className="sp_hs_tab-label">
+                    <span className="sp_hs_tab-index">0{i + 1}</span>
+                    {c.title}
+                  </span>
+                  <span className="sp_hs_tab-count">{c.data.length}</span>
+                </button>
+              );
+            })}
+          </div>
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -581,9 +550,9 @@ const SkillsPage = () => {
             viewport={viewportOptions}
           >
             {[
-              { cls: "expert", label: "Expert ≥ 80%" },
-              { cls: "proficient", label: "Proficient ≥ 65%" },
-              { cls: "familiar", label: "Familiar ≥ 45%" },
+              { cls: "expert", label: "Expert >= 80%" },
+              { cls: "proficient", label: "Proficient >= 65%" },
+              { cls: "familiar", label: "Familiar >= 45%" },
               { cls: "learning", label: "Learning" },
             ].map((l) => (
               <span key={l.cls} className={`sp_leg_item sp_leg_${l.cls}`}>
@@ -592,6 +561,83 @@ const SkillsPage = () => {
               </span>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      <section className="sp_section sp_even">
+        <div className="sp_container">
+          <span className="sp_ghost_wm" aria-hidden="true">
+            CERTS
+          </span>
+
+          <motion.div
+            className="sp_section_head"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOptions}
+          >
+            <motion.span className="section_label" variants={fadeInUp}>
+              Verified Credentials
+            </motion.span>
+            <motion.h2 className="sp_section_title" variants={fadeInUp}>
+              Certifications
+              <br />
+              <span className="sp_grad">&amp; Badges.</span>
+            </motion.h2>
+            <motion.p className="sp_section_sub" variants={fadeInUp}>
+              Continuous learning and industry-recognised credentials.
+            </motion.p>
+          </motion.div>
+
+          <div className="sp_cert_list">
+            {certificationsData.map((cert, i) => (
+              <motion.a
+                key={cert.id}
+                className="sp_cert_row"
+                style={{ "--cert-color": cert.color }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10% 0px" }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 }}
+              >
+                <span
+                  className="sp_cert_row-icon"
+                  style={{
+                    color: cert.color,
+                    background: `${cert.color}18`,
+                    borderColor: `${cert.color}40`,
+                  }}
+                >
+                  <i className={cert.icon} />
+                </span>
+                <div className="sp_cert_row-body">
+                  <span className="sp_cert_row-badge" style={{ color: cert.color }}>
+                    {cert.badge}
+                  </span>
+                  <h3 className="sp_cert_row-name">{cert.name}</h3>
+                  <span className="sp_cert_row-issuer">{cert.issuer}</span>
+                </div>
+                <div className="sp_cert_row-meta">
+                  <span className="sp_cert_row-year" style={{ color: cert.color }}>
+                    {cert.year}
+                  </span>
+                  {cert.verified && (
+                    <span
+                      className="sp_cert_row-verified"
+                      style={{
+                        color: cert.color,
+                        borderColor: `${cert.color}40`,
+                        background: `${cert.color}12`,
+                      }}
+                    >
+                      <i className="fas fa-check-circle" /> Verified
+                    </span>
+                  )}
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -183,7 +183,6 @@
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-  
   .about_traits_col {
     grid-template-columns: 1fr 1fr;
   }

@@ -5,7 +5,12 @@ import { palette } from "../../utils/themeColors";
 import { servicesPreview } from "../../../appData";
 import "./works.css";
 
-const SLOT_ACCENTS = [palette.violet400, palette.blue600, palette.cyan300];
+const SLOT_ACCENTS = [
+  palette.violet400,
+  palette.blue600,
+  palette.green400,
+  palette.amber400,
+];
 const SERVICES_PREVIEW = servicesPreview.map((s, i) => ({
   ...s,
   accent: SLOT_ACCENTS[i % SLOT_ACCENTS.length],
@@ -25,12 +30,12 @@ const Works = () => (
           What I do
         </motion.span>
         <motion.h2 className="works_title" variants={fadeInUp}>
-          Three disciplines.
+          Four disciplines.
           <br />
           <em className="works_title_em">One opinionated builder.</em>
         </motion.h2>
         <motion.p className="works_subtitle" variants={fadeInUp}>
-          I don't sell hours - I sell shipped outcomes. Pick the surface area
+          I don't sell hours, I sell shipped outcomes. Pick the surface area
           that fits your problem; I'll bring the rest.
         </motion.p>
       </motion.div>
@@ -63,12 +68,35 @@ const Works = () => (
               },
             }}
           >
-            <span className="wc_num">{s.num}</span>
-            <div className="wc_icon_wrap">
-              <i className={s.icon} />
+            <div className="wc_glow" aria-hidden="true" />
+            <div className="wc_head">
+              <span className="wc_num">{s.num}</span>
+              <div className="wc_icon_wrap">
+                <i className={s.icon} />
+              </div>
             </div>
+
             <h3 className="wc_title">{s.title}</h3>
             <p className="wc_summary">{s.summary}</p>
+
+            {s.tech && (
+              <ul className="wc_tech">
+                {s.tech.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            )}
+
+            {s.deliverables && (
+              <ul className="wc_deliverables">
+                {s.deliverables.map((d) => (
+                  <li key={d}>
+                    <span className="wc_deliverable-dot" />
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            )}
           </motion.article>
         ))}
       </motion.div>

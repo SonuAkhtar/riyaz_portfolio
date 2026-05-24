@@ -7,7 +7,11 @@
       "PowerShell(ls \"C:\\\\Users\\\\LENOVO\\\\OneDrive\\\\Desktop\\\\Practice\\\\2026\\\\riyaz_portfolio\" | Where-Object {$_.Extension -eq \".svg\" -or $_.Extension -eq \".ico\"})",
       "Bash(npm run *)",
       "Bash(npm install *)",
-      "Bash(npm audit *)"
+      "Bash(npm audit *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\LENOVO\\\\OneDrive\\\\Desktop\\\\Practice\\\\2026\\\\riyaz_portfolio\\\\src\" -Recurse -Include \"*.jsx\", \"*.js\", \"*.css\")",
+      "Bash(Select-Object FullName)",
+      "Bash(node scripts/optimize-images.mjs)",
+      "Bash(grep -iE \"\\\\.\\(webp|png|jpg|gif\\)$\")"
     ]
   }
 }

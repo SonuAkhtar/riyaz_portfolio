@@ -7,9 +7,10 @@ import "./homeSkills.css";
 const EASE = [0.22, 1, 0.36, 1];
 
 const TAB_META = [
-  { icon: "fab fa-react",          stat: { value: "8y", label: "In practice" } },
-  { icon: "fas fa-server",         stat: { value: "6y", label: "Shipping pipelines" } },
-  { icon: "fas fa-shield-halved",  stat: { value: "4y", label: "Hardening systems" } },
+  { icon: "fab fa-react",         stat: { value: "8y", label: "In practice" } },
+  { icon: "fab fa-node-js",       stat: { value: "5y", label: "APIs in prod" } },
+  { icon: "fas fa-server",        stat: { value: "6y", label: "Shipping pipelines" } },
+  { icon: "fas fa-shield-halved", stat: { value: "4y", label: "Hardening systems" } },
 ];
 
 const TABS = TAB_META.map((meta, i) => ({ ...meta, ...SKILL_TAB_ACCENTS[i] }));
@@ -124,6 +125,37 @@ const FrontendPreview = () => (
   </div>
 );
 
+const BackendPreview = () => {
+  const lines = [
+    { prompt: "$", text: "node server.js",                tone: "cmd" },
+    { prompt: "$", text: "listening on :4000",            tone: "log" },
+    { prompt: "$", text: "POST /graphql 200, 42ms",       tone: "ok" },
+    { prompt: "$", text: "GET  /api/users 200, 18ms",     tone: "ok" },
+    { prompt: "$", text: "rest gateway, jwt auth ready",  tone: "log" },
+    { prompt: "$", text: "all services healthy",          tone: "ok" },
+  ];
+  return (
+    <div className="hskills_preview hskills_preview-terminal" aria-hidden="true">
+      <div className="hskills_preview-terminal-head">
+        <span>node api gateway</span>
+        <span className="hskills_preview-pulse" />
+      </div>
+      <div className="hskills_preview-terminal-body">
+        {lines.map((l, i) => (
+          <div
+            key={i}
+            className={`hskills_preview-term-line hskills_preview-term-${l.tone}`}
+            style={{ animationDelay: `${i * 0.06}s` }}
+          >
+            <span className="hskills_preview-term-prompt">{l.prompt}</span>
+            <span className="hskills_preview-term-text">{l.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const DevOpsPreview = () => {
   const lines = [
     { prompt: "$", text: "git push origin feat/checkout",    tone: "cmd" },
@@ -188,7 +220,8 @@ const QualityPreview = () => {
 
 const Preview = ({ tab }) => {
   if (tab === 0) return <FrontendPreview />;
-  if (tab === 1) return <DevOpsPreview />;
+  if (tab === 1) return <BackendPreview />;
+  if (tab === 2) return <DevOpsPreview />;
   return <QualityPreview />;
 };
 

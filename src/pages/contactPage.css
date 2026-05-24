@@ -547,8 +547,12 @@
 
 @media (max-width: 640px) {
   .cp_article {
-    padding-top: calc(68px + 3rem);
+    padding-top: calc(68px + 2rem);
     padding-bottom: 4rem;
+  }
+  .cp_header {
+    margin-bottom: 1.5rem;
+    gap: 1rem;
   }
   .cp_form_wrap {
     padding: 1.75rem;

@@ -157,13 +157,35 @@ const ContactForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!values.email.includes("@") || values.message.length < 10) {
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email);
+    if (!emailOk || values.message.trim().length < 10 || !values.name.trim()) {
       setStatus("error");
       return;
     }
     setStatus("submitting");
-    await new Promise((r) => setTimeout(r, 1400));
-    setStatus("success");
+
+    const formspreeId = import.meta.env.VITE_FORMSPREE_ID;
+    if (!formspreeId) {
+      console.warn(
+        "VITE_FORMSPREE_ID is not set — form will not be delivered. Copy .env.example to .env and add your Formspree form ID.",
+      );
+      await new Promise((r) => setTimeout(r, 1400));
+      setStatus("success");
+      return;
+    }
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: "POST",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) throw new Error(`Formspree returned ${res.status}`);
+      setStatus("success");
+    } catch (err) {
+      console.error("Contact form submission failed:", err);
+      setStatus("error");
+    }
   };
 
   return (

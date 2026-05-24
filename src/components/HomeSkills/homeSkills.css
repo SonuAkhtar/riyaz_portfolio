@@ -322,39 +322,39 @@
 
 .hskills_list {
   display: grid;
-  gap: 1rem;
-  margin: 0.5rem 0 0;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0;
   padding: 0;
   list-style: none;
 }
 
 .hskills_row {
   display: grid;
-  grid-template-columns: 1fr 60px;
+  grid-template-columns: 1fr 52px;
   grid-template-rows: auto auto;
-  column-gap: 1rem;
-  row-gap: 0.55rem;
-  padding: 0.75rem 0;
+  column-gap: 0.85rem;
+  row-gap: 0.3rem;
+  padding: 0.45rem 0;
   border-bottom: 1px solid
-    color-mix(in srgb, var(--text-primary) 6%, transparent);
+    color-mix(in srgb, var(--text-primary) 5%, transparent);
 }
 
 .hskills_row-meta {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .hskills_row-name {
   font-family: "Inter", system-ui, sans-serif;
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: var(--text-primary);
 }
 
 .hskills_row-years {
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 0.12em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -362,7 +362,7 @@
 
 .hskills_row-bar {
   position: relative;
-  height: 3px;
+  height: 2px;
   background: color-mix(in srgb, var(--text-primary) 6%, transparent);
   border-radius: 2px;
   overflow: hidden;
@@ -389,7 +389,7 @@
   align-self: center;
   justify-self: end;
   font-family: "Clash Display", "Sora", "Inter", sans-serif;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-size: 0.95rem;
   letter-spacing: -0.01em;
   color: var(--text-primary);
   display: inline-flex;
@@ -399,7 +399,7 @@
 
 .hskills_row-level > span {
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
 }
 
@@ -778,6 +778,9 @@
 }
 
 @media (max-width: 960px) {
+  .hskills_inner {
+    gap: 1.5rem;
+  }
   .hskills_panel-grid {
     grid-template-columns: 1fr;
   }
@@ -785,6 +788,9 @@
     font-size: clamp(7rem, 30vw, 14rem);
     top: -2rem;
     right: -1rem;
+  }
+  .hskills_panel-right {
+    min-height: auto;
   }
 }
 
@@ -874,34 +880,48 @@
   }
 
   .hskills_preview-editor-body {
-    min-height: 180px;
+    min-height: auto;
+    height: auto;
     font-size: 0.72rem;
     line-height: 1.55;
     padding-block: 0.65rem;
+    overflow: visible;
+    white-space: normal;
   }
   .hskills_preview-code-num {
     font-size: 0.65rem;
-    padding-right: 0.6rem;
+    padding-right: 0.5rem;
   }
   .hskills_preview-code-line {
-    grid-template-columns: 30px 1fr;
+    grid-template-columns: 24px 1fr;
+  }
+  .hskills_preview-code-content {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
   .hskills_preview-code-caret {
-    bottom: 0.85rem;
-    left: 2.5rem;
-    width: 6px;
-    height: 12px;
+    display: none;
   }
 
   .hskills_preview-terminal-body {
-    min-height: 170px;
+    min-height: auto;
+    height: auto;
     font-size: 0.78rem;
-    line-height: 1.35;
-    padding: 0.85rem 1rem;
+    line-height: 1.4;
+    padding: 0.85rem 0.9rem;
     gap: 0.55rem;
   }
+  .hskills_preview-term-line {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+  }
+  .hskills_preview-term-text {
+    white-space: normal;
+    word-break: break-word;
+  }
   .hskills_preview-term-prompt {
-    width: 28px;
+    width: 22px;
   }
 
   .hskills_preview-canvas-body {

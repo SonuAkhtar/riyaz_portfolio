@@ -83,7 +83,7 @@ const AboutHero = () => (
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.6, ease: EASE }}
         className="about_hero_portrait-frame"
-        style={{ backgroundImage: "url(/assets/about/about_pic.jpg)" }}
+        style={{ backgroundImage: "url(/assets/about/about_pic.webp)" }}
       />
       <div className="about_hero_portrait-caption">
         <span>

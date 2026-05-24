@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, Suspense, lazy } from "react";
 import Header from "./components/Header/Header";
+import BackToTop from "./components/BackToTop/BackToTop";
 
 import Hero from "./components/Hero/Hero";
 import SelectedWork from "./components/SelectedWork/SelectedWork";
@@ -66,6 +67,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </Suspense>
+      <BackToTop />
     </>
   );
 }

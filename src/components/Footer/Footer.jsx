@@ -1,8 +1,31 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import RollText from "../RollText/RollText";
-import { navLinks, socialIconsData } from "../../../appData";
+import { navLinks, socialIconsData, profile } from "../../../appData";
 import "./footer.css";
+
+const MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+const ArrowRight = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+);
 
 const ArrowUpRight = () => (
   <svg
@@ -24,6 +47,9 @@ const ArrowUpRight = () => (
 
 const Footer = () => {
   const ref = useRef(null);
+  const now = new Date();
+  const currentMonth = MONTHS[now.getMonth()];
+  const currentYear = now.getFullYear();
 
   return (
     <footer ref={ref} className="footer_root">
@@ -32,12 +58,22 @@ const Footer = () => {
       <div className="footer_inner">
         <div className="footer_grid">
           <div className="footer_grid-brand">
-            <Link to="/" className="footer_brand">
-              Riyaz Akhtar
+            <Link
+              to="/"
+              className="footer_brand"
+              aria-label={`${profile.name}, back to home`}
+            >
+              <span className="footer_brand-mark">{profile.initials}</span>
+              <span className="footer_brand-stack">
+                <span className="footer_brand-name">{profile.name}</span>
+                <span className="footer_brand-hint">
+                  Back to home <ArrowRight />
+                </span>
+              </span>
             </Link>
             <p className="footer_tagline">
-              Independent creative studio crafting cinematic digital products,
-              brand systems, and immersive web experiences.
+              Independent engineer crafting React frontends, micro-frontend
+              systems, and performance-tuned products.
             </p>
             <Link
               to="/contact"
@@ -90,10 +126,13 @@ const Footer = () => {
         <div className="footer_meta">
           <span className="footer_meta-row">
             <span className="footer_meta-pulse" />
-            Available for select projects in Q3 2026
+            Available for select projects in {profile.availabilityShort}
           </span>
           <span className="footer_meta-row">
-            © {new Date().getFullYear()} Riyaz Akhtar. All rights reserved.
+            Last updated {currentMonth} {currentYear}
+          </span>
+          <span className="footer_meta-row">
+            © {currentYear} {profile.name}. All rights reserved.
           </span>
         </div>
 

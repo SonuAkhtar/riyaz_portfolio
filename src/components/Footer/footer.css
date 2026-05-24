@@ -108,10 +108,91 @@
 }
 
 .footer_brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: max-content;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform var(--dur-base) var(--ease-out-quart),
+    opacity var(--dur-base) var(--ease-out-quart);
+}
+
+.footer_brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 5vw, 64px);
+  height: clamp(48px, 5vw, 64px);
+  border-radius: 14px;
+  background: var(--color-text);
+  color: var(--color-ink-1000);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  letter-spacing: var(--tracking-tight);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  box-shadow:
+    0 12px 28px -10px rgba(139, 92, 246, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition:
+    transform var(--dur-base) var(--ease-out-quart),
+    box-shadow var(--dur-base) var(--ease-out-quart);
+}
+
+.footer_brand-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1;
+}
+
+.footer_brand-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  letter-spacing: -0.025em;
+  color: var(--color-text);
   text-shadow: var(--footer-brand-glow);
+}
+
+.footer_brand-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  transition: gap var(--dur-base) var(--ease-out-quart), color var(--dur-base) var(--ease-out-quart);
+}
+
+.footer_brand-hint svg {
+  font-size: 0.65rem;
+  transition: transform var(--dur-base) var(--ease-out-quart);
+}
+
+.footer_brand:hover .footer_brand-mark {
+  transform: rotate(-4deg) scale(1.06);
+  box-shadow:
+    0 16px 38px -12px rgba(139, 92, 246, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.footer_brand:hover .footer_brand-hint {
+  gap: 0.55rem;
+  color: var(--color-text);
+}
+
+.footer_brand:hover .footer_brand-hint svg {
+  transform: translateX(2px);
+}
+
+.footer_brand:focus-visible {
+  outline: 2px solid var(--color-accent-violet);
+  outline-offset: 6px;
+  border-radius: 18px;
 }
 
 .footer_tagline {

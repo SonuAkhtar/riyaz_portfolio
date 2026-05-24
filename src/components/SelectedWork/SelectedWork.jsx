@@ -51,93 +51,101 @@ const SelectedWork = () => {
     };
   }, []);
 
-  const featured = projectsData.slice(0, 4);
-  const cardCount = featured.length + 1;
+  const featured = projectsData.slice(0, 3);
 
   return (
     <section
       className="selectedwork_root"
       id="selected-work"
-      style={{ "--card-count": cardCount }}
+      style={{ "--card-count": featured.length + 1 }}
     >
-      <div className="selectedwork_intro">
-        <span className="selectedwork_eyebrow">
-          <span /> Selected work, 2022 to 2026
-        </span>
-        <motion.h2
-          className="selectedwork_title"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-15% 0px" }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-        >
-          Work I am proud of.
-        </motion.h2>
-      </div>
-
       <div ref={wrapRef} className="selectedwork_scroll">
         <div className="selectedwork_scroll-sticky">
-          <motion.div
-            ref={trackRef}
-            className="selectedwork_scroll-track"
-            style={{ x }}
-          >
-            {featured.map((p, i) => {
-              const accent = PROJECT_COLORS[i % PROJECT_COLORS.length];
-              const href = p.live || p.github || "/projects";
-              const isExternal = href.startsWith("http");
-              const CardWrap = isExternal ? "a" : Link;
-              const linkProps = isExternal
-                ? {
-                    href,
-                    target: "_blank",
-                    rel: "noreferrer noopener",
-                  }
-                : { to: href };
+          <div className="selectedwork_intro">
+            <span className="selectedwork_eyebrow">
+              <span /> Selected work, 2022 to 2026
+            </span>
+            <motion.h2
+              className="selectedwork_title"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-15% 0px" }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Work I am proud of.
+            </motion.h2>
+          </div>
 
-              return (
-                <CardWrap
-                  key={p.id}
-                  {...linkProps}
-                  className="selectedwork_card"
-                  style={{ "--accent": accent }}
-                >
-                  <div className="selectedwork_card-meta">
-                    <span>{String(i + 1).padStart(2, "0")}</span>
-                    <span>{p.year}</span>
-                  </div>
-                  <div
-                    className="selectedwork_card-image"
-                    style={{ backgroundImage: `url(${p.image})` }}
+          <div className="selectedwork_track-wrap">
+            <motion.div
+              ref={trackRef}
+              className="selectedwork_scroll-track"
+              style={{ x }}
+            >
+              {featured.map((p, i) => {
+                const accent = PROJECT_COLORS[i % PROJECT_COLORS.length];
+                const href = p.live || p.github || "/projects";
+                const isExternal = href.startsWith("http");
+                const CardWrap = isExternal ? "a" : Link;
+                const linkProps = isExternal
+                  ? {
+                      href,
+                      target: "_blank",
+                      rel: "noreferrer noopener",
+                    }
+                  : { to: href };
+
+                return (
+                  <CardWrap
+                    key={p.id}
+                    {...linkProps}
+                    className="selectedwork_card"
+                    style={{ "--accent": accent }}
                   >
-                    <div className="selectedwork_card-image-overlay" />
-                  </div>
-                  <div className="selectedwork_card-body">
-                    <div>
-                      <h3 className="selectedwork_card-title">{p.name}</h3>
-                      <p className="selectedwork_card-subtitle">{p.desc}</p>
+                    <div className="selectedwork_card-meta">
+                      <span>{String(i + 1).padStart(2, "0")}</span>
+                      <span>{p.year}</span>
                     </div>
-                    <div className="selectedwork_card-foot">
-                      <div className="selectedwork_card-tags">
-                        {p.tags.map((t) => (
-                          <span key={t}>{t}</span>
-                        ))}
+                    <div
+                      className="selectedwork_card-image"
+                      style={{ backgroundImage: `url(${p.image})` }}
+                    >
+                      <div className="selectedwork_card-image-overlay" />
+                    </div>
+                    <div className="selectedwork_card-body">
+                      <div>
+                        <h3 className="selectedwork_card-title">{p.name}</h3>
+                        <p className="selectedwork_card-subtitle">{p.desc}</p>
                       </div>
-                      <span className="selectedwork_card-arrow">
-                        <ArrowUpRight />
-                      </span>
+                      <div className="selectedwork_card-foot">
+                        <div className="selectedwork_card-tags">
+                          {p.tags.map((t) => (
+                            <span key={t}>{t}</span>
+                          ))}
+                        </div>
+                        <span className="selectedwork_card-arrow">
+                          <ArrowUpRight />
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </CardWrap>
-              );
-            })}
+                  </CardWrap>
+                );
+              })}
 
-            <Link to="/projects" className="selectedwork_more">
-              <span>See all case studies</span>
-              <ArrowUpRight />
-            </Link>
-          </motion.div>
+              <Link to="/projects" className="selectedwork_more">
+                <span>View all projects</span>
+                <ArrowUpRight />
+              </Link>
+            </motion.div>
+          </div>
         </div>
+      </div>
+
+      <div className="selectedwork_footer">
+        <Link to="/projects" className="selectedwork_viewall">
+          <span>View all projects</span>
+          <ArrowUpRight />
+        </Link>
       </div>
     </section>
   );
