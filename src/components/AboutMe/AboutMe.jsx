@@ -59,10 +59,10 @@ const AboutMe = () => (
             turning ambiguous problems into clean, scalable systems. My work
             spans React frontends, micro-frontend architecture, and the testing
             and security discipline that keeps enterprise products calm in
-            production - across healthcare, consulting, and SaaS teams.
+            production, across healthcare, consulting, and SaaS teams.
           </p>
           <p className="about_bio_text">
-            The hard part isn't writing the code - it's knowing what to ship,
+            The hard part isn't writing the code. It's knowing what to ship,
             what to cut, and what to keep boring on purpose.
           </p>
 

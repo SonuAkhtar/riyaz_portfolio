@@ -45,7 +45,7 @@ const Contact = () => (
             <a
               href={`mailto:${EMAIL}`}
               className="contact_lets_talk"
-              aria-label="Let's talk - send email"
+              aria-label="Let's talk, send email"
             >
               Let's talk
             </a>

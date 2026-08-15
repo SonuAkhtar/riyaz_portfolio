@@ -21,6 +21,7 @@ const AboutHero = () => (
   <section className="about_hero_root">
     <div className="about_hero_aurora" aria-hidden />
 
+    <div className="about_hero_container">
     <div className="about_hero_inner">
       <span className="about_hero_eyebrow">
         <span /> About {profile.name}
@@ -45,7 +46,7 @@ const AboutHero = () => (
         >
           {profile.name.split(" ")[0]} is a {profile.role} based in{" "}
           {profile.location}, working with enterprise product teams on the
-          things that matter most - flagship launches, micro-frontend
+          things that matter most: flagship launches, micro-frontend
           architecture, design systems, and quality-first delivery.
         </motion.p>
 
@@ -83,7 +84,7 @@ const AboutHero = () => (
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.6, ease: EASE }}
         className="about_hero_portrait-frame"
-        style={{ backgroundImage: "url(/assets/about/about_pic.webp)" }}
+        style={{ backgroundImage: "url(/assets/about/about_pic.jpg)" }}
       />
       <div className="about_hero_portrait-caption">
         <span>
@@ -94,6 +95,7 @@ const AboutHero = () => (
           {profile.location.split(",")[0]}, {new Date().getFullYear()}
         </span>
       </div>
+    </div>
     </div>
   </section>
 );

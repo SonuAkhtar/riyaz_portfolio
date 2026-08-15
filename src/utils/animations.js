@@ -10,34 +10,9 @@ export const fadeInUp = {
   },
 };
 
-export const fadeInLeft = {
-  hidden:  { opacity: 0, x: -36, filter: "blur(4px)" },
-  visible: {
-    opacity: 1,
-    x: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.65, ease: EASE },
-  },
-};
-
-export const fadeInRight = {
-  hidden:  { opacity: 0, x: 36, filter: "blur(4px)" },
-  visible: {
-    opacity: 1,
-    x: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.65, ease: EASE },
-  },
-};
-
 export const stagger = {
   hidden:  {},
   visible: { transition: { staggerChildren: 0.10, delayChildren: 0.05 } },
-};
-
-export const staggerFast = {
-  hidden:  {},
-  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
 };
 
 export const scaleIn = {

@@ -1,6 +1,7 @@
 .services_root {
   padding-block: clamp(5rem, 9vh, 8rem);
   background: var(--bg-primary);
+  overflow-x: clip;
 }
 
 .services_inner {
@@ -115,11 +116,15 @@
 
 .services_row-glow {
   position: absolute;
-  inset: -1px 0;
+  top: -1px;
+  bottom: -1px;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
   background: linear-gradient(
     90deg,
     color-mix(in srgb, var(--accent) 12%, transparent),
-    transparent 50%
+    transparent 70%
   );
   z-index: -1;
   opacity: 0;

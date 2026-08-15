@@ -108,11 +108,12 @@ const SkillCard = ({ name, icon, number, delay, catColor }) => {
     >
       <motion.div
         ref={tilt.ref}
-        className={`skill_card_v2 sc_${level.cls}`}
+        className="skill_card_v2"
         style={{
           rotateX: tilt.springX,
           rotateY: tilt.springY,
           transformStyle: "preserve-3d",
+          "--card-accent": catColor,
         }}
         onMouseMove={tilt.onMouseMove}
         onMouseLeave={tilt.onMouseLeave}
@@ -120,21 +121,26 @@ const SkillCard = ({ name, icon, number, delay, catColor }) => {
         <motion.div className="sc2_glare" style={{ background: tilt.glare }} />
 
         <div className="sc2_inner">
-          <div
-            className="sc2_icon_wrap"
-            style={{
-              color: catColor,
-              background: `${catColor}18`,
-              borderColor: `${catColor}35`,
-            }}
-          >
-            <i className={icon} />
+          <div className="sc2_top">
+            <div
+              className="sc2_icon_wrap"
+              style={{
+                color: catColor,
+                background: `${catColor}18`,
+                borderColor: `${catColor}35`,
+              }}
+            >
+              <i className={icon} />
+            </div>
+            <span className={`sc2_badge lvl2_${level.cls}`}>{level.label}</span>
           </div>
 
           <span className="sc2_pct">
             <CountUp to={Number(number)} inView={inView} />
             <sup>%</sup>
           </span>
+
+          <p className="sc2_name">{name}</p>
 
           <div className="sc2_bar_track">
             <motion.div
@@ -148,9 +154,6 @@ const SkillCard = ({ name, icon, number, delay, catColor }) => {
               }}
             />
           </div>
-
-          <p className="sc2_name">{name}</p>
-          <span className={`sc2_badge lvl2_${level.cls}`}>{level.label}</span>
         </div>
       </motion.div>
     </motion.div>
@@ -287,7 +290,6 @@ const SkillsPage = () => {
   const cat = skillsData[active];
   const catColor = CAT_COLORS[active];
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -362,9 +364,9 @@ const SkillsPage = () => {
             </h1>
 
             <motion.p className="sp_hero_sub" variants={fadeInUp}>
-              Eight years shipping production-grade React frontends,
+              Nine years shipping production-grade React frontends,
               micro-frontend systems, and the CI/CD, testing, and security
-              discipline that holds them up. Every skill is battle-tested - not
+              discipline that holds them up. Every skill is battle-tested, not
               just box-checked.
             </motion.p>
           </motion.div>
@@ -458,7 +460,7 @@ const SkillsPage = () => {
         </motion.div>
       </section>
 
-      <section className="sp_section">
+      <section className="sp_section sp_skills_section">
         <div className="sp_container">
           <span className="sp_ghost_wm sp_ghost_right" aria-hidden="true">
             SKILLS

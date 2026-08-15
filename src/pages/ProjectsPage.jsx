@@ -219,7 +219,7 @@ const ProjectsPage = () => {
           >
             Production-grade engineering across AI integrations, enterprise
             frontend systems, and cloud-deployed applications. Scroll the
-            catalogue - every entry is a working application, not a mock.
+            catalogue. Every entry is a working application, not a mock.
           </motion.p>
 
           <motion.div

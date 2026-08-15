@@ -287,7 +287,7 @@ const WorksPage = () => {
               <em className="wp_grad">One opinionated builder.</em>
             </motion.h2>
             <motion.p className="wp_section_sub" variants={fadeInUp}>
-              I don't sell hours - I sell shipped outcomes. Pick the surface
+              I don't sell hours. I sell shipped outcomes. Pick the surface
               area that fits your problem; I'll bring the rest.
             </motion.p>
           </motion.div>
@@ -449,7 +449,7 @@ const WorksPage = () => {
             <em className="wp_grad">shipping right?</em>
           </motion.h2>
           <motion.p className="wp_cta_sub" variants={fadeInUp}>
-            Tell me the shape of the room you're walking into - the timeline,
+            Tell me the shape of the room you're walking into: the timeline,
             the stakeholders, what's at stake. I'll come back within two
             business days.
           </motion.p>

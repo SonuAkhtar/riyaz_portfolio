@@ -36,14 +36,8 @@
   --container-padding: clamp(1.25rem, 4vw, 3rem);
   --radius-md: 16px;
   position: relative;
-  padding: calc(68px + 1rem) var(--container-padding) clamp(1.5rem, 3vh, 2.25rem) !important;
-  display: grid !important;
-  grid-template-columns: 1.4fr 1fr;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: center !important;
-  justify-content: center !important;
-  max-width: var(--container-max);
-  margin: 0 auto;
+  display: block !important;
+  padding: 0 !important;
   overflow: hidden !important;
   min-height: unset !important;
   height: 100vh;
@@ -52,9 +46,22 @@
   color: var(--color-text);
   font-family: var(--font-display);
 }
+.about_hero_container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--container-max);
+  height: 100%;
+  margin: 0 auto;
+  padding: calc(68px + 1rem) var(--container-padding) clamp(1.5rem, 3vh, 2.25rem);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: center;
+}
 .about_hero_aurora {
   position: absolute;
-  inset: -10% -20% auto -20%;
+  inset: -10% 0 auto 0;
   height: 70%;
   z-index: 0;
   background: var(--gradient-aurora);
@@ -206,8 +213,11 @@
   .about_hero_root {
     height: auto;
     max-height: none;
+  }
+  .about_hero_container {
+    height: auto;
     grid-template-columns: 1fr;
-    padding-block: calc(68px + 1rem) clamp(2rem, 4vh, 3rem) !important;
+    padding-block: calc(68px + 1rem) clamp(2rem, 4vh, 3rem);
   }
   .about_hero_grid {
     grid-template-columns: 1fr;

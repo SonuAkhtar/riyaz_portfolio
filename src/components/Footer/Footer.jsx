@@ -71,10 +71,6 @@ const Footer = () => {
                 </span>
               </span>
             </Link>
-            <p className="footer_tagline">
-              Independent engineer crafting React frontends, micro-frontend
-              systems, and performance-tuned products.
-            </p>
             <Link
               to="/contact"
               className="footer_cta"

@@ -6,7 +6,6 @@ import BackToTop from "./components/BackToTop/BackToTop";
 import Hero from "./components/Hero/Hero";
 import SelectedWork from "./components/SelectedWork/SelectedWork";
 import AboutMe from "./components/AboutMe/AboutMe";
-import Works from "./components/Works/Works";
 import HomeSkills from "./components/HomeSkills/HomeSkills";
 
 const Testimonials = lazy(
@@ -36,18 +35,17 @@ const ScrollToTop = () => {
 const SectionFallback = () => <div style={{ minHeight: "60vh" }} />;
 
 const HomePage = () => (
-  <>
+  <main className="home_root">
     <Hero />
     <SelectedWork />
     <HomeSkills />
     <AboutMe />
-    <Works />
     <Suspense fallback={<SectionFallback />}>
       <Testimonials />
       <Contact />
       <Footer />
     </Suspense>
-  </>
+  </main>
 );
 
 const PageFallback = () => <div style={{ minHeight: "100vh" }} />;

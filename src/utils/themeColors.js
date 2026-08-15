@@ -61,26 +61,3 @@ export const CAT_COLORS = [
   palette.green600,
   palette.purple500,
 ];
-
-export const LEVEL_COLORS = {
-  expert: {
-    fill: palette.green300,
-    glow: "rgba(91, 220, 142, 0.4)",
-    bg:   "rgba(91, 220, 142, 0.1)",
-  },
-  proficient: {
-    fill: palette.blue400,
-    glow: "rgba(91, 141, 238, 0.4)",
-    bg:   "rgba(91, 141, 238, 0.1)",
-  },
-  familiar: {
-    fill: palette.amber600,
-    glow: "rgba(240, 160, 75, 0.4)",
-    bg:   "rgba(240, 160, 75, 0.1)",
-  },
-  learning: {
-    fill: palette.slate600,
-    glow: "rgba(75, 94, 117, 0.25)",
-    bg:   "rgba(75, 94, 117, 0.08)",
-  },
-};

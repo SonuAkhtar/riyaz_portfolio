@@ -559,8 +559,6 @@
     display: none;
   }
 
-  /* Vertical stack of project cards. Each .pp_section becomes a self-contained
-     card so the page reads top to bottom on mobile. */
   .pp_main {
     padding-left: clamp(1.25rem, 5vw, 1.75rem);
     padding-right: clamp(1.25rem, 5vw, 1.75rem);

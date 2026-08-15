@@ -125,6 +125,14 @@ section.skills,
   contain-intrinsic-size: 1px 700px;
 }
 
+.home_root .hskills_root,
+.home_root .works,
+.home_root .testimonials_root,
+.home_root .contact {
+  min-height: auto;
+  padding-block: clamp(3.5rem, 8vh, 5.5rem);
+}
+
 .container {
   position: relative;
   width: 100%;

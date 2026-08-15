@@ -108,10 +108,12 @@ const Gallery = () => {
               className="gallery_item"
               style={{ "--stagger": `${i * 0.05}s` }}
             >
-              <div
-                className="gallery_item-image"
-                style={{ backgroundImage: `url(${img.image})` }}
-              />
+              <div className="gallery_item-image">
+                <div
+                  className="gallery_item-image-inner"
+                  style={{ backgroundImage: `url(${img.image})` }}
+                />
+              </div>
               <span className="gallery_item-caption">
                 {String(i + 1).padStart(2, "0")} - {img.title}
               </span>

@@ -14,10 +14,10 @@ export const profile = {
 };
 
 export const siteStats = {
-  corporate: { years: "8+", companies: 5, clients: 9 },
+  corporate: { years: "9+", companies: 5, clients: 9 },
   freelance: { years: "7+", clients: "12+", projects: "20+" },
   certifications: 3,
-  yearsExp: 8,
+  yearsExp: 9,
   projectsShipped: 20,
   companies: 5,
   techDomains: 3,
@@ -64,7 +64,7 @@ export const marqueeTech = [
 ];
 
 export const heroLede =
-  "Eight years building React frontends, micro-frontend architectures, and performance-tuned products for teams that want a partner, not a contractor.";
+  "Nine years building React frontends, micro-frontend architectures, and performance-tuned products for teams that want a partner, not a contractor.";
 
 export const portraitTag = "Lead Engineer, React, Next.js, TypeScript";
 
@@ -144,69 +144,6 @@ export const educationData = [
   },
 ];
 
-export const storyData = [
-  {
-    year: "2017",
-    index: "01",
-    chapter: "The opening",
-    location: "Hyderabad, Amazon",
-    title: "First lines at Amazon",
-    body: "Started at Amazon as a frontend engineer. A first year inside a company that ships at scale, with rigorous code review and the discipline of operating world-class products.",
-    milestones: ["First role", "Frontend", "JavaScript"],
-    accent: "#ff9900",
-  },
-  {
-    year: "2018",
-    index: "02",
-    chapter: "Production at scale",
-    location: "Noida, Tech Mahindra",
-    title: "Software Engineer at Tech Mahindra",
-    body: "Two and a half years cutting JavaScript and React across enterprise client projects. Learned what production really means, and what client expectations look like under pressure.",
-    milestones: ["Enterprise", "React", "JavaScript"],
-    accent: "#8b5cf6",
-  },
-  {
-    year: "2020",
-    index: "03",
-    chapter: "Sharper craft",
-    location: "Gurgaon, Evalueserve",
-    title: "Senior at Evalueserve",
-    body: "A senior frontend role. React, TypeScript, and the first time motion, type, and code began to feel like one craft, not three.",
-    milestones: ["Senior IC", "React", "TypeScript"],
-    accent: "#4f7cff",
-  },
-  {
-    year: "2021",
-    index: "04",
-    chapter: "Enterprise scale",
-    location: "Gurgaon, Optum",
-    title: "Senior Developer at Optum (UHG)",
-    body: "Two and a half years shipping enterprise healthcare products at Optum. Micro-frontends, Node services, and the discipline of regulated software.",
-    milestones: ["Healthcare", "Micro-Frontend", "Full-Stack"],
-    accent: "#67e8f9",
-  },
-  {
-    year: "2024",
-    index: "05",
-    chapter: "Leading the room",
-    location: "Gurgaon, Publicis Sapient",
-    title: "Lead Experience Engineer",
-    body: "Leading frontend at Publicis Sapient. A team to be proud of, ambitious clients, and a clearer point of view on what excellent frontend work looks like.",
-    milestones: ["Team lead", "Enterprise", "Architecture"],
-    accent: "#f59e0b",
-  },
-  {
-    year: "2026",
-    index: "06",
-    chapter: "Today",
-    location: "Gurgaon, Active",
-    title: "The practice today",
-    body: `Eight corporate years and ${siteStats.freelance.projects} freelance projects in. Still building React frontends that age well, leading teams, and quietly taking the occasional outside engagement.`,
-    milestones: [`Open for ${profile.availabilityShort}`, `${siteStats.freelance.projects} freelance`, "Available"],
-    accent: "#e879f9",
-  },
-];
-
 export const servicesData = [
   {
     number: "01",
@@ -274,41 +211,6 @@ export const servicesData = [
   },
 ];
 
-export const servicesPreview = [
-  {
-    num: "01",
-    icon: "fas fa-cube",
-    title: "Product Engineering",
-    summary: "End-to-end React + Next.js + TypeScript builds with telemetry, tests, and CI from commit one.",
-    tech: ["React", "Next.js", "TypeScript", "Tailwind"],
-    deliverables: ["Design system", "Core Web Vitals 95+", "CI/CD pipelines"],
-  },
-  {
-    num: "02",
-    icon: "fas fa-layer-group",
-    title: "Frontend Architecture",
-    summary: "Micro-frontend systems with module federation, shared design tokens, and component libraries that scale across teams.",
-    tech: ["Micro-Frontend", "Module Federation", "Webpack", "Design Tokens"],
-    deliverables: ["MF setup", "Shared libraries", "Migration playbook"],
-  },
-  {
-    num: "03",
-    icon: "fab fa-node-js",
-    title: "Backend & APIs",
-    summary: "Node.js services, GraphQL gateways, and REST APIs that hold up under real traffic. Built to integrate with your existing infra.",
-    tech: ["Node.js", "GraphQL", "REST", "Express"],
-    deliverables: ["API design", "Auth flows", "Service integration"],
-  },
-  {
-    num: "04",
-    icon: "fas fa-gauge-high",
-    title: "Performance & Quality",
-    summary: "Lighthouse tuning, bundle audits, plus the test and security discipline that keeps production calm.",
-    tech: ["Vitest", "Jest", "Lighthouse", "SonarQube", "Veracode"],
-    deliverables: ["Perf audit", "Test buildout", "Security pipeline"],
-  },
-];
-
 export const principlesData = [
   {
     index: "01",
@@ -372,7 +274,7 @@ export const skillsData = [
     id: 0,
     icon: "fab fa-react",
     title: "Frontend",
-    subtitle: "8+ years",
+    subtitle: "9+ years",
     data: [
       { id: 0,  icon: "fab fa-react",           name: "React.js",        number: "95" },
       { id: 1,  icon: "fab fa-react",           name: "Next.js",         number: "90" },
@@ -482,7 +384,7 @@ export const projectsData = [
   {
     id: 0,
     year: "2024",
-    image: "/assets/projects/project1.webp",
+    image: "/assets/projects/project1.PNG",
     name: "TalkEasy AI",
     desc: "AI-powered conversational platform with GPT-4 integration, context memory, and real-time streaming responses.",
     impact: "Built streaming chat from scratch. Token-by-token rendering cut perceived latency by ~60% vs. full-response loading.",
@@ -495,7 +397,7 @@ export const projectsData = [
   {
     id: 1,
     year: "2024",
-    image: "/assets/projects/project2.webp",
+    image: "/assets/projects/project2.PNG",
     name: "WorkBuddy",
     desc: "Freelancer workspace with project tracking, time logging, invoice generation, and client portal.",
     impact: "Replaced a spreadsheet workflow for a 5-person team. Invoice generation time dropped from 45 min to under 2 min.",
@@ -508,7 +410,7 @@ export const projectsData = [
   {
     id: 2,
     year: "2023",
-    image: "/assets/projects/project3.webp",
+    image: "/assets/projects/project3.PNG",
     name: "Start UI",
     desc: "Modern SaaS landing page with animated hero, feature showcases, pricing tables, and CTA optimizations.",
     impact: "Motion-first layout achieving Lighthouse performance score of 97 on desktop across all Core Web Vitals.",
@@ -520,7 +422,7 @@ export const projectsData = [
   {
     id: 3,
     year: "2023",
-    image: "/assets/projects/project4.webp",
+    image: "/assets/projects/project4.PNG",
     name: "Landing UI",
     desc: "High-performance product landing page with custom animations, responsive layout, and Lighthouse 98+ score.",
     impact: "Zero JavaScript dependencies for animations. Pure CSS transitions kept the bundle under 12 KB gzipped.",
@@ -531,7 +433,7 @@ export const projectsData = [
   {
     id: 4,
     year: "2023",
-    image: "/assets/projects/project5.webp",
+    image: "/assets/projects/project5.PNG",
     name: "RealState UI",
     desc: "Real estate marketplace UI with property filtering, map integration, virtual tour previews, and lead capture.",
     impact: "Map-first browsing pattern reduced user drop-off by showing location context before property details.",
@@ -542,7 +444,7 @@ export const projectsData = [
   {
     id: 5,
     year: "2022",
-    image: "/assets/projects/project6.webp",
+    image: "/assets/projects/project6.PNG",
     name: "BikeCar UI",
     desc: "Automotive showcase with 3D product cards, scroll-triggered animations, and a configurator-style UI.",
     impact: "GSAP ScrollTrigger-driven reveal animations render at 60 fps. Hardware-accelerated compositing throughout.",
@@ -553,23 +455,17 @@ export const projectsData = [
   },
 ];
 
-export const interestsData = [
-  { id: 0, icon: "fas fa-camera-retro", label: "Photography" },
-  { id: 1, icon: "fas fa-plane",        label: "Travel" },
-  { id: 2, icon: "fas fa-pen-nib",      label: "Writing" },
-];
-
 export const hobbiesData = [
-  { id: 0, image: "/assets/hobbies/image_1.webp", title: "Humayun's Tomb",
+  { id: 0, image: "/assets/hobbies/image_1.jpg", title: "Humayun's Tomb",
     desc: "Mughal-era architecture through a contemporary lens. Delhi's most serene monument at golden hour." },
-  { id: 1, image: "/assets/hobbies/image_2.webp", title: "Palm Tree",
+  { id: 1, image: "/assets/hobbies/image_2.jpg", title: "Palm Tree",
     desc: "Finding geometry in nature. The perfect symmetry of a lone palm against a clear sky." },
-  { id: 2, image: "/assets/hobbies/image_3.webp", title: "Flying Birds",
+  { id: 2, image: "/assets/hobbies/image_3.jpg", title: "Flying Birds",
     desc: "Capturing motion in stillness. The split-second a murmuration shifts direction." },
-  { id: 3, image: "/assets/hobbies/image_4.webp", title: "Safdarjung's Tomb",
+  { id: 3, image: "/assets/hobbies/image_4.jpg", title: "Safdarjung's Tomb",
     desc: "History carved in sandstone. The intricate craftsmanship of a 270-year-old monument." },
-  { id: 4, image: "/assets/hobbies/image_5.webp", title: "Eyes on the Book",
+  { id: 4, image: "/assets/hobbies/image_5.jpg", title: "Eyes on the Book",
     desc: "Quiet moments make the best frames. Concentration and light in perfect harmony." },
-  { id: 5, image: "/assets/hobbies/image_7.webp", title: "Flower in the Woods",
+  { id: 5, image: "/assets/hobbies/image_7.jpg", title: "Flower in the Woods",
     desc: "Solitude and beauty coexist. A single bloom standing calm amid the undergrowth." },
 ];

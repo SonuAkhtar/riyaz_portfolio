@@ -157,35 +157,13 @@ const ContactForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email);
-    if (!emailOk || values.message.trim().length < 10 || !values.name.trim()) {
+    if (!values.email.includes("@") || values.message.length < 10) {
       setStatus("error");
       return;
     }
     setStatus("submitting");
-
-    const formspreeId = import.meta.env.VITE_FORMSPREE_ID;
-    if (!formspreeId) {
-      console.warn(
-        "VITE_FORMSPREE_ID is not set — form will not be delivered. Copy .env.example to .env and add your Formspree form ID.",
-      );
-      await new Promise((r) => setTimeout(r, 1400));
-      setStatus("success");
-      return;
-    }
-
-    try {
-      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
-        method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      if (!res.ok) throw new Error(`Formspree returned ${res.status}`);
-      setStatus("success");
-    } catch (err) {
-      console.error("Contact form submission failed:", err);
-      setStatus("error");
-    }
+    await new Promise((r) => setTimeout(r, 1400));
+    setStatus("success");
   };
 
   return (
@@ -302,7 +280,7 @@ const ContactForm = () => {
               aria-label={status === "submitting" ? "Sending" : "Send message"}
             >
               <RollText
-                text={status === "submitting" ? "Sending…" : "Send message"}
+                text={status === "submitting" ? "Sending..." : "Send message"}
               />
               <span className="cp_form_submit-icon">
                 <ArrowUpRight />
@@ -372,7 +350,7 @@ const ContactPage = () => {
             transition={{ duration: 0.75, ease: EASE, delay: 0.6 }}
           >
             The more context you can share, the better. Timeline, budget,
-            stakeholders, links - anything that helps me understand the room
+            stakeholders, links, anything that helps me understand the room
             you&apos;re bringing me into.
           </motion.p>
         </header>
@@ -428,7 +406,7 @@ const ContactPage = () => {
               </span>
               <p className="cp_availability">
                 I accept four to six engagements per year. Most start one to two
-                quarters in advance - earlier conversations get the better
+                quarters in advance. Earlier conversations get the better
                 slots.
               </p>
             </div>

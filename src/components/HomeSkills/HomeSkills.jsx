@@ -7,7 +7,7 @@ import "./homeSkills.css";
 const EASE = [0.22, 1, 0.36, 1];
 
 const TAB_META = [
-  { icon: "fab fa-react",         stat: { value: "8y", label: "In practice" } },
+  { icon: "fab fa-react",         stat: { value: "9y", label: "In practice" } },
   { icon: "fab fa-node-js",       stat: { value: "5y", label: "APIs in prod" } },
   { icon: "fas fa-server",        stat: { value: "6y", label: "Shipping pipelines" } },
   { icon: "fas fa-shield-halved", stat: { value: "4y", label: "Hardening systems" } },
@@ -365,7 +365,7 @@ const HomeSkills = () => {
                 <p className="hskills_panel-desc">{CATEGORY_BLURB[active]}</p>
 
                 <ul className="hskills_list">
-                  {current.data.slice(0, 6).map((skill, i) => {
+                  {current.data.slice(0, 4).map((skill, i) => {
                     const level = Number(skill.number);
                     return (
                       <motion.li

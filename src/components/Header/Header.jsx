@@ -5,7 +5,7 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { useTheme } from "../../utils/useTheme";
 import { navLinks, socialIconsData } from "../../../appData";
 import "./header.css";
-import heroImage from "/assets/hero/hero.webp";
+import heroImage from "/assets/hero/hero.png";
 
 const NAV_ITEMS = navLinks.filter((l) => l.href !== "/");
 const SCROLL_THRESHOLD = 60;
@@ -170,10 +170,10 @@ const Header = () => {
           <div className="fullmenu_foot">
             <div className="fullmenu_foot_left">
               <div className="fullmenu_socials">
-                {socialIconsData.map((s) => (
-                  <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer"
-                    className="fullmenu_soc" aria-label={s.label}>
-                    <i className={s.class} aria-hidden="true" />
+                {socialIconsData.map((s, i) => (
+                  <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                    className="fullmenu_soc">
+                    <i className={s.class} />
                   </a>
                 ))}
               </div>
