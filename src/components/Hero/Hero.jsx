@@ -69,6 +69,8 @@ const TiltPortrait = () => {
         src={heroImage}
         alt="Riyaz Akhtar portrait"
         className="hero_portrait_img"
+        fetchpriority="high"
+        decoding="async"
         style={{ x: imgX, y: imgY }}
       />
       <div className="hero_portrait_overlay" aria-hidden="true" />

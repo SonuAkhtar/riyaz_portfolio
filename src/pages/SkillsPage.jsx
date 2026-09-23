@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -7,7 +7,6 @@ import {
   useSpring,
   useMotionTemplate,
 } from "framer-motion";
-import { Link } from "react-router-dom";
 import Lenis from "lenis";
 import SplitType from "split-type";
 import { gsap } from "../utils/gsapSetup";
@@ -18,7 +17,6 @@ import {
   scaleIn,
   viewportOptions,
 } from "../utils/animations";
-import MagneticButton from "../components/MagneticButton/MagneticButton";
 import Footer from "../components/Footer/Footer";
 import Contact from "../components/Contact/Contact";
 import "./skillsPage.css";
@@ -154,78 +152,6 @@ const SkillCard = ({ name, icon, number, delay, catColor }) => {
               }}
             />
           </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-const CertCard = ({ cert, delay }) => {
-  const wrapRef = useRef(null);
-  const inView = useInView(wrapRef, { once: true, margin: "-20px" });
-  const tilt = useTilt(8);
-
-  return (
-    <motion.div
-      ref={wrapRef}
-      initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }}
-      style={{ perspective: 900 }}
-    >
-      <motion.div
-        ref={tilt.ref}
-        className="sp_cert_card_v2"
-        style={{
-          rotateX: tilt.springX,
-          rotateY: tilt.springY,
-          transformStyle: "preserve-3d",
-          "--cert-color": cert.color,
-        }}
-        onMouseMove={tilt.onMouseMove}
-        onMouseLeave={tilt.onMouseLeave}
-      >
-        <div className="sp_cert_holo" />
-        <div className="sp_cert_scanline" />
-        <motion.div className="sc2_glare" style={{ background: tilt.glare }} />
-
-        <div className="sp_cert_inner">
-          <div
-            className="sp_cert_icon_v2"
-            style={{
-              color: cert.color,
-              background: `${cert.color}18`,
-              borderColor: `${cert.color}35`,
-            }}
-          >
-            <i className={cert.icon} />
-          </div>
-
-          <span className="sp_cert_code" style={{ color: cert.color }}>
-            {cert.badge}
-          </span>
-
-          <h3 className="sp_cert_name_v2">{cert.name}</h3>
-
-          <div className="sp_cert_footer_v2">
-            <span className="sp_cert_issuer_v2">{cert.issuer}</span>
-            <span className="sp_cert_year_v2" style={{ color: cert.color }}>
-              {cert.year}
-            </span>
-          </div>
-
-          {cert.verified && (
-            <span
-              className="sp_cert_verified_v2"
-              style={{
-                color: cert.color,
-                borderColor: `${cert.color}40`,
-                background: `${cert.color}12`,
-              }}
-            >
-              <i className="fas fa-check-circle" /> Verified
-            </span>
-          )}
         </div>
       </motion.div>
     </motion.div>
@@ -435,7 +361,7 @@ const SkillsPage = () => {
               label: "Certifications",
             },
             { value: siteStats.freelance.projects, label: "Projects" },
-          ].map((s, i) => (
+          ].map((s) => (
             <motion.div
               key={s.label}
               className="sp_stat_item"

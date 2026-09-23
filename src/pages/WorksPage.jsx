@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import Lenis from "lenis";
@@ -31,7 +31,6 @@ const SERVICES = servicesData.map((s, i) => ({
   ...s,
   accent: SERVICE_ACCENTS[i % SERVICE_ACCENTS.length],
 }));
-
 
 const RESULTS = [
   { value: siteStats.corporate.years, label: "Years engineering" },
@@ -80,19 +79,6 @@ const SpotlightCard = ({
     </div>
   );
 };
-
-const RevealLine = ({ children, delay = 0 }) => (
-  <span className="wp_reveal">
-    <motion.span
-      className="wp_reveal-inner"
-      initial={{ y: "110%" }}
-      animate={{ y: "0%" }}
-      transition={{ duration: 0.95, ease: EASE, delay }}
-    >
-      {children}
-    </motion.span>
-  </span>
-);
 
 const StatBox = ({ value, label, delay = 0 }) => (
   <motion.div

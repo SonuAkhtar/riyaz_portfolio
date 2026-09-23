@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { useTheme } from "../../utils/useTheme";
 import { navLinks, socialIconsData } from "../../../appData";
 import "./header.css";
-import heroImage from "/assets/hero/hero.png";
+import heroThumb from "/assets/hero/hero-thumb.png";
 
 const NAV_ITEMS = navLinks.filter((l) => l.href !== "/");
 const SCROLL_THRESHOLD = 60;
@@ -113,7 +113,15 @@ const Header = () => {
 
         <div className="site_nav_right">
           <Link to="/contact" className="site_cta" aria-label="Start a project">
-            <img src={heroImage} className="site_cta_thumb" alt="" aria-hidden="true" />
+            <img
+              src={heroThumb}
+              className="site_cta_thumb"
+              alt=""
+              aria-hidden="true"
+              width="28"
+              height="28"
+              decoding="async"
+            />
             <RollText text="Start a project" />
           </Link>
           <button

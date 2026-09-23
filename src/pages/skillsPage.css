@@ -489,52 +489,6 @@
   gap: 1.25rem;
 }
 
-.sp_cert_card_v2 {
-  position: relative;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 1.25rem;
-  overflow: hidden;
-  transition:
-    border-color 0.35s,
-    box-shadow 0.35s;
-  cursor: default;
-  min-height: 260px;
-}
-
-.sp_cert_card_v2:hover {
-  border-color: var(--cert-color, rgba(129, 140, 248, 0.4));
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(var(--cert-color, 129 140 248) / 0.2);
-}
-
-.sp_cert_holo {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    125deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0) 28%,
-    rgba(129, 140, 248, 0.16) 38%,
-    rgba(34, 211, 238, 0.2) 48%,
-    rgba(167, 139, 250, 0.16) 58%,
-    rgba(255, 255, 255, 0) 70%,
-    transparent 100%
-  );
-  background-size: 300% 300%;
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
-  z-index: 2;
-  border-radius: inherit;
-}
-
-.sp_cert_card_v2:hover .sp_cert_holo {
-  opacity: 1;
-  animation: holo_slide 1.8s linear infinite;
-}
-
 @keyframes holo_slide {
   0% {
     background-position: 200% 0%;
@@ -542,21 +496,6 @@
   100% {
     background-position: -200% 0%;
   }
-}
-
-.sp_cert_scanline {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(255, 255, 255, 0.012) 3px,
-    rgba(255, 255, 255, 0.012) 4px
-  );
-  pointer-events: none;
-  z-index: 1;
-  border-radius: inherit;
 }
 
 .sc2_glare {
@@ -570,36 +509,6 @@
 }
 
 .skill_card_v2:hover .sc2_glare,
-.sp_cert_card_v2:hover .sc2_glare {
-  opacity: 1;
-}
-
-.sp_cert_inner {
-  position: relative;
-  z-index: 4;
-  padding: 1.75rem 1.4rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  height: 100%;
-}
-
-.sp_cert_icon_v2 {
-  width: 48px;
-  height: 48px;
-  border-radius: 0.875rem;
-  border: 1px solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-  flex-shrink: 0;
-  transition: transform 0.3s;
-}
-
-.sp_cert_card_v2:hover .sp_cert_icon_v2 {
-  transform: scale(1.06);
-}
 
 .sp_cert_code {
   font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -1131,11 +1040,6 @@
 }
 
 [data-theme="light"] .skill_card_v2 {
-  background: rgba(99, 102, 241, 0.03);
-  border-color: rgba(99, 102, 241, 0.12);
-}
-
-[data-theme="light"] .sp_cert_card_v2 {
   background: rgba(99, 102, 241, 0.03);
   border-color: rgba(99, 102, 241, 0.12);
 }
