@@ -26,8 +26,8 @@
 }
 
 .theme_toggle.light .theme_toggle_track {
-  background: #dde8ff;
-  border-color: rgba(74, 126, 227, 0.3);
+  background: var(--c-blue-50);
+  border-color: color-mix(in srgb, var(--c-blue-450) 30%, transparent);
 }
 .theme_toggle_thumb {
   position: absolute;
@@ -49,15 +49,15 @@
 .theme_toggle.dark .theme_toggle_thumb {
   transform: translateX(0);
   background: var(--bg-secondary);
-  color: #a8c0ff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  color: var(--c-blue-200);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--c-black) 40%, transparent);
 }
 
 .theme_toggle.light .theme_toggle_thumb {
   transform: translateX(24px);
-  background: linear-gradient(135deg, #4a7ee3, #6357d4);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(74, 126, 227, 0.35);
+  background: linear-gradient(135deg, var(--c-blue-450), var(--c-indigo-700));
+  color: var(--c-white);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--c-blue-450) 35%, transparent);
 }
 .theme_toggle.burst .theme_toggle_thumb i {
   animation: iconFlip 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;

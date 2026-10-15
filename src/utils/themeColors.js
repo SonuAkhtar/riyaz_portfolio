@@ -1,63 +1,14 @@
-export const palette = {
-  violet300: "#a78bfa",
-  violet400: "#8b5cf6",
-  violet500: "#7C3AED",
-  violet600: "#6D28D9",
-  purple500: "#a855f7",
+// All color values live in src/styles/tokens.css. This module only maps
+// tokens into the accent sequences components cycle through.
 
-  blue400: "#5b8dee",
-  blue500: "#3b82f6",
-  blue600: "#4f7cff",
-  sky500:  "#0ea5e9",
+// Translucent variant of any color (token reference or hex), e.g. alpha(c, 9).
+export const alpha = (color, percent) =>
+  `color-mix(in srgb, ${color} ${percent}%, transparent)`;
 
-  cyan300: "#67e8f9",
-  cyan400: "#22D3EE",
-  cyan500: "#06B6D4",
+export const PROJECT_COLORS = [1, 2, 3, 4, 5, 6].map((n) => `var(--proj-${n})`);
 
-  green300: "#5bdc8e",
-  green400: "#5ee297",
-  green600: "#10B981",
-  green700: "#4ade80",
-
-  amber400: "#fbbf24",
-  amber500: "#F59E0B",
-  amber600: "#f0a04b",
-
-  pink500: "#ec4899",
-  rose500: "#f43f5e",
-
-  slate600: "#4b5e75",
-
-  success: "#10B981",
-  warning: "#F59E0B",
-  error:   "#EF4444",
-};
-
-export const PROJECT_COLORS = [
-  palette.blue500,
-  palette.violet400,
-  palette.green600,
-  palette.amber500,
-  palette.rose500,
-  palette.sky500,
-];
-
-export const PROJECT_VARIANTS = PROJECT_COLORS.map((hex) => ({
-  dot:        hex,
-  bg:         `${hex}17`,
-  pillBg:     `${hex}17`,
-  pillBorder: `${hex}38`,
+export const PROJECT_VARIANTS = PROJECT_COLORS.map((color) => ({
+  dot: color,
+  bg: alpha(color, 9),
+  pillBorder: alpha(color, 22),
 }));
-
-export const SKILL_TAB_ACCENTS = [
-  { accent: palette.violet400, accentSoft: "rgba(139, 92, 246, 0.18)" },
-  { accent: palette.green400,  accentSoft: "rgba(94, 226, 151, 0.18)" },
-  { accent: palette.blue600,   accentSoft: "rgba(79, 124, 255, 0.18)" },
-  { accent: palette.cyan300,   accentSoft: "rgba(103, 232, 249, 0.18)" },
-];
-
-export const CAT_COLORS = [
-  palette.blue400,
-  palette.green600,
-  palette.purple500,
-];

@@ -1,101 +1,77 @@
 import { motion } from "framer-motion";
-import { profile } from "../../../appData";
+import { aboutPage, profile, siteStats } from "../../../appData";
 import "./aboutHero.css";
 
 const EASE = [0.22, 1, 0.36, 1];
 
-const RevealLine = ({ children, delay = 0 }) => (
-  <span className="about_hero_reveal">
-    <motion.span
-      className="about_hero_reveal-inner"
-      initial={{ y: "110%" }}
-      animate={{ y: "0%" }}
-      transition={{ duration: 0.95, ease: EASE, delay }}
-    >
-      {children}
-    </motion.span>
-  </span>
-);
+const STATS = [
+  { value: `${siteStats.years}+`, label: "Years" },
+  { value: siteStats.companies, label: "Companies" },
+  { value: siteStats.clients, label: "Enterprise clients" },
+  { value: `${siteStats.projects}+`, label: "Freelance projects" },
+];
+
+const fadeUp = (delay) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, delay, ease: EASE },
+});
 
 const AboutHero = () => (
   <section className="about_hero_root">
-    <div className="about_hero_aurora" aria-hidden />
+    <div className="about_hero_aurora" aria-hidden="true" />
 
-    <div className="about_hero_container">
-    <div className="about_hero_inner">
-      <span className="about_hero_eyebrow">
-        <span /> About {profile.name}
-      </span>
+    <div className="section_inner about_hero_inner">
+      <div className="about_hero_text">
+        <motion.span className="section_label" {...fadeUp(0.05)}>
+          About
+        </motion.span>
 
-      <h1 className="about_hero_title">
-        <RevealLine>An engineer</RevealLine>
-        <br />
-        <RevealLine delay={0.15}>building serious work</RevealLine>
-        <br />
-        <span className="about_hero_title-italic">
-          <RevealLine delay={0.3}>for serious teams.</RevealLine>
-        </span>
-      </h1>
+        <h1 className="about_hero_title">
+          <span className="about_hero_reveal">
+            <motion.span
+              className="about_hero_reveal-inner"
+              initial={{ y: "105%" }}
+              animate={{ y: "0%" }}
+              transition={{ duration: 1, delay: 0.1, ease: EASE }}
+            >
+              Hi, I&apos;m {profile.name.split(" ")[0]}.
+            </motion.span>
+          </span>
+        </h1>
 
-      <div className="about_hero_grid">
-        <motion.p
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.9, ease: EASE }}
-          className="about_hero_lede"
-        >
-          {profile.name.split(" ")[0]} is a {profile.role} based in{" "}
-          {profile.location}, working with enterprise product teams on the
-          things that matter most: flagship launches, micro-frontend
-          architecture, design systems, and quality-first delivery.
+        <motion.p className="about_hero_lede" {...fadeUp(0.35)}>
+          {aboutPage.intro[0]}
+        </motion.p>
+        <motion.p className="about_hero_body" {...fadeUp(0.45)}>
+          {aboutPage.intro[1]}
         </motion.p>
 
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.75, duration: 0.9, ease: EASE }}
-          className="about_hero_meta"
-        >
-          <dl className="about_hero_meta-list">
-            <div>
-              <dt>Practicing</dt>
-              <dd>Since {profile.practicingSince}</dd>
+        <motion.dl className="about_hero_stats" {...fadeUp(0.55)}>
+          {STATS.map((s) => (
+            <div key={s.label} className="about_hero_stat">
+              <dt>{s.label}</dt>
+              <dd>{s.value}</dd>
             </div>
-            <div>
-              <dt>Role</dt>
-              <dd>{profile.role}</dd>
-            </div>
-            <div>
-              <dt>Based</dt>
-              <dd>{profile.location}</dd>
-            </div>
-            <div>
-              <dt>Currently</dt>
-              <dd>{profile.currentCompany}</dd>
-            </div>
-          </dl>
-        </motion.div>
+          ))}
+        </motion.dl>
       </div>
-    </div>
 
-    <div className="about_hero_portrait">
-      <motion.div
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.6, ease: EASE }}
-        className="about_hero_portrait-frame"
-        style={{ backgroundImage: "url(/assets/about/about_pic.jpg)" }}
-      />
-      <div className="about_hero_portrait-caption">
-        <span>
-          {profile.name.split(" ")[0]}, {profile.role.split(" ").slice(-1)[0]}{" "}
-          Engineer
-        </span>
-        <span>
-          {profile.location.split(",")[0]}, {new Date().getFullYear()}
-        </span>
-      </div>
-    </div>
+      <motion.figure
+        className="about_hero_photo"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
+      >
+        <img
+          src="/assets/about/about_photo.jpg"
+          alt={profile.name}
+          width="821"
+          height="807"
+          decoding="async"
+        />
+        <figcaption>{profile.location}</figcaption>
+      </motion.figure>
     </div>
   </section>
 );

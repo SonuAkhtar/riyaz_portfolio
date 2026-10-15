@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import RollText from "../RollText/RollText";
 import { useTheme } from "../../utils/useTheme";
 import { navLinks, socialIconsData } from "../../../appData";
 import "./header.css";
@@ -26,19 +27,6 @@ const prefetchRoute = (path) => {
   prefetched.add(path);
   load().catch(() => prefetched.delete(path));
 };
-const RollText = ({ text }) => (
-  <span className="roll_wrap" aria-hidden="true">
-    {[...text].map((char, i) => (
-      <span
-        key={i}
-        className="roll_char"
-        style={{ transitionDelay: `${i * 0.018}s` }}
-      >
-        {char === " " ? "\u00a0" : char}
-      </span>
-    ))}
-  </span>
-);
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,7 +55,15 @@ const Header = () => {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!menuOpen) return () => { document.body.style.overflow = ""; };
+    const onKey = (e) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
   }, [menuOpen]);
 
   const open = useCallback(() => setMenuOpen(true), []);
@@ -138,6 +134,7 @@ const Header = () => {
       <div
         className={`fullmenu${menuOpen ? " active" : ""}`}
         aria-hidden={!menuOpen}
+        inert={menuOpen ? undefined : ""}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
@@ -180,7 +177,7 @@ const Header = () => {
               <div className="fullmenu_socials">
                 {socialIconsData.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                    className="fullmenu_soc">
+                    className="fullmenu_soc" aria-label={s.label}>
                     <i className={s.class} />
                   </a>
                 ))}

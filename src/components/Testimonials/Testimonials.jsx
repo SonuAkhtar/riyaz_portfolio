@@ -1,70 +1,58 @@
 import { motion } from "framer-motion";
-import { workedWith } from "../../../appData";
+import { experienceData } from "../../../appData";
+import { fadeInUp, stagger, viewportOptions } from "../../utils/animations";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import "./testimonials.css";
 
-const EASE = [0.22, 1, 0.36, 1];
-
-const CompanyLogo = ({ item }) => (
-  <span
-    className="ww_logo"
-    style={{
-      color: item.color,
-      background: `${item.color}14`,
-      borderColor: `${item.color}40`,
-    }}
-    aria-hidden="true"
-  >
-    <span className="ww_logo-initials">{item.initials}</span>
-  </span>
-);
+const yearRange = (period) => period.match(/\d{4}|Present/g).join(" to ");
 
 const WorkedWith = () => (
   <section className="testimonials_root">
-    <div className="testimonials_inner">
-      <div className="testimonials_eyebrow">
-        <span /> Worked with
-      </div>
+    <div className="section_inner">
+      <SectionHeader
+        eyebrow="Experience"
+        title="Where I've worked."
+        aside="From Amazon in 2017 to Publicis Sapient today."
+      />
 
-      <motion.h2
-        className="ww_title"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{ duration: 0.7, ease: EASE }}
-      >
-        Teams that shipped<br />
-        <span className="ww_title-soft">serious work with me.</span>
-      </motion.h2>
-
-      <motion.ul
-        className="ww_grid"
+      <motion.ol
+        className="ww_timeline"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-10% 0px" }}
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-        }}
+        viewport={viewportOptions}
+        variants={stagger}
       >
-        {workedWith.map((w) => (
-          <motion.li
-            key={w.id}
-            className="ww_item"
-            style={{ "--ww-accent": w.color }}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-            }}
-          >
-            <div className="ww_head">
-              <CompanyLogo item={w} />
-              <span className="ww_period">{w.period}</span>
-            </div>
-            <span className="ww_company">{w.name}</span>
-            <span className="ww_role">{w.role}</span>
-          </motion.li>
-        ))}
-      </motion.ul>
+        {experienceData.map((w) => {
+          const { current } = w;
+          return (
+            <motion.li
+              key={w.id}
+              className={`ww_entry${current ? " ww_entry-current" : ""}`}
+              variants={fadeInUp}
+            >
+              <span className="ww_when">{yearRange(w.period)}</span>
+              <span className="ww_rail" aria-hidden="true">
+                <span className="ww_node" />
+              </span>
+              <div className="ww_body">
+                <span className="ww_logo">
+                  <img
+                    src={w.logo}
+                    alt={`${w.company} logo`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span className="ww_text">
+                  <span className="ww_company">{w.company}</span>
+                  <span className="ww_role">{w.title}</span>
+                </span>
+                {current && <span className="ww_badge">Current</span>}
+              </div>
+            </motion.li>
+          );
+        })}
+      </motion.ol>
     </div>
   </section>
 );

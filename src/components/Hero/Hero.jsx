@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   motion,
@@ -7,14 +6,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import {
-  socialIconsData,
-  heroStats,
-  marqueeTech,
-  heroLede,
-  portraitTag,
-  profile,
-} from "../../../appData";
+import { heroStats, heroLede, profile } from "../../../appData";
 import RollText from "../RollText/RollText";
 import MagneticButton from "../MagneticButton/MagneticButton";
 import "./hero.css";
@@ -25,76 +17,8 @@ const EASE = [0.22, 1, 0.36, 1];
 const HAS_HOVER =
   typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
 
-const TiltPortrait = () => {
-  const frameRef = useRef(null);
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const reduceMotion = useReducedMotion();
-  const canTilt = HAS_HOVER && !reduceMotion;
-
-  const x = useSpring(rawX, { stiffness: 220, damping: 22, mass: 0.5 });
-  const y = useSpring(rawY, { stiffness: 220, damping: 22, mass: 0.5 });
-
-  const rotateY = useTransform(x, [-0.5, 0.5], [-14, 14]);
-  const rotateX = useTransform(y, [-0.5, 0.5], [10, -10]);
-
-  const shineX = useTransform(x, [-0.5, 0.5], ["20%", "80%"]);
-  const shineY = useTransform(y, [-0.5, 0.5], ["20%", "80%"]);
-
-  const imgX = useTransform(x, [-0.5, 0.5], ["-3%", "3%"]);
-  const imgY = useTransform(y, [-0.5, 0.5], ["-2%", "2%"]);
-
-  const onMove = (e) => {
-    const rect = frameRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    rawX.set((e.clientX - rect.left) / rect.width - 0.5);
-    rawY.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const onLeave = () => {
-    rawX.set(0);
-    rawY.set(0);
-  };
-
-  return (
-    <motion.div
-      ref={frameRef}
-      className="hero_portrait_frame"
-      {...(canTilt ? { onMouseMove: onMove, onMouseLeave: onLeave } : {})}
-      style={
-        canTilt ? { rotateX, rotateY, transformPerspective: 1200 } : undefined
-      }
-    >
-      <motion.img
-        src={heroImage}
-        alt="Riyaz Akhtar portrait"
-        className="hero_portrait_img"
-        fetchpriority="high"
-        decoding="async"
-        style={{ x: imgX, y: imgY }}
-      />
-      <div className="hero_portrait_overlay" aria-hidden="true" />
-      <motion.div
-        className="hero_portrait_shine"
-        aria-hidden="true"
-        style={{
-          background: useTransform(
-            [shineX, shineY],
-            ([sx, sy]) =>
-              `radial-gradient(circle at ${sx} ${sy}, rgba(255,255,255,0.18) 0%, transparent 50%)`,
-          ),
-        }}
-      />
-      <span className="hero_portrait_tag">
-        <span className="hero_portrait_tag_dot" aria-hidden="true" />
-        {portraitTag}
-      </span>
-    </motion.div>
-  );
-};
-
-const STATS = heroStats;
-const MARQUEE_TRIPLED = [...marqueeTech, ...marqueeTech, ...marqueeTech];
+const [FIRST_NAME, ...REST] = profile.name.split(" ");
+const LAST_NAME = REST.join(" ");
 
 const ArrowUpRight = () => (
   <svg
@@ -114,158 +38,139 @@ const ArrowUpRight = () => (
   </svg>
 );
 
-const Hero = () => (
-  <section className="hero_root" id="hero">
-    <div className="hero_aurora" aria-hidden="true" />
-    <div className="hero_grid_lines" aria-hidden="true" />
-
-    <div className="hero_inner">
-      <div className="hero_left">
-        <motion.span
-          className="section_label hero_eyebrow"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.1, ease: EASE }}
-        >
-          {profile.availability}
-        </motion.span>
-
-        <h1 className="hero_title">
-          <motion.span
-            className="hero_title_line"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.18, ease: EASE }}
-          >
-            Hi, I'm Riyaz -
-          </motion.span>
-          <motion.span
-            className="hero_title_line hero_title_em"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.32, ease: EASE }}
-          >
-            a lead engineer who ships.
-          </motion.span>
-        </h1>
-
-        <motion.p
-          className="hero_lede"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.5, ease: EASE }}
-        >
-          {heroLede}
-        </motion.p>
-
-        <motion.div
-          className="hero_ctas"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.65, ease: EASE }}
-        >
-          <MagneticButton strength={0.32}>
-            <Link
-              to="/contact"
-              className="hero_cta_primary"
-              aria-label="Start a project"
-            >
-              <RollText text="Start a project" />
-              <span className="hero_cta_arrow" aria-hidden="true">
-                <ArrowUpRight />
-              </span>
-            </Link>
-          </MagneticButton>
-          <MagneticButton strength={0.22}>
-            <a
-              href="/assets/Riyaz_Akhtar_Resume.pdf"
-              download
-              className="hero_cta_ghost"
-              aria-label="Download CV"
-            >
-              <RollText text="Download CV" />
-            </a>
-          </MagneticButton>
-        </motion.div>
-
-        <motion.div
-          className="hero_meta_row"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.85 }}
-        >
-          <div className="hero_socials" aria-label="Social links">
-            {socialIconsData.map((s, i) => (
-              <a
-                key={i}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="hero_soc"
-                aria-label={s.class}
-              >
-                <i className={s.class} />
-              </a>
-            ))}
-          </div>
-          <span className="hero_meta_sep" aria-hidden="true" />
-          <span className="hero_loc">
-            <i className="fas fa-map-pin" aria-hidden="true" />
-            {profile.location}
-          </span>
-        </motion.div>
-      </div>
-
-      <motion.div
-        className="hero_right"
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.1, delay: 0.25, ease: EASE }}
-      >
-        <TiltPortrait />
-
-        <motion.div
-          className="hero_stats"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: {
-              transition: { staggerChildren: 0.1, delayChildren: 0.85 },
-            },
-          }}
-        >
-          {STATS.map((s) => (
-            <motion.div
-              key={s.label}
-              className="hero_stat"
-              variants={{
-                hidden: { opacity: 0, y: 16 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.6, ease: EASE },
-                },
-              }}
-            >
-              <span className="hero_stat_value">{s.value}</span>
-              <span className="hero_stat_label">{s.label}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-    </div>
-
-    <div className="hero_marquee" aria-hidden="true">
-      <div className="hero_marquee_inner">
-        {MARQUEE_TRIPLED.map((s, i) => (
-          <span key={i} className="hero_marquee_item">
-            <span className="hero_marquee_dot">●</span> {s}
-          </span>
-        ))}
-      </div>
-    </div>
-  </section>
+const NameLine = ({ children, delay }) => (
+  <span className="hero_name_line">
+    <motion.span
+      className="hero_name_inner"
+      initial={{ y: "105%" }}
+      animate={{ y: "0%" }}
+      transition={{ duration: 1, delay, ease: EASE }}
+    >
+      {children}
+    </motion.span>
+  </span>
 );
+
+const fadeUp = (delay) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, delay, ease: EASE },
+});
+
+const Hero = () => {
+  const reduceMotion = useReducedMotion();
+  const canParallax = HAS_HOVER && !reduceMotion;
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const x = useSpring(rawX, { stiffness: 120, damping: 20, mass: 0.6 });
+  const y = useSpring(rawY, { stiffness: 120, damping: 20, mass: 0.6 });
+  const imgX = useTransform(x, [-0.5, 0.5], [-14, 14]);
+  const imgY = useTransform(y, [-0.5, 0.5], [-8, 8]);
+  const glowX = useTransform(x, [-0.5, 0.5], [24, -24]);
+  const glowY = useTransform(y, [-0.5, 0.5], [16, -16]);
+
+  const onMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    rawX.set((e.clientX - r.left) / r.width - 0.5);
+    rawY.set((e.clientY - r.top) / r.height - 0.5);
+  };
+  const onLeave = () => {
+    rawX.set(0);
+    rawY.set(0);
+  };
+
+  return (
+    <section
+      className="hero_root"
+      id="hero"
+      {...(canParallax ? { onMouseMove: onMove, onMouseLeave: onLeave } : {})}
+    >
+      <div className="hero_aurora" aria-hidden="true" />
+
+      <div className="hero_inner section_inner">
+        <div className="hero_left">
+          <motion.span className="section_label hero_eyebrow" {...fadeUp(0.1)}>
+            <span className="hero_avail_dot" aria-hidden="true" />
+            {profile.availability}
+            <span className="hero_eyebrow_sep" aria-hidden="true" />
+            {profile.location}
+          </motion.span>
+
+          <h1 className="hero_name" aria-label={profile.name}>
+            <NameLine delay={0.15}>{FIRST_NAME}</NameLine>
+            <NameLine delay={0.27}>{LAST_NAME}.</NameLine>
+          </h1>
+
+          <motion.p className="hero_role" {...fadeUp(0.45)}>
+            {profile.role}
+            <em> at {profile.currentCompany}</em>
+          </motion.p>
+
+          <motion.p className="hero_lede" {...fadeUp(0.55)}>
+            {heroLede}
+          </motion.p>
+
+          <motion.div className="hero_ctas" {...fadeUp(0.65)}>
+            <MagneticButton strength={0.32}>
+              <Link
+                to="/contact"
+                className="hero_cta_primary"
+                aria-label="Start a project"
+              >
+                <RollText text="Start a project" />
+                <span className="hero_cta_arrow" aria-hidden="true">
+                  <ArrowUpRight />
+                </span>
+              </Link>
+            </MagneticButton>
+            <MagneticButton strength={0.22}>
+              <a
+                href="/assets/Riyaz_Akhtar_Resume.pdf"
+                download
+                className="hero_cta_ghost"
+                aria-label="Download CV"
+              >
+                <RollText text="Download CV" />
+              </a>
+            </MagneticButton>
+          </motion.div>
+
+          <motion.dl className="hero_stats" {...fadeUp(0.8)}>
+            {heroStats.map((s) => (
+              <div key={s.label} className="hero_stat">
+                <dt className="hero_stat_label">{s.label}</dt>
+                <dd className="hero_stat_value">{s.value}</dd>
+              </div>
+            ))}
+          </motion.dl>
+        </div>
+
+        <motion.div
+          className="hero_visual"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.25, ease: EASE }}
+        >
+          <motion.div
+            className="hero_glow"
+            aria-hidden="true"
+            style={canParallax ? { x: glowX, y: glowY } : undefined}
+          />
+          <motion.img
+            src={heroImage}
+            alt={`${profile.name}, ${profile.role}`}
+            className="hero_photo"
+            fetchpriority="high"
+            decoding="async"
+            width="1195"
+            height="1200"
+            style={canParallax ? { x: imgX, y: imgY } : undefined}
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 export default Hero;

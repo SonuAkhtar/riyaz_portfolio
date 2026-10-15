@@ -1,230 +1,223 @@
 .about {
   position: relative;
-  padding: clamp(5rem, 9vh, 8rem) 0;
   background: var(--bg-primary);
-  overflow: hidden;
 }
 
-.about_inner {
-  position: relative;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 3rem);
+/* clip (not hidden) so the sticky heading column keeps working. */
+.home_root .about {
+  overflow: clip;
 }
 
-.about_wm {
-  position: absolute;
-  right: clamp(1rem, 4vw, 3rem);
-  top: -0.05em;
-  font-family: "Clash Display", "Sora", "Inter", sans-serif;
-  font-size: clamp(5rem, 14vw, 14rem);
-  font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--border);
-  opacity: 0.45;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-.about_head {
-  position: relative;
-  z-index: 1;
+.about_layout {
   display: grid;
-  gap: 1.25rem;
-  margin-bottom: 2.5rem;
-  max-width: 1100px;
-}
-
-.about_statement {
-  font-family: "Clash Display", "Sora", "Inter", sans-serif;
-  font-size: clamp(2rem, 4.2vw, 3.5rem);
-  font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.about_stmt_accent {
-  display: block;
-  font-family: "Clash Display", "Sora", "Inter", sans-serif;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--text-muted);
-  background: none;
-  -webkit-background-clip: initial;
-  -webkit-text-fill-color: currentColor;
-  background-clip: initial;
-}
-
-.about_rule {
-  width: 100%;
-  height: 1px;
-  background: var(--border);
-  transform-origin: left center;
-  margin-bottom: clamp(2.5rem, 5vh, 3.5rem);
-  position: relative;
-  z-index: 1;
-}
-.about_body {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: clamp(2.5rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(2.5rem, 6vw, 6rem);
   align-items: start;
 }
 
-.about_bio_col {
+.about_aside {
+  position: sticky;
+  top: 110px;
   display: grid;
-  gap: 1.25rem;
+  justify-items: start;
 }
 
-.about_bio_text {
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin: 0;
-  max-width: 60ch;
+.about_aside .sh_root {
+  margin-bottom: 2rem;
 }
 
-.about_bio_text strong {
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.about_more_cta {
+.about_more {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
+  gap: 0.75rem;
+  padding: 0.55rem 0.55rem 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-default);
   color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 500;
   text-decoration: none;
-  width: max-content;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  margin-top: 0.5rem;
   transition:
-    gap 320ms cubic-bezier(0.25, 1, 0.5, 1),
-    border-color 320ms cubic-bezier(0.25, 1, 0.5, 1);
+    background-color 350ms ease,
+    color 350ms ease,
+    border-color 350ms ease;
 }
 
-.about_more_cta i {
-  font-size: 0.75rem;
-  transition: transform 320ms cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.about_more_cta:hover {
-  gap: 0.85rem;
-  border-color: var(--text-primary);
-}
-
-.about_more_cta:hover i {
-  transform: translate(3px, -3px);
-}
-.about_traits_col {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--text-primary) 2%, transparent);
-
-  overflow: hidden;
-}
-
-.about_trait {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 1.15rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  transition: background 320ms cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.about_trait:last-child {
-  border-bottom: none;
-}
-
-.about_trait:hover {
-  background: color-mix(in srgb, var(--text-primary) 3%, transparent);
-}
-
-.about_trait_icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--text-primary) 5%, transparent);
-  border: 1px solid var(--border);
-  display: flex;
+.about_more-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  flex-shrink: 0;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font-size: 0.7rem;
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 350ms ease,
+    color 350ms ease;
 }
 
-.about_trait_label {
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
+.about_more:hover {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.about_more:hover .about_more-icon {
+  background: var(--bg-primary);
   color: var(--text-primary);
-  letter-spacing: -0.005em;
+  transform: translateX(3px);
 }
 
-@media (max-width: 900px) {
-  .about_body {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+.about_main {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 2.6rem;
+}
+
+.about_lede {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.about_body {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 58ch;
+}
+
+.about_facts {
+  margin: 1rem 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.about_fact {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.about_fact dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-top: 0.2rem;
+}
+
+.about_fact dd {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+
+.about_principles {
+  margin-top: 1.5rem;
+}
+
+.about_principles-title {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.about_principles ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2.5rem;
+}
+
+.about_principle {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.9rem;
+  row-gap: 0.35rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.about_principle-icon {
+  grid-row: 1 / 3;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  transition:
+    background-color 350ms ease,
+    color 350ms ease,
+    border-color 350ms ease;
+}
+
+.about_principle h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.about_principle p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+@media (hover: hover) {
+  .about_principle:hover .about_principle-icon {
+    background: var(--text-primary);
+    border-color: var(--text-primary);
+    color: var(--bg-primary);
   }
-  .about_traits_col {
-    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 960px) {
+  .about_layout {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .about_trait {
-    border-right: 1px solid var(--border);
+  .about_aside {
+    position: static;
   }
-  .about_trait:nth-child(2n) {
-    border-right: none;
+  .about_aside .sh_root {
+    margin-bottom: 1.5rem;
   }
-  .about_trait:nth-last-child(-n + 2) {
-    border-bottom: none;
+  .about_main {
+    padding-top: 2.5rem;
   }
 }
 
 @media (max-width: 640px) {
-  .about_wm {
-    font-size: clamp(3.5rem, 18vw, 6rem);
-    right: 1rem;
+  .about_fact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
   }
-  .about_statement {
-    font-size: clamp(1.75rem, 7vw, 2.5rem);
-  }
-  .about_head {
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .about_rule {
-    margin-bottom: 2rem;
-  }
-  .about_bio_text {
-    font-size: 1rem;
-  }
-  
-  .about_traits_col {
-    grid-template-columns: 1fr;
-  }
-  .about_trait {
-    padding: 1rem 1.1rem;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-  .about_trait:last-child {
-    border-bottom: none;
+  .about_principles ul {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

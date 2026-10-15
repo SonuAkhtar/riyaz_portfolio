@@ -1,153 +1,120 @@
 .philosophy_root {
-  --color-text: var(--text-primary);
-  --color-text-soft: var(--text-secondary);
-  --color-text-mute: var(--text-muted);
-  --color-line: var(--border);
-  --color-line-strong: var(--border-accent);
-  --color-card: color-mix(in srgb, var(--text-primary) 2%, transparent);
-  --color-card-hover: color-mix(in srgb, var(--text-primary) 5%, transparent);
-
-  --font-display: "Clash Display", "Sora", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --fs-display-lg: clamp(2.5rem, 5.5vw, 5rem);
-  --fs-h3: clamp(1.375rem, 2vw, 1.875rem);
-  --fs-body: 1rem;
-  --fs-caption: 0.75rem;
-  --tracking-wider: 0.12em;
-
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 2rem;
-  --space-9: 4rem;
-
-  --container-max: 1440px;
-  --container-padding: clamp(1.25rem, 4vw, 3rem);
-  --section-padding-y: clamp(5rem, 10vw, 9rem);
-  --radius-lg: 24px;
-
-  --dur-base: 320ms;
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-
-  
-  padding: var(--section-padding-y) 0 !important;
-  display: block !important;
-  align-items: unset !important;
-  justify-content: unset !important;
-  min-height: unset !important;
-  overflow: visible !important;
-  background-color: transparent !important;
-  color: var(--color-text);
-  font-family: var(--font-display);
   position: relative;
+  background: var(--bg-primary);
 }
 
-.philosophy_inner {
-  width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
+.philosophy_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: var(--space-9);
-  align-items: start;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
 }
 
-.philosophy_header {
-  
-  position: sticky;
-  top: 50vh;
-  transform: translateY(-50%);
-  display: grid;
-  gap: var(--space-4);
-  align-self: start;
+.philosophy_item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.25rem, 2.2vw, 2rem) 0.5rem;
 }
 
-.philosophy_eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-caption);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--color-text-mute);
+.philosophy_item:first-child {
+  padding-left: 0;
 }
 
-.philosophy_eyebrow span {
-  width: 28px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
+.philosophy_item + .philosophy_item {
+  border-left: 1px solid var(--border);
+}
+
+.philosophy_num {
+  position: relative;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-muted);
+  transition:
+    color 500ms ease,
+    -webkit-text-stroke-color 500ms ease;
+}
+
+.philosophy_num::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--text-primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .philosophy_title {
+  margin: 0;
   font-family: var(--font-display);
-  font-size: var(--fs-display-lg);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
   font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+.philosophy_body {
   margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
 }
 
-.philosophy_title-soft {
-  color: var(--color-text-mute);
+@media (hover: hover) {
+  .philosophy_item:hover .philosophy_num {
+    color: var(--text-primary);
+    -webkit-text-stroke-color: var(--text-primary);
+  }
+  .philosophy_item:hover .philosophy_num::after {
+    transform: scaleX(1);
+  }
 }
 
-.philosophy_grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  list-style: none;
-  padding: 0;
-  margin: 0;
+@media (max-width: 1024px) {
+  .philosophy_list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: none;
+  }
+  .philosophy_item,
+  .philosophy_item:first-child {
+    padding: 2rem 1.75rem 2rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .philosophy_item + .philosophy_item {
+    border-left: none;
+  }
+  .philosophy_item:nth-child(even) {
+    padding: 2rem 0 2rem 1.75rem;
+    border-left: 1px solid var(--border);
+  }
 }
 
-.philosophy_card {
-  padding: var(--space-6);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-line);
-  background: var(--color-card);
-  display: grid;
-  gap: var(--space-3);
-  align-content: start;
-  position: relative;
-  transition:
-    background-color var(--dur-base) var(--ease-out-quart),
-    border-color var(--dur-base) var(--ease-out-quart);
-}
-
-.philosophy_card:hover {
-  background: var(--color-card-hover);
-  border-color: var(--color-line-strong);
-}
-
-.philosophy_card-index {
-  font-family: var(--font-mono);
-  font-size: var(--fs-caption);
-  letter-spacing: var(--tracking-wider);
-  color: var(--color-text-mute);
-}
-
-.philosophy_card-title {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-.philosophy_card-body {
-  color: var(--color-text-soft);
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  margin: 0;
-}
-
-@media (max-width: 960px) {
-  .philosophy_inner { grid-template-columns: 1fr; }
-  .philosophy_header { position: relative; top: auto; }
-}
-
-@media (max-width: 600px) {
-  .philosophy_grid { grid-template-columns: 1fr; }
+@media (max-width: 640px) {
+  .philosophy_list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .philosophy_item,
+  .philosophy_item:first-child,
+  .philosophy_item:nth-child(even) {
+    padding: 1.75rem 0;
+    border-left: none;
+  }
+  .philosophy_num {
+    font-size: 3.25rem;
+    margin-bottom: 0.5rem;
+  }
 }

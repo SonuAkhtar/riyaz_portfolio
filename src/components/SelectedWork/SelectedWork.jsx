@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { projectsData } from "../../../appData";
-import { PROJECT_COLORS } from "../../utils/themeColors";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import "./selectedWork.css";
 
 const ArrowUpRight = () => (
@@ -61,19 +61,11 @@ const SelectedWork = () => {
     >
       <div ref={wrapRef} className="selectedwork_scroll">
         <div className="selectedwork_scroll-sticky">
-          <div className="selectedwork_intro">
-            <span className="selectedwork_eyebrow">
-              <span /> Selected work, 2022 to 2026
-            </span>
-            <motion.h2
-              className="selectedwork_title"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-15% 0px" }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Work I am proud of.
-            </motion.h2>
+          <div className="selectedwork_intro section_inner">
+            <SectionHeader
+              eyebrow="Selected work, 2022 to 2026"
+              title="Work I'm proud of."
+            />
           </div>
 
           <div className="selectedwork_track-wrap">
@@ -83,7 +75,6 @@ const SelectedWork = () => {
               style={{ x }}
             >
               {featured.map((p, i) => {
-                const accent = PROJECT_COLORS[i % PROJECT_COLORS.length];
                 const href = p.live || p.github || "/projects";
                 const isExternal = href.startsWith("http");
                 const CardWrap = isExternal ? "a" : Link;
@@ -100,7 +91,6 @@ const SelectedWork = () => {
                     key={p.id}
                     {...linkProps}
                     className="selectedwork_card"
-                    style={{ "--accent": accent }}
                   >
                     <div className="selectedwork_card-meta">
                       <span>{String(i + 1).padStart(2, "0")}</span>

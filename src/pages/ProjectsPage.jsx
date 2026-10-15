@@ -63,7 +63,7 @@ const ProjectSection = React.forwardRef(({ project }, ref) => (
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
       >
-        <span className="pp_meta_label">Challenge:</span>
+        <span className="pp_meta_label">About</span>
         <p className="pp_meta_text">{project.challenge}</p>
       </motion.div>
 
@@ -75,7 +75,7 @@ const ProjectSection = React.forwardRef(({ project }, ref) => (
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
       >
-        <span className="pp_meta_label">Services:</span>
+        <span className="pp_meta_label">Stack</span>
         <div className="pp_services_list">
           {project.services.map((s) => (
             <span key={s} className="pp_service_pill">
@@ -93,7 +93,7 @@ const ProjectSection = React.forwardRef(({ project }, ref) => (
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
       >
-        <span className="pp_meta_label">Role:</span>
+        <span className="pp_meta_label">Highlights</span>
         <p className="pp_meta_text">{project.role}</p>
       </motion.div>
     </div>
@@ -178,12 +178,8 @@ const ProjectsPage = () => {
   }, []);
 
   const scrollToProject = useCallback((i) => {
-    const el = sectionRefs.current[i];
-    if (!el) return;
-    window.scrollTo({
-      top: el.getBoundingClientRect().top + window.scrollY - 80,
-      behavior: "smooth",
-    });
+    // Sections carry their own header offset (padding / scroll-margin).
+    sectionRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   const activeColor = PROJECTS[activeIdx]?.color;
@@ -200,15 +196,13 @@ const ProjectsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
           >
-            <span /> Selected work, 2022 to 2026
+            <span /> Projects
           </motion.span>
 
           <h1 className="pp_hero_title">
-            <RevealLine delay={0.2}>A catalogue of</RevealLine>
+            <RevealLine delay={0.2}>Things I&apos;ve</RevealLine>
             <br />
-            <em>
-              <RevealLine delay={0.35}>shipped work.</RevealLine>
-            </em>
+            <RevealLine delay={0.35}>built.</RevealLine>
           </h1>
 
           <motion.p
@@ -217,9 +211,8 @@ const ProjectsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease: EASE, delay: 0.6 }}
           >
-            Production-grade engineering across AI integrations, enterprise
-            frontend systems, and cloud-deployed applications. Scroll the
-            catalogue. Every entry is a working application, not a mock.
+            Live products I designed and built, from AI tools to business
+            websites. Each one links to the live site and the code.
           </motion.p>
 
           <motion.div
@@ -237,7 +230,7 @@ const ProjectsPage = () => {
               onClick={() => scrollToProject(0)}
               aria-label="Jump to first project"
             >
-              <span>Begin reading</span>
+              <span>See projects</span>
               <i className="fas fa-arrow-down" aria-hidden="true" />
             </button>
           </motion.div>
@@ -255,7 +248,7 @@ const ProjectsPage = () => {
               className={`pp_dot_item${i === activeIdx ? " active" : ""}`}
               style={{
                 "--dot-color": p.color.dot,
-                "--dot-pill-bg": p.color.pillBg,
+                "--dot-pill-bg": p.color.bg,
                 "--dot-border": p.color.pillBorder,
               }}
               onClick={() => scrollToProject(i)}

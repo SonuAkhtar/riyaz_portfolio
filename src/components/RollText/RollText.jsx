@@ -1,4 +1,4 @@
-const NBSP = " ";
+const NBSP = "\u00a0";
 
 const RollText = ({ text }) => (
   <span className="roll_wrap" aria-hidden="true">

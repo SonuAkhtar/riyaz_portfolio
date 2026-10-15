@@ -15,24 +15,4 @@ export const stagger = {
   visible: { transition: { staggerChildren: 0.10, delayChildren: 0.05 } },
 };
 
-export const scaleIn = {
-  hidden:  { opacity: 0, scale: 0.88, filter: "blur(4px)" },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.5, ease: EASE },
-  },
-};
-
 export const viewportOptions = { once: true, margin: "-60px" };
-
-export const fadeUp = {
-  hidden:  { opacity: 0, y: 24, filter: "blur(6px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.65, ease: EASE },
-  },
-};

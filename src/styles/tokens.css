@@ -1,57 +1,75 @@
-
-
+/*
+ * Single source of truth for every color in the app.
+ * Raw values live only in this palette block; everything else (CSS and JS)
+ * references these tokens. For translucent variants use
+ * color-mix(in srgb, var(--c-name) N%, transparent), or alpha() in JS.
+ */
 :root {
-  
+  --c-white: #ffffff;
+  --c-black: #000000;
+
+  --c-violet-200: #c4b5fd;
   --c-violet-300: #a78bfa;
   --c-violet-400: #8b5cf6;
   --c-violet-500: #7c3aed;
   --c-violet-600: #6d28d9;
   --c-violet-700: #5b21b6;
+  --c-purple-400: #c084fc;
   --c-purple-500: #a855f7;
 
-  
+  --c-indigo-400: #818cf8;
+  --c-indigo-500: #6366f1;
+  --c-indigo-600: #4f46e5;
+  --c-indigo-700: #6357d4;
+
+  --c-blue-50: #dde8ff;
+  --c-blue-200: #a8c0ff;
+  --c-blue-300: #93c5fd;
+  --c-blue-350: #638eff;
   --c-blue-400: #5b8dee;
+  --c-blue-450: #4a7ee3;
   --c-blue-500: #3b82f6;
   --c-blue-600: #4f7cff;
   --c-sky-500: #0ea5e9;
 
-  
   --c-cyan-300: #67e8f9;
   --c-cyan-400: #22d3ee;
   --c-cyan-500: #06b6d4;
   --c-cyan-600: #0891b2;
   --c-cyan-700: #0e7490;
 
-  
+  --c-green-200: #86efac;
   --c-green-300: #5bdc8e;
   --c-green-400: #5ee297;
   --c-green-500: #22c55e;
   --c-green-600: #10b981;
   --c-green-700: #4ade80;
 
-  
   --c-amber-400: #fbbf24;
   --c-amber-500: #f59e0b;
   --c-amber-600: #f0a04b;
+  --c-orange-400: #fb923c;
+  --c-orange-500: #f97316;
 
-  
+  --c-red-200: #ffb4b4;
+  --c-red-400: #f87171;
+  --c-red-500: #ef4444;
+  --c-red-600: #dc2626;
   --c-pink-500: #ec4899;
   --c-rose-500: #f43f5e;
 
-  
+  --c-gray-500: #6b7280;
+  --c-slate-50: #f8fafc;
+  --c-slate-100: #f1f5f9;
   --c-slate-600: #4b5e75;
 
-  
-  --c-status-success: #10b981;
-  --c-status-warning: #f59e0b;
-  --c-status-error: #ef4444;
-
-  
-  --c-zinc-0: #ffffff;
   --c-zinc-50: #fafafa;
-  --c-zinc-75: #f8fafc;
-  --c-zinc-100: #f1f5f9;
+  --c-zinc-100: #f4f4f5;
   --c-zinc-200: #e4e4e7;
+  --c-zinc-300: #d4d4d8;
+  --c-zinc-400: #a1a1aa;
+  --c-zinc-500: #71717a;
+  --c-zinc-600: #52525b;
   --c-zinc-700: #3f3f46;
   --c-zinc-800: #27272a;
   --c-zinc-850: #1f1f23;
@@ -59,6 +77,25 @@
   --c-zinc-925: #111113;
   --c-zinc-950: #09090b;
   --c-zinc-975: #0a0a0b;
+
+  --c-ink-50: #f6f7fb;
+  --c-ink-200: #c8ccd9;
+  --c-ink-400: #8b91a6;
+  --c-ink-900: #0f1118;
+  --c-ink-925: #0f1014;
+  --c-ink-950: #08080c;
+  --c-ink-960: #06070b;
+  --c-ink-975: #050610;
+
+  --c-brand-react: #61dafb;
+
+  --c-window-close: #ff5f56;
+  --c-window-minimize: #ffbd2e;
+  --c-window-maximize: #27c93f;
+
+  --c-status-success: var(--c-green-600);
+  --c-status-warning: var(--c-amber-500);
+  --c-status-error: var(--c-red-500);
 }
 
 :root {
@@ -89,15 +126,15 @@
   --bg-card-hover: var(--c-zinc-850);
 
   
-  --border: rgba(255, 255, 255, 0.07);
+  --border: color-mix(in srgb, var(--c-white) 7%, transparent);
   --border-default: var(--c-zinc-800);
-  --border-accent: rgba(124, 58, 237, 0.25);
+  --border-accent: color-mix(in srgb, var(--c-violet-500) 25%, transparent);
   --divider: var(--c-zinc-850);
 
   
   --text-primary: var(--c-zinc-50);
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
+  --text-secondary: var(--c-zinc-400);
+  --text-muted: var(--c-zinc-500);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
@@ -109,13 +146,13 @@
   --secondary-hover: var(--c-cyan-400);
   --accent: var(--c-violet-500);
   --accent-2: var(--c-purple-500);
-  --accent-glow: rgba(124, 58, 237, 0.14);
-  --accent-glow-strong: rgba(124, 58, 237, 0.28);
+  --accent-glow: color-mix(in srgb, var(--c-violet-500) 14%, transparent);
+  --accent-glow-strong: color-mix(in srgb, var(--c-violet-500) 28%, transparent);
 
   
   --green: var(--c-green-700);
-  --green-border: rgba(74, 222, 128, 0.28);
-  --green-bg: rgba(74, 222, 128, 0.07);
+  --green-border: color-mix(in srgb, var(--c-green-700) 28%, transparent);
+  --green-bg: color-mix(in srgb, var(--c-green-700) 7%, transparent);
 
   
   --success: var(--c-status-success);
@@ -128,39 +165,39 @@
     var(--c-violet-500) 0%,
     var(--c-purple-500) 100%
   );
-  --gradient-text: linear-gradient(135deg, var(--c-zinc-50) 0%, #a1a1aa 100%);
+  --gradient-text: linear-gradient(135deg, var(--c-zinc-50) 0%, var(--c-zinc-400) 100%);
 
   
-  --shadow-card: 0 4px 28px rgba(0, 0, 0, 0.55);
-  --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.15);
-  --shadow-base: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 28px color-mix(in srgb, var(--c-black) 55%, transparent);
+  --shadow-glow: 0 0 30px color-mix(in srgb, var(--c-violet-500) 15%, transparent);
+  --shadow-base: 0 10px 30px color-mix(in srgb, var(--c-black) 35%, transparent);
+  --shadow-md: 0 8px 24px color-mix(in srgb, var(--c-black) 30%, transparent);
+  --shadow-lg: 0 20px 60px color-mix(in srgb, var(--c-black) 40%, transparent);
   --shadow-premium:
-    0 0 0 1px rgba(124, 58, 237, 0.15), 0 10px 40px rgba(124, 58, 237, 0.25);
-  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 0 0 1px color-mix(in srgb, var(--c-violet-500) 15%, transparent), 0 10px 40px color-mix(in srgb, var(--c-violet-500) 25%, transparent);
+  --shadow-inset: inset 0 1px 0 color-mix(in srgb, var(--c-white) 5%, transparent);
 }
 
 [data-theme="light"] {
   
-  --background: var(--c-zinc-0);
-  --surface: var(--c-zinc-75);
-  --surface-elevated: var(--c-zinc-0);
-  --bg-primary: var(--c-zinc-0);
-  --bg-secondary: var(--c-zinc-75);
-  --bg-card: var(--c-zinc-75);
-  --bg-card-hover: var(--c-zinc-100);
+  --background: var(--c-white);
+  --surface: var(--c-slate-50);
+  --surface-elevated: var(--c-white);
+  --bg-primary: var(--c-white);
+  --bg-secondary: var(--c-slate-50);
+  --bg-card: var(--c-slate-50);
+  --bg-card-hover: var(--c-slate-100);
 
   
   --border: var(--c-zinc-200);
   --border-default: var(--c-zinc-200);
-  --border-accent: rgba(124, 58, 237, 0.22);
-  --divider: var(--c-zinc-100);
+  --border-accent: color-mix(in srgb, var(--c-violet-500) 22%, transparent);
+  --divider: var(--c-slate-100);
 
   
   --text-primary: var(--c-zinc-950);
   --text-secondary: var(--c-zinc-700);
-  --text-muted: #52525b;
+  --text-muted: var(--c-zinc-600);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
@@ -172,13 +209,13 @@
   --secondary-hover: var(--c-cyan-700);
   --accent: var(--c-violet-500);
   --accent-2: var(--c-violet-600);
-  --accent-glow: rgba(124, 58, 237, 0.08);
-  --accent-glow-strong: rgba(124, 58, 237, 0.18);
+  --accent-glow: color-mix(in srgb, var(--c-violet-500) 8%, transparent);
+  --accent-glow-strong: color-mix(in srgb, var(--c-violet-500) 18%, transparent);
 
   
   --green: var(--c-green-500);
-  --green-border: rgba(34, 197, 94, 0.28);
-  --green-bg: rgba(34, 197, 94, 0.07);
+  --green-border: color-mix(in srgb, var(--c-green-500) 28%, transparent);
+  --green-bg: color-mix(in srgb, var(--c-green-500) 7%, transparent);
 
   
   --gradient-accent: linear-gradient(
@@ -193,14 +230,25 @@
   );
 
   
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
-  --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.08);
-  --shadow-base: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 4px 24px color-mix(in srgb, var(--c-black) 6%, transparent);
+  --shadow-glow: 0 0 30px color-mix(in srgb, var(--c-violet-500) 8%, transparent);
+  --shadow-base: 0 10px 30px color-mix(in srgb, var(--c-black) 10%, transparent);
+  --shadow-md: 0 8px 24px color-mix(in srgb, var(--c-black) 7%, transparent);
+  --shadow-lg: 0 20px 60px color-mix(in srgb, var(--c-black) 10%, transparent);
   --shadow-premium:
-    0 0 0 1px rgba(124, 58, 237, 0.12), 0 10px 40px rgba(124, 58, 237, 0.15);
-  --shadow-inset: inset 0 1px 0 rgba(0, 0, 0, 0.04);
+    0 0 0 1px color-mix(in srgb, var(--c-violet-500) 12%, transparent), 0 10px 40px color-mix(in srgb, var(--c-violet-500) 15%, transparent);
+  --shadow-inset: inset 0 1px 0 color-mix(in srgb, var(--c-black) 4%, transparent);
+}
+
+:root {
+  --font-display: "Clash Display", "Sora", "Inter", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --section-max: 1440px;
+  --section-gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-pad-y: clamp(4.5rem, 10vh, 7rem);
+  --fs-section-title: clamp(2.25rem, 5vw, 4rem);
 }
 
 :root {

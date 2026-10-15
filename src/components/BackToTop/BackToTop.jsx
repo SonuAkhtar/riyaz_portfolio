@@ -47,6 +47,8 @@ const BackToTop = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 18, scale: 0.9 }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ y: -3, transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] } }}
+          whileTap={{ scale: 0.95 }}
         >
           <span className="back_top_ring" aria-hidden="true" />
           <ArrowUp />

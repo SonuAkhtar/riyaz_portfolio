@@ -1,13 +1,7 @@
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import RollText from "../RollText/RollText";
 import { navLinks, socialIconsData, profile } from "../../../appData";
 import "./footer.css";
-
-const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
-];
 
 const ArrowRight = () => (
   <svg
@@ -46,13 +40,10 @@ const ArrowUpRight = () => (
 );
 
 const Footer = () => {
-  const ref = useRef(null);
-  const now = new Date();
-  const currentMonth = MONTHS[now.getMonth()];
-  const currentYear = now.getFullYear();
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer ref={ref} className="footer_root">
+    <footer className="footer_root">
       <div className="footer_aurora" aria-hidden />
 
       <div className="footer_inner">
@@ -122,18 +113,11 @@ const Footer = () => {
         <div className="footer_meta">
           <span className="footer_meta-row">
             <span className="footer_meta-pulse" />
-            Available for select projects in {profile.availabilityShort}
-          </span>
-          <span className="footer_meta-row">
-            Last updated {currentMonth} {currentYear}
+            Available for select projects in {profile.availableFrom}
           </span>
           <span className="footer_meta-row">
             © {currentYear} {profile.name}. All rights reserved.
           </span>
-        </div>
-
-        <div className="footer_wordmark" aria-hidden>
-          RIYAZ AKHTAR
         </div>
       </div>
     </footer>

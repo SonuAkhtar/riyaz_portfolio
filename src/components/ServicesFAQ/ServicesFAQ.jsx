@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { faqData } from "../../../appData";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import "./servicesFAQ.css";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -38,7 +39,6 @@ const Accordion = ({ items }) => {
               onClick={() => setOpen(isOpen ? null : i)}
               className="accordion_item-head"
               aria-expanded={isOpen}
-              data-cursor-hover
             >
               <span className="accordion_item-q">{item.q}</span>
               <span
@@ -72,16 +72,11 @@ const Accordion = ({ items }) => {
 
 const ServicesFAQ = () => (
   <section className="faq_root">
-    <div className="faq_inner">
-      <header className="faq_header">
-        <span className="faq_eyebrow">
-          <span /> Common questions
-        </span>
-        <h2 className="faq_title">Frequently asked.</h2>
-      </header>
-      <div className="faq_content">
-        <Accordion items={faqs} />
+    <div className="section_inner faq_layout">
+      <div className="faq_aside">
+        <SectionHeader eyebrow="FAQ" title="Common questions." />
       </div>
+      <Accordion items={faqs} />
     </div>
   </section>
 );

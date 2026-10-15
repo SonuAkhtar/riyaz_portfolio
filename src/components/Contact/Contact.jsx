@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { fadeUp } from "../../utils/animations";
+import { fadeInUp } from "../../utils/animations";
 import { socialIconsData, profile } from "../../../appData";
 import "./contact.css";
 
@@ -9,24 +9,20 @@ const PHONE_TEL = profile.phone;
 
 const Contact = () => (
   <section className="contact" id="contact">
-    <div className="container">
+    <div className="section_inner">
       <motion.div
         className="contact_card"
-        variants={fadeUp}
+        variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
       >
         <div className="contact_card_top">
-          <h2 className="contact_big_hl">
-            Let's build
-            <br />
-            something people
-            <br />
-            remember
-          </h2>
+          <span className="section_label">Contact</span>
+          <h2 className="contact_big_hl">Have a project in mind?</h2>
           <p className="contact_sub">
-            from global tech companies to growing startups.
+            Tell me what you&apos;re building. I usually reply within{" "}
+            {profile.replyTime}.
           </p>
         </div>
 
@@ -50,7 +46,7 @@ const Contact = () => (
             </a>
           </div>
 
-          <div className="ccb_reveal" aria-hidden="true">
+          <div className="ccb_reveal">
             <a href={`mailto:${EMAIL}`} className="ccb_email">
               {EMAIL}
             </a>
@@ -63,6 +59,7 @@ const Contact = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ccb_soc"
+                  aria-label={s.label}
                 >
                   <i className={s.class} />
                 </a>

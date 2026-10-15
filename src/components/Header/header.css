@@ -46,71 +46,19 @@
     color-mix(in srgb, var(--text-primary) 7%, transparent);
 }
 .site_header.compact {
-  background: rgba(10, 10, 11, 0.78);
+  background: color-mix(in srgb, var(--c-zinc-975) 78%, transparent);
   backdrop-filter: blur(22px) saturate(180%);
   -webkit-backdrop-filter: blur(22px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-white) 6%, transparent);
 }
 
 [data-theme="light"] .site_header.compact {
-  background: rgba(255, 255, 255, 0.82);
+  background: color-mix(in srgb, var(--c-white) 82%, transparent);
   backdrop-filter: blur(22px) saturate(160%);
   -webkit-backdrop-filter: blur(22px) saturate(160%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-black) 6%, transparent);
 }
 
-.site_header.dark_surface {
-  color: #fafafa;
-}
-
-.site_header.dark_surface.top {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.site_header.dark_surface.compact,
-[data-theme="light"] .site_header.dark_surface.compact {
-  background: rgba(10, 10, 11, 0.78);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.site_header.dark_surface .site_logo {
-  color: #fafafa;
-}
-.site_header.dark_surface.compact .site_logo {
-  background: #fafafa;
-  color: #0a0a0b;
-}
-
-.site_header.dark_surface .site_nav_link {
-  color: #a1a1aa;
-}
-.site_header.dark_surface .site_nav_link.active {
-  color: #fafafa;
-}
-.site_header.dark_surface .site_nav_link.active::after {
-  background: #fafafa;
-}
-
-.site_header.dark_surface .site_menu_btn {
-  background: #18181b;
-  border-color: rgba(255, 255, 255, 0.08);
-  color: #fafafa;
-}
-.site_header.dark_surface .site_menu_btn:hover {
-  background: #1f1f23;
-  border-color: rgba(124, 58, 237, 0.4);
-}
-.site_header.dark_surface .site_menu_btn_icon span,
-.site_header.dark_surface .site_ham span {
-  background: #fafafa;
-}
-
-.site_header.dark_surface .site_cta {
-  background: #fafafa;
-  color: #0a0a0b;
-}
 .site_logo {
   font-family: "Barlow Condensed", "Syne", sans-serif;
   font-weight: 900;
@@ -321,7 +269,7 @@
 .site_cta:hover {
   opacity: 0.84;
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--c-black) 20%, transparent);
 }
 
 .site_cta_thumb {
@@ -618,7 +566,8 @@
   transition:
     opacity 0.3s ease,
     transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s ease;
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .fullmenu_item:hover .fullmenu_item_arrow {

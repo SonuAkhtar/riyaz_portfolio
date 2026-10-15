@@ -1,38 +1,38 @@
 .footer_root {
-  --color-ink-1000: #050610;
-  --color-text: #f6f7fb;
-  --color-text-soft: #c8ccd9;
-  --color-text-mute: #8b91a6;
-  --color-line: rgba(168, 132, 255, 0.16);
-  --color-accent-violet: #a78bfa;
-  --color-accent-violet-soft: #c4b5fd;
+  --color-ink-1000: var(--c-ink-975);
+  --color-text: var(--c-ink-50);
+  --color-text-soft: var(--c-ink-200);
+  --color-text-mute: var(--c-ink-400);
+  --color-line: color-mix(in srgb, var(--c-violet-300) 16%, transparent);
+  --color-accent-violet: var(--c-violet-300);
+  --color-accent-violet-soft: var(--c-violet-200);
 
   --gradient-aurora:
     radial-gradient(
       60% 50% at 20% 20%,
-      rgba(168, 132, 255, 0.55) 0%,
+      color-mix(in srgb, var(--c-violet-300) 55%, transparent) 0%,
       transparent 60%
     ),
     radial-gradient(
       50% 50% at 80% 30%,
-      rgba(99, 142, 255, 0.45) 0%,
+      color-mix(in srgb, var(--c-blue-350) 45%, transparent) 0%,
       transparent 60%
     ),
     radial-gradient(
       60% 60% at 50% 100%,
-      rgba(103, 232, 249, 0.32) 0%,
+      color-mix(in srgb, var(--c-cyan-300) 32%, transparent) 0%,
       transparent 60%
     );
 
   --footer-wordmark-fade: linear-gradient(
     180deg,
-    rgba(167, 139, 250, 0.18) 0%,
-    rgba(255, 255, 255, 0) 90%
+    color-mix(in srgb, var(--c-violet-300) 18%, transparent) 0%,
+    transparent 90%
   );
   --footer-aurora-opacity: 0.85;
-  --footer-brand-glow: 0 0 32px rgba(167, 139, 250, 0.45);
-  --footer-cta-glow: 0 0 28px rgba(167, 139, 250, 0.35);
-  --footer-border-top: 1px solid rgba(168, 132, 255, 0.22);
+  --footer-brand-glow: 0 0 32px color-mix(in srgb, var(--c-violet-300) 45%, transparent);
+  --footer-cta-glow: 0 0 28px color-mix(in srgb, var(--c-violet-300) 35%, transparent);
+  --footer-border-top: 1px solid color-mix(in srgb, var(--c-violet-300) 22%, transparent);
   --font-display: "Clash Display", "Sora", "Inter", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --fs-body-lg: 1.125rem;
@@ -134,8 +134,8 @@
   font-weight: 700;
   letter-spacing: -0.04em;
   box-shadow:
-    0 12px 28px -10px rgba(139, 92, 246, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 12px 28px -10px color-mix(in srgb, var(--c-violet-400) 45%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--c-white) 12%, transparent);
   transition:
     transform var(--dur-base) var(--ease-out-quart),
     box-shadow var(--dur-base) var(--ease-out-quart);
@@ -176,8 +176,8 @@
 .footer_brand:hover .footer_brand-mark {
   transform: rotate(-4deg) scale(1.06);
   box-shadow:
-    0 16px 38px -12px rgba(139, 92, 246, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 16px 38px -12px color-mix(in srgb, var(--c-violet-400) 65%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--c-white) 20%, transparent);
 }
 
 .footer_brand:hover .footer_brand-hint {
@@ -193,12 +193,6 @@
   outline: 2px solid var(--color-accent-violet);
   outline-offset: 6px;
   border-radius: 18px;
-}
-
-.footer_tagline {
-  color: var(--color-text-soft);
-  font-size: var(--fs-body-lg);
-  line-height: 1.55;
 }
 
 .footer_cta {
@@ -220,7 +214,7 @@
 
 .footer_cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 40px rgba(167, 139, 250, 0.55);
+  box-shadow: 0 0 40px color-mix(in srgb, var(--c-violet-300) 55%, transparent);
 }
 
 .footer_grid-cols {
@@ -314,10 +308,6 @@
   transform: scaleX(1);
 }
 
-.footer_col-meta {
-  color: var(--color-text-mute);
-  font-size: var(--fs-body-sm);
-}
 .footer_meta {
   display: flex;
   justify-content: space-between;
@@ -341,8 +331,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #5ee297;
-  box-shadow: 0 0 12px #5ee297;
+  background: var(--c-green-400);
+  box-shadow: 0 0 12px var(--c-green-400);
   animation: footer_pulse 2s ease-in-out infinite;
 }
 
@@ -357,59 +347,45 @@
     transform: scale(0.8);
   }
 }
-.footer_wordmark {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(4rem, 18vw, 15rem);
-  text-align: center;
-  letter-spacing: var(--tracking-tight);
-  line-height: 0.8;
-  background: var(--footer-wordmark-fade);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-top: var(--space-5);
-  user-select: none;
-}
 [data-theme="light"] .footer_root {
-  --color-ink-1000: #18181b;
-  --color-text: #f4f4f5;
-  --color-text-soft: #c8ccd9;
-  --color-text-mute: #a1a1aa;
-  --color-line: rgba(255, 255, 255, 0.1);
-  --color-accent-violet: #a78bfa;
-  --color-accent-violet-soft: #c4b5fd;
+  --color-ink-1000: var(--c-zinc-900);
+  --color-text: var(--c-zinc-100);
+  --color-text-soft: var(--c-ink-200);
+  --color-text-mute: var(--c-zinc-400);
+  --color-line: color-mix(in srgb, var(--c-white) 10%, transparent);
+  --color-accent-violet: var(--c-violet-300);
+  --color-accent-violet-soft: var(--c-violet-200);
 
   --gradient-aurora:
     radial-gradient(
       60% 50% at 20% 20%,
-      rgba(139, 92, 246, 0.28) 0%,
+      color-mix(in srgb, var(--c-violet-400) 28%, transparent) 0%,
       transparent 60%
     ),
     radial-gradient(
       50% 50% at 80% 30%,
-      rgba(79, 124, 255, 0.22) 0%,
+      color-mix(in srgb, var(--c-blue-600) 22%, transparent) 0%,
       transparent 60%
     ),
     radial-gradient(
       60% 60% at 50% 100%,
-      rgba(103, 232, 249, 0.16) 0%,
+      color-mix(in srgb, var(--c-cyan-300) 16%, transparent) 0%,
       transparent 60%
     );
 
   --footer-wordmark-fade: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0) 90%
+    color-mix(in srgb, var(--c-white) 10%, transparent) 0%,
+    transparent 90%
   );
   --footer-aurora-opacity: 0.55;
   --footer-brand-glow: none;
-  --footer-cta-glow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  --footer-border-top: 1px solid rgba(255, 255, 255, 0.08);
+  --footer-cta-glow: 0 8px 24px color-mix(in srgb, var(--c-black) 25%, transparent);
+  --footer-border-top: 1px solid color-mix(in srgb, var(--c-white) 8%, transparent);
 }
 
 [data-theme="light"] .footer_cta:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--c-black) 35%, transparent);
 }
 @media (max-width: 900px) {
   .footer_grid {
